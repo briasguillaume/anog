@@ -7,10 +7,10 @@ class FruitDemon(object):
 				"Fire":[25,50,0,25], 
 				"Ice":[25,0,50,25], 
 				"Electric":[50,0,0,50]}
-	allocatedFruits={"GumGum":false, 
-				"Fire":false, 
-				"Ice":false, 
-				"Electric":false}
+	allocatedFruits={"GumGum":False, 
+				"Fire":False, 
+				"Ice":False, 
+				"Electric":False}
 	#todo: create a database to avoid class variables
 
 	def __init__(self):
@@ -21,7 +21,7 @@ class FruitDemon(object):
 	def countAvailableFruits(self):
 		count=0
 		for fruit in fruitsNames:
-			if !allocatedFruits[fruit]:
+			if allocatedFruits[fruit]==False:
 				count=count+1
 		return count
 

@@ -3,6 +3,7 @@ from abc import abstractmethod
 from fruitdemon import FruitDemon
 import random
 from equipage import Equipage
+from fruitdemon import FruitDemon
 
 class Pirate(object):
 
@@ -12,7 +13,7 @@ class Pirate(object):
 		self._qualite=self.generateQualite([1,10,50,100])
 		self._fruit=self.generateFruit(self.generateDemonBool([1,100]))
 		self._stats=self.generateStats()
-		self._availableToFight=true
+		self._availableToFight=True
 
 
 	@property
@@ -22,6 +23,18 @@ class Pirate(object):
 	@property
 	def stats(self):
 		return self._stats
+
+	@property
+	def availableToFight(self):
+		return self._availableToFight
+
+	@property
+	def fruit(self):
+		return self._fruit
+
+	@property
+	def level(self):
+		return self._level
 
 	@fruit.setter
 	def fruit(self, frui):
@@ -44,7 +57,7 @@ class Pirate(object):
 	def increaseFatigue(self):
 		self._stats[3]-=1
 		if self._stats[3]<=0:
-			self._availableToFight=false
+			self._availableToFight=False
 
 	def mort(self):
 		if self._stats[0]<=0:
@@ -53,11 +66,14 @@ class Pirate(object):
 
 
 	def getAttackedBy(self, pirate):
-		self._stats[0]-=pirate.attaque()-self._stats[2]
+		degats=pirate.attaque()-self._stats[2]
+		self._stats[0]=self._stats[0]-degats
+
+		txt=self._name+" receives "+degats+"pts de degats de la part de "+pirate.name()+", il ne lui reste plus que "+self._stats[0]+"pts de vie"
 		pirate.increaseFatigue()
 		if self._stats[0]<=0:
 			self._availableToFight=false
-
+		return txt
 
 	def generateNewName(self):
 		return "Toto"
@@ -93,9 +109,9 @@ class Pirate(object):
 	def generateDemonBool(self, percentageDemonBool):
 		percent = random.randint(0,100)	
 		if percent<=percentageDemonBool[0]:
-			demonBool=true
+			demonBool=True
 		else:
-			demonBool=false
+			demonBool=False
 
 		return demonBool
 
@@ -103,3 +119,7 @@ class Pirate(object):
 		if demonBool:
 			return FruitDemon()
 		return None
+
+
+	def __str__(self):
+		return "Je suis "+self._name+",je suis de niveau "+self._level+" avec une qualité de "+self._qualite+", et je suis le détenteur du fruit du"+self._fruit.name()+"\n"
