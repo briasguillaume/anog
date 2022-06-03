@@ -1,8 +1,7 @@
 
 from abc import abstractmethod
-from fruitdemon import FruitDemon
+from fruitdemon import FruitFactory
 import random
-from equipage import Equipage
 from fruitdemon import FruitDemon
 
 class Pirate(object):
@@ -11,9 +10,10 @@ class Pirate(object):
 		self._name=self.generateNewName()
 		self._level=level
 		self._qualite=self.generateQualite([1,10,50,100])
-		self._fruit=self.generateFruit(self.generateDemonBool([1,100]))
+		self._fruit=FruitFactory.allocateFruit([1,100])
 		self._stats=self.generateStats()
 		self._availableToFight=True
+		self._mort=False
 
 
 	@property
@@ -35,6 +35,10 @@ class Pirate(object):
 	@property
 	def level(self):
 		return self._level
+
+	@property
+	def mort(self):
+		return self._mort
 
 	@fruit.setter
 	def fruit(self, frui):
@@ -61,31 +65,32 @@ class Pirate(object):
 
 	def mort(self):
 		if self._stats[0]<=0:
-			return true
-		return false
+			return True
+		return False
 
 
 	def getAttackedBy(self, pirate):
 		degats=pirate.attaque()-self._stats[2]
 		self._stats[0]=self._stats[0]-degats
 
-		txt=self._name+" receives "+degats+"pts de degats de la part de "+pirate.name()+", il ne lui reste plus que "+self._stats[0]+"pts de vie"
+		txt=self._name+" reçoit "+str(degats)+"pts de degats de la part de "+pirate.name+", il ne lui reste plus que "+str(self._stats[0])+"pts de vie"
 		pirate.increaseFatigue()
 		if self._stats[0]<=0:
-			self._availableToFight=false
+			self._availableToFight=False
+			self._mort=True
 		return txt
 
 	def generateNewName(self):
-		return "Toto"
+		return Firstname()+Secondname()
 
 
 
 	def generateStats(self):
 
-		vie=100*self._level*self._qualite
-		degats=20*self._level*self._qualite
-		defense=10*self._level*self._qualite
-		fatigue=100*self._qualite
+		vie=100*self._level*(5-self._qualite)
+		degats=20*self._level*(5-self._qualite)
+		defense=10*self._level*(5-self._qualite)
+		fatigue=100*(5-self._qualite)
 
 		if self._fruit==None:
 			return [vie, degats, defense, fatigue]
@@ -115,11 +120,71 @@ class Pirate(object):
 
 		return demonBool
 
-	def generateFruit(self, demonBool):
-		if demonBool:
-			return FruitDemon()
-		return None
-
 
 	def __str__(self):
-		return "Je suis "+self._name+",je suis de niveau "+self._level+" avec une qualité de "+self._qualite+", et je suis le détenteur du fruit du"+self._fruit.name()+"\n"
+		txt=self._name+"\n"
+		txt=txt+"niveau: "+str(self._level)+" | qualité: "+str(self._qualite)+" | fruit: "+self._fruit.name+"\n"
+		txt=txt+"vie: "+str(self._stats[0])+" | dps: "+str(self._stats[1])+" | def: "+str(self._stats[2])+" | fatigue: "+str(self._stats[3])+"\n"
+		txt=txt+"___________________________________________________\n"
+		return txt
+
+
+
+
+class Name(object):
+
+
+	def __init__(self, name):
+		self._name=name
+
+
+	@abstractmethod
+	def generateName(self):
+		raise NotImplementedError("Hey, Don't forget to implement")
+
+
+	@property
+	def name(self):
+		return self._name
+
+
+
+
+class Firstname(Name):
+
+	def __init__(self):
+		firstname=self.generateName()
+		super().__init__(firstname)
+
+
+	def generateName(self):
+		dictionnaire=["Kevin", "Roger", "Tiburce", "Gertrude", "Berthe"]
+		index=random.randint(0,len(dictionnaire)-1)
+		return dictionnaire[index]
+
+
+	def __add__(self, secondname):
+		return self._name+" "+secondname.name
+
+
+
+
+
+
+class Secondname(Name):
+
+	def __init__(self):
+		secondname=self.generateName()
+		super().__init__(secondname)
+
+
+	def generateName(self):
+		dictionnaire=["Tapedur", "Tankfor", "Grossbarb", "Epemoussee", "Lechauv"]
+		index=random.randint(0,len(dictionnaire)-1)
+		return dictionnaire[index]
+
+
+
+
+
+

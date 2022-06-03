@@ -3,6 +3,7 @@ from utils import Utils
 from equipage import Equipage
 from pirate import Pirate
 
+print("__________________________________________________________________________________________")
 equipage1=Equipage([Pirate(50),Pirate(50),Pirate(50),Pirate(50)])
 equipage2=Equipage([Pirate(50),Pirate(50),Pirate(50),Pirate(50)])
 
