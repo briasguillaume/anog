@@ -47,6 +47,8 @@ class Pirate(object):
 
 	@property
 	def mort(self):
+		if self._stats[0]<=0:
+			self._mort=True
 		return self._mort
 
 	@fruit.setter
@@ -54,8 +56,11 @@ class Pirate(object):
 		self._fruit=frui
 		self._stats=self.generateStats()
 
-	@level.setter
-	def level(self):
+	def regenerateHealth(self):
+		self._stats[0]=100*self._level*(5-self._qualite)
+
+	
+	def increaseLevel(self):
 		self._level+=1
 		self._stats=self.generateStats()
 
@@ -72,11 +77,11 @@ class Pirate(object):
 		if self._stats[3]<=0:
 			self._availableToFight=False
 
-	def mort(self):
-		if self._stats[0]<=0:
-			return True
-		return False
 
+	def updateStatus(self):
+		self._mort=self.mort
+		self._availableToFight= self._stats[3]>0
+		return self._mort
 
 	def getAttackedBy(self, pirate):
 		degats=pirate.attaque()-self._stats[2]
@@ -102,7 +107,7 @@ class Pirate(object):
 
 		vie=100*self._level*(5-self._qualite)
 		degats=20*self._level*(5-self._qualite)
-		defense=15*self._level*(5-self._qualite)
+		defense=10*self._level*(5-self._qualite)
 		fatigue=100*(5-self._qualite)
 
 		if self._fruit==None:
@@ -144,6 +149,7 @@ class Pirate(object):
 
 
 
+
 class Name(object):
 
 
@@ -171,7 +177,7 @@ class Firstname(Name):
 
 
 	def generateName(self):
-		dictionnaire=["Kevin", "Roger", "Tiburce", "Gertrude", "Berthe"]
+		dictionnaire=["Kevin", "Roger", "Tiburce", "Gertrude", "Berthe", "Robert", "Blaise", "Titeuf", "Bob", "Bérénice", "Bénédicte"]
 		index=random.randint(0,len(dictionnaire)-1)
 		return dictionnaire[index]
 
@@ -192,7 +198,7 @@ class Secondname(Name):
 
 
 	def generateName(self):
-		dictionnaire=["Tapedur", "Tankfor", "Grossbarb", "Epeenmousse", "Lechauv", "coursurpat", "penkibit"]
+		dictionnaire=["Tapedur", "Tankfor", "Grossbarb", "Epéenmousse", "Lechauv", "Coursurpat", "Penkibit", "Grofiak", "Moudujnou", "potrèmalin"]
 		index=random.randint(0,len(dictionnaire)-1)
 		return dictionnaire[index]
 

@@ -14,14 +14,17 @@ class Equipage(object):
 		self._availableToFight=True
 		self._numberOfPirates=len(self._team)
 
+
 	@property
 	def team(self):
 		return self._team
 
 	@property
 	def availableToFight(self):
-		self.isStillAvailableToFight()
-		return self._availableToFight
+		for pirate in self._team:
+			if pirate.mort==False and pirate.availableToFight:
+				return True
+		return False
 
 	@property
 	def numberOfPirates(self):
@@ -30,26 +33,48 @@ class Equipage(object):
 
 	def attaque(self, equipage):
 		pirate=self._turn.next()
-		return equipage.whoIsGonnaTankThatHit().getAttackedBy(pirate)
+		if pirate==None:
+			return "Cet équipage n'a plus personne de vivant. Fin du combat."
+		txt=equipage.whoIsGonnaTankThatHit().getAttackedBy(pirate)
+		return txt
 
 	def whoIsGonnaTankThatHit(self):
-		alive=self.isStillAvailableToFight()
+		alive=self.availableToTank()
 		who=random.randint(0, self._numberOfPirates-1)
 		return alive[who]
 	
-	def isStillAvailableToFight(self):
+	def availableToTank(self):
 		alive=[]
 		for pirate in self._team:
-			if pirate.mort()==False:
+			if pirate.mort==False:
 				alive.append(pirate)
 		self._numberOfPirates=len(alive)
 		if self._numberOfPirates==0:
 			self._availableToFight=False
 		return alive
 
+
+
+	def updateStatus(self):
+		temp=[]
+		for pirate in self._team:
+			if pirate.updateStatus():
+				print(pirate.name+" meurt au combat. RIP")
+				self._turn.removePirate()
+			else:
+				temp.append(pirate)
+		self._team=temp
+		self._numberOfPirates=len(self._team)
+		if self._numberOfPirates==0:
+			self._availableToFight=False
+
+	def regenerateHealth(self):
+		for pirate in self._team:
+			pirate.regenerateHealth()
+
 	def increaseCrewLevel(self):
 		for pirate in self._team:
-			pirate.level
+			pirate.increaseLevel()
 
 
 	def removeFighter(self):
@@ -99,16 +124,29 @@ class Turn(object):
 
 	def removeCurrent(self):
 		self._numberOfPirates-=1
-		self._pirates=np.delete(self._pirates, self._turnCount)
+		self._pirates=Utils.removeElement(self._pirates, self._turnCount)
+		print(self._pirates)
+
+
+	def removePirate(self):
+		temp=[]
+		for pirate in self._pirates:
+			if pirate.mort==False:
+				temp.append(pirate)
+		self._pirates=temp
+
 
 	def next(self):
 		if len(self._pirates)==0:
 			return None
 		self.increaseTurnCount()
 		pirate = self._pirates[self._turnCount]
-		if pirate.availableToFight==False:
+		while pirate.availableToFight==False or pirate.mort:
 			self.removeCurrent()
-			self.next() #recursif jusqu'à trouver un pirate disponible
+			if len(self._pirates)==0:
+				return None
+			self.increaseTurnCount()
+			pirate = self._pirates[self._turnCount]
 
 		return pirate
 

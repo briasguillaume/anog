@@ -16,5 +16,4 @@ print(equipage2)
 Utils.fight(equipage1,equipage2)
 '''
 
-
 Menu().showMenu()

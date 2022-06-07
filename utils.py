@@ -16,7 +16,10 @@ class Utils(Static):
 		while equipage1.availableToFight and equipage2.availableToFight:
 			print("Tour "+str(turnsCount)+":")
 			print("Equipage 2:"+equipage2.attaque(equipage1))
-			print("Equipage 1:"+equipage1.attaque(equipage2)+"\n")
+			equipage1.updateStatus()
+			print("Equipage 1:"+equipage1.attaque(equipage2))
+			equipage2.updateStatus()
+			print("\n")
 			turnsCount+=1
 		if equipage1.availableToFight:
 			equipage1.increaseCrewLevel()
@@ -54,6 +57,17 @@ class Utils(Static):
 	@staticmethod
 	def clear():
 		os.system('cls')
+
+
+	@staticmethod
+	def removeElement(array, index):
+		temp=[]
+		count=0
+		for elem in array:
+			if count!=index:
+				temp.append(elem)
+			count+=1
+		return temp
 		
 
 

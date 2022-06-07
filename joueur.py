@@ -41,12 +41,17 @@ class Joueur(object):
 		print("Vous êtes actuellement ici: "+str(self._position))
 
 		nextIsland=World.next(self._position.name)
+		if nextIsland==None:
+			print("GG t'es devenu le roi des pirates")
+			return None
+
 		print("La prochaine ile est "+str(nextIsland)+"\n")
 		bool = input("Vous voulez y aller? y/n\n")
 		while bool!="y":
 			bool = input("Vous voulez y aller? y/n\n")
 
 		self._position=nextIsland
+		self._equipage.regenerateHealth()
 		Utils.fight(self._equipage, self._position.pirates)
 		if self._equipage.availableToFight:
 			pirate=Pirate(self._position.level)
