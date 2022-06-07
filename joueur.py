@@ -39,7 +39,7 @@ class Joueur(object):
 		Utils.clear()
 		print("Voici ton équipage:\n"+str(self._equipage))
 		print("Vous êtes actuellement ici: "+str(self._position))
-
+		World.showMap()
 		nextIsland=World.next(self._position.name)
 		if nextIsland==None:
 			print("GG t'es devenu le roi des pirates")
