@@ -3,32 +3,6 @@ from equipage import Equipage
 from pirate import Pirate
 
 
-class World(object):
-
-
-	#store it in db
-	world=[Island("Karugarner", 0,0),
-			Island("Cupcake", 1, 5),
-			Island("Bottle", 2, 3)
-			]
-
-	avancee={"Karugarner":0,
-			"Cupcake":1
-			"Bottle":2
-			}
-
-
-	def __init__(self):
-		print("Bonjour je suis la carte.")
-
-	@staticmethod
-	def carte():
-		return World.world
-
-	@staticmethod
-	def next(currentIslandName):
-		return World.world[avancee[currentIslandName]+1]
-
 
 
 class Island(object):
@@ -37,7 +11,8 @@ class Island(object):
 	def __init__(self, name, level, ennemies):
 		self._name=name
 		self._level=level
-		self._pirates=Equipage(generateEnnemies(level, ennemies))
+		self._ennemies=ennemies
+		self._pirates=Equipage(self.generateEnnemies(level, ennemies))
 
 
 
@@ -49,7 +24,7 @@ class Island(object):
 
 
 	def __str__(self):
-		return "Vous êtes actuellement sur l'ile "+self._name+", il y a "+self._pirates.numberOfPirates+" pirates de niveau "+self._level+".\n"
+		return self._name+", il y a "+str(self._pirates.numberOfPirates)+" pirates de niveau "+str(self._level)+".\n"
 
 
 
@@ -68,3 +43,7 @@ class Island(object):
 	@property
 	def pirates(self):
 		return self._pirates
+
+
+	def regenerate(self):
+		self._pirates=Equipage(self.generateEnnemies(self._level, self._ennemies))

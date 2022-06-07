@@ -2,7 +2,7 @@
 from utils import Utils
 from equipage import Equipage
 from pirate import Pirate
-from island import World
+from world import World
 
 
 class Joueur(object):
@@ -14,8 +14,9 @@ class Joueur(object):
 		username=credentials[0]
 		password=credentials[1]
 		if self.existInDB(username):
-			print(username+" comes back to kick your ass!")
+			print("\n\n")
 			while self.checkPassword(username, password)==False:
+				print("Ton mot de passe semble faux, réessaye")
 				password=self.askForPassword()
 		else:
 			print("User "+username+" enters the game, be careful or he will kick your ass!")
@@ -28,24 +29,44 @@ class Joueur(object):
 
 		self._position= self.getMyLocation()
 
+		self.showMenu()
+
 
 
 
 
 	def showMenu(self):
+		Utils.clear()
+		print("Voici ton équipage:\n"+str(self._equipage))
+		print("Vous êtes actuellement ici: "+str(self._position))
 
-		print(self._equipage)
-		print(self._position)
-
-		print("La prochaine ile est \n")
-		print(World.next())
-		bool = input("Vous voulez y aller? y/n")
+		nextIsland=World.next(self._position.name)
+		print("La prochaine ile est "+str(nextIsland)+"\n")
+		bool = input("Vous voulez y aller? y/n\n")
 		while bool!="y":
-			bool = input("Vous voulez y aller? y/n")
+			bool = input("Vous voulez y aller? y/n\n")
+
+		self._position=nextIsland
+		Utils.fight(self._equipage, self._position.pirates)
+		if self._equipage.availableToFight:
+			pirate=Pirate(self._position.level)
+			print("Le pirate "+pirate.name+" est disponible au recrutement.\n")
+			print(pirate)
+			bool = input("Voulez-vous le recruter? y/n\n")
+			if bool=="y":
+				self._equipage.newFighter(pirate)
+		else:
+			#delete everything from db
+			self._equipage= self.getMyCrew()
+			self._position= self.getMyLocation()
+			playagain= input("Ton équipage est mort, il va falloir recommencer du début pour devenir le roi des pirates. y/n \n" )
+			while playagain!="y":
+				playagain= input("Ton équipage est mort, il va falloir recommencer du début pour devenir le roi des pirates. y/n \n" )
+			
 
 
-
-
+		Utils.clear()
+		self.showMenu()
 
 
 
@@ -85,3 +106,20 @@ class Joueur(object):
 	def getMyLocation(self):
 		return World.carte()[0]
 		#get it from db
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

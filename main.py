@@ -1,8 +1,9 @@
 
-from utils import Utils
-from equipage import Equipage
-from pirate import Pirate
-from joueur import Joueur
+#from utils import Utils
+#from equipage import Equipage
+#from pirate import Pirate
+#from joueur import Joueur
+from menu import Menu
 
 '''
 print("__________________________________________________________________________________________")
@@ -14,3 +15,6 @@ print(equipage2)
 
 Utils.fight(equipage1,equipage2)
 '''
+
+
+Menu().showMenu()

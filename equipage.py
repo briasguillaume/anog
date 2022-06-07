@@ -47,6 +47,10 @@ class Equipage(object):
 			self._availableToFight=False
 		return alive
 
+	def increaseCrewLevel(self):
+		for pirate in self._team:
+			pirate.level
+
 
 	def removeFighter(self):
 		self._turn.removeCurrent()
@@ -73,11 +77,25 @@ class Turn(object):
 		self._numberOfPirates+=1
 		place=random.randint(0,self._numberOfPirates)
 		if place==0:
-			self._pirates=[pirate, self._pirates]
+			temp=[pirate]
+
+			for p in self._pirates:
+				temp.append(p)
+
+			self._pirates=temp
 		elif place==self._numberOfPirates:
 			self._pirates.append(pirate)
 		else:
-			self._pirates=[self._pirates[0:place],pirate, self._pirates[place+1:end]]
+			temp=[]
+			for p in self._pirates[0:place]:
+				temp.append(p)
+			
+			temp.append(pirate)
+			
+			for p in self._pirates[place+1:len(self._pirates)-1]:
+				temp.append(p)
+
+			self._pirates=temp
 
 	def removeCurrent(self):
 		self._numberOfPirates-=1
@@ -90,7 +108,7 @@ class Turn(object):
 		pirate = self._pirates[self._turnCount]
 		if pirate.availableToFight==False:
 			self.removeCurrent()
-			self.next()
+			self.next() #recursif jusqu'à trouver un pirate disponible
 
 		return pirate
 

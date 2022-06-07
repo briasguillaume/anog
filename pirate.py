@@ -6,16 +6,7 @@ from fruitdemon import FruitDemon
 
 class Pirate(object):
 
-	def __init__(self, level):
-		self._name=self.generateNewName()
-		self._level=level
-		self._qualite=self.generateQualite([1,10,50,100])
-		self._fruit=FruitFactory.allocateFruit([1,100])
-		self._stats=self.generateStats()
-		self._availableToFight=True
-		self._mort=False
-
-	def __init__(self, level, capitaine):
+	def __init__(self, level, capitaine=False):
 		if capitaine:
 			self._name=self.generateNewName()
 			self._level=level
@@ -24,6 +15,15 @@ class Pirate(object):
 			self._stats=self.generateStats()
 			self._availableToFight=True
 			self._mort=False
+		else:
+			self._name=self.generateNewName()
+			self._level=level
+			self._qualite=self.generateQualite([1,10,50,100])
+			self._fruit=FruitFactory.allocateFruit([1,100])
+			self._stats=self.generateStats()
+			self._availableToFight=True
+			self._mort=False
+
 
 	@property
 	def name(self):
@@ -80,6 +80,10 @@ class Pirate(object):
 
 	def getAttackedBy(self, pirate):
 		degats=pirate.attaque()-self._stats[2]
+		if degats<=0: #aucun degat reçu
+			txt=self._name+" reçoit 0 pts de degats de la part de "+pirate.name+", il garde ses "+str(self._stats[0])+"pts de vie"
+			pirate.increaseFatigue()
+			return txt
 		self._stats[0]=self._stats[0]-degats
 
 		txt=self._name+" reçoit "+str(degats)+"pts de degats de la part de "+pirate.name+", il ne lui reste plus que "+str(self._stats[0])+"pts de vie"
@@ -98,7 +102,7 @@ class Pirate(object):
 
 		vie=100*self._level*(5-self._qualite)
 		degats=20*self._level*(5-self._qualite)
-		defense=10*self._level*(5-self._qualite)
+		defense=15*self._level*(5-self._qualite)
 		fatigue=100*(5-self._qualite)
 
 		if self._fruit==None:

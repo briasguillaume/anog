@@ -1,5 +1,6 @@
 import random
 import numpy as np
+import os
 
 class Static:
 	def __new__(cls):
@@ -17,6 +18,13 @@ class Utils(Static):
 			print("Equipage 2:"+equipage2.attaque(equipage1))
 			print("Equipage 1:"+equipage1.attaque(equipage2)+"\n")
 			turnsCount+=1
+		if equipage1.availableToFight:
+			equipage1.increaseCrewLevel()
+			print("Cet équipage remporte le combat, ils remportent tous un niveau:\n"+str(equipage1)+"\n")
+		else:
+			equipage2.increaseCrewLevel()
+			print("Cet équipage remporte le combat:\n"+str(equipage2)+"\nIls remportent tous un niveau!\n")
+
 
 
 	@staticmethod
@@ -42,6 +50,11 @@ class Utils(Static):
 
 
 
+
+	@staticmethod
+	def clear():
+		os.system('cls')
+		
 
 
 
