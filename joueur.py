@@ -45,11 +45,6 @@ class Joueur(object):
 			print("GG t'es devenu le roi des pirates")
 			return None
 
-		print("La prochaine ile est "+str(nextIsland)+"\n")
-		bool = input("Vous voulez y aller? y/n\n")
-		while bool!="y":
-			bool = input("Vous voulez y aller? y/n\n")
-
 		self._position=nextIsland
 		self._equipage.regenerateHealth()
 		Utils.fight(self._equipage, self._position.pirates)
@@ -109,7 +104,7 @@ class Joueur(object):
 
 
 	def getMyLocation(self):
-		return World.carte()[0]
+		return World.carte()[0].islands[0]
 		#get it from db
 
 
