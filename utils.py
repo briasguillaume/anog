@@ -29,6 +29,17 @@ class Utils(Static):
 		return shuffledList
 
 
+	@staticmethod
+	def askForCredentials():
+		username= input("Can you give your username?")
+		password= input("Now we need you to give your password.")
+		return [username, password]
+
+	@staticmethod
+	def askForPassword():
+		password= input("Now we need you to give your password.")
+		return password
+
 
 
 

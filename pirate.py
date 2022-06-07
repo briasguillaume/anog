@@ -15,6 +15,15 @@ class Pirate(object):
 		self._availableToFight=True
 		self._mort=False
 
+	def __init__(self, level, capitaine):
+		if capitaine:
+			self._name=self.generateNewName()
+			self._level=level
+			self._qualite=1
+			self._fruit=FruitFactory.giveAFruit()
+			self._stats=self.generateStats()
+			self._availableToFight=True
+			self._mort=False
 
 	@property
 	def name(self):
@@ -179,7 +188,7 @@ class Secondname(Name):
 
 
 	def generateName(self):
-		dictionnaire=["Tapedur", "Tankfor", "Grossbarb", "Epemoussee", "Lechauv"]
+		dictionnaire=["Tapedur", "Tankfor", "Grossbarb", "Epeenmousse", "Lechauv", "coursurpat", "penkibit"]
 		index=random.randint(0,len(dictionnaire)-1)
 		return dictionnaire[index]
 
