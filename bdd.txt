@@ -1,0 +1,60 @@
+Joueur
+- username string
+- password string
+
+Equipage
+- username string
+- position's name string
+- pirates's id string
+
+Fruits
+- names string
+- powers string
+- allocated bool
+
+Pirate
+- id int
+- name string
+- level int
+- fruit's name string
+- qualite int
+
+World
+- name string
+- stage int
+
+
+
+
+CREATE DATABASE data;
+use data;
+
+CREATE TABLE joueur(username varchar(20) PRIMARY KEY NOT NULL, password varchar(20));
+CREATE TABLE equipage(username varchar(20) PRIMARY KEY NOT NULL, position varchar(20), piratesid varchar(20));
+CREATE TABLE fruit(name varchar(20)  PRIMARY KEY NOT NULL, power varchar(20), allocated INT);
+CREATE TABLE pirate(id INT PRIMARY KEY NOT NULL, name varchar(20), level INT, fruit varchar(20), qualite INT);
+CREATE TABLE world(name varchar(20) PRIMARY KEY NOT NULL, stage INT);
+
+INSERT INTO fruit VALUES('GumGum','[25,25,25,25]', 0);
+INSERT INTO fruit VALUES('Fire','[25,50,0,25]', 0);
+INSERT INTO fruit VALUES('Ice','[25,0,50,25]', 0);
+INSERT INTO fruit VALUES('Electric','[50,0,0,50]', 0);
+
+INSERT INTO world VALUES('Karugarner', 0);
+INSERT INTO world VALUES('Cupcake', 1);
+INSERT INTO world VALUES('Bonbons', 1);
+INSERT INTO world VALUES('Bottle', 2);
+INSERT INTO world VALUES('String', 2);
+INSERT INTO world VALUES('Slip', 2);
+INSERT INTO world VALUES('Diplodocus', 3);
+INSERT INTO world VALUES('Fridge', 3);
+INSERT INTO world VALUES('Montgolfiere', 3);
+INSERT INTO world VALUES('Picmin', 4);
+INSERT INTO world VALUES('PoissonRouge', 5);
+INSERT INTO world VALUES('Gateau', 5);
+INSERT INTO world VALUES('Bouton', 6);
+INSERT INTO world VALUES('Fesse', 6);
+
+
+
+
