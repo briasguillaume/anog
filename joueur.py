@@ -49,12 +49,7 @@ class Joueur(object):
 		self._equipage.regenerateHealth()
 		Utils.fight(self._equipage, self._position.pirates)
 		if self._equipage.availableToFight:
-			pirate=Pirate(self._position.level)
-			print("Le pirate "+pirate.name+" est disponible au recrutement.\n")
-			print(pirate)
-			bool = input("Voulez-vous le recruter? y/n\n")
-			if bool=="y":
-				self._equipage.newFighter(pirate)
+			self.recrutement(5)
 		else:
 			#delete everything from db
 			self._equipage= self.getMyCrew()
@@ -71,6 +66,17 @@ class Joueur(object):
 
 
 
+	def recrutement(self, number):
+		pirates=[]
+		print("Des pirates sont disponibles au recrutement.\n")
+		for i in range(0,number):
+			pirate=Pirate(self._position.level)
+			pirates.append(pirate)
+			print("Choix "+str(i)+": "+str(pirate))
+		value = int(input("Lequel voulez-vous recruter?\n"))
+		if value<number:
+			self._equipage.newFighter(pirates[value])
+		
 
 
 
