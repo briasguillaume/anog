@@ -87,9 +87,9 @@ class InteractBDD(Static):
 	def getMyLocation(username):
 		request = "SELECT position FROM equipage WHERE username='"+username+"';"
 		description = connectAndExecuteRequest(request)
-	    
-	    for elem in description:
-	    	return Island(str(elem[0]), 0,0)
+
+		for elem in description:
+			return Island(str(elem[0]), 0,0)
 
 
 	#_____________________STORE_______________________________
@@ -114,13 +114,13 @@ class InteractBDD(Static):
 	
 	@staticmethod
 	def connectAndExecuteRequest(request):
-	    conn = mariadb.connect(**config)
-	    cur = conn.cursor()
-	    cur.execute(request)
-	    
-	    description=cur
-	    conn.close
-	    return description
+		conn = mariadb.connect(**config)
+		cur = conn.cursor()
+		cur.execute(request)
+
+		description=cur
+		conn.close
+		return description
 
 
 
