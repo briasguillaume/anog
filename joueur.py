@@ -3,11 +3,11 @@ from utils import Utils
 from equipage import Equipage
 from pirate import Pirate
 from world import World
-
+from interactBDD import InteractBDD
 
 class Joueur(object):
 
-
+	debug=False
 
 
 	def __init__(self, credentials):
@@ -93,20 +93,31 @@ class Joueur(object):
 
 
 	def existInDB(self, username):
-		return True
+		if Joueur.debug:
+			return True
+		else:
+			return InteractBDD.existInDB(username)
 
 
 	def createNewUser(self, username, password):
-		pass
+		if Joueur.debug:
+			pass
+		else:
+			InteractBDD.createUser(username, password)
 
 
 	def checkPassword(self, username, password):
-		return True
+		if Joueur.debug:
+			return True
+		else:
+			InteractBDD.checkPassword(username, password)
 
 
 	def getMyCrew(self):
-		return Equipage([Pirate(1, True)])
-		# get it from db
+		if Joueur.debug:
+			return Equipage([Pirate(1, True)])
+		else:
+			InteractBDD.getMyCrew(self._username)
 
 
 	def getMyLocation(self):

@@ -94,6 +94,10 @@ class FruitFactory(metaclass=FruitFactoryMeta):
 
 
 	@staticmethod
+	def giveThatFruit(fruit):
+		return FruitDemon(fruit, FruitFactory.fruitsPower[fruit])
+
+	@staticmethod
 	def giveAFruit():
 		if True:
 			availableFruits=FruitFactory.countAvailableFruits()
