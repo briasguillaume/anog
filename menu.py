@@ -4,7 +4,7 @@ from utils import Utils
 
 class Menu(object):
 
-
+	debug=False
 
 
 	def __init__(self):
@@ -15,8 +15,11 @@ class Menu(object):
 
 	@staticmethod
 	def showMenu():
-		Utils.clear()
-		print("Bonjour et bienvenu dans ce petit jeu! ;)\n")
-		username = input ("Pouvez-vous indiquer votre nom d'utilisateur?")
-		password = input ("Et votre mot de passe?")
-		Joueur([username, password])
+		if Menu.debug==False:
+			Utils.clear()
+			print("Bonjour et bienvenu dans ce petit jeu! ;)\n")
+			username = input ("Pouvez-vous indiquer votre nom d'utilisateur?")
+			password = input ("Et votre mot de passe?")
+			Joueur([username, password])
+		else:
+			return "Not implemented yet"
