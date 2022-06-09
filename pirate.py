@@ -4,25 +4,22 @@ from fruitdemon import FruitFactory
 import random
 from fruitdemon import FruitDemon
 
+
 class Pirate(object):
 
 	def __init__(self, level, capitaine=False):
 		if capitaine:
-			self._name=self.generateNewName()
-			self._level=level
 			self._qualite=1
 			self._fruit=FruitFactory.giveAFruit()
-			self._stats=self.generateStats()
-			self._availableToFight=True
-			self._mort=False
 		else:
-			self._name=self.generateNewName()
-			self._level=level
 			self._qualite=self.generateQualite([1,10,50,100])
 			self._fruit=FruitFactory.allocateFruit([1,100])
-			self._stats=self.generateStats()
-			self._availableToFight=True
-			self._mort=False
+
+		self._name=self.generateNewName()
+		self._level=level
+		self._stats=Pirate.generateStats(self._level, self._qualite, self._fruit.power)
+		self._availableToFight=True
+		self._mort=False
 
 
 	@property
@@ -54,7 +51,7 @@ class Pirate(object):
 	@fruit.setter
 	def fruit(self, frui):
 		self._fruit=frui
-		self._stats=self.generateStats()
+		self._stats=Pirate.generateStats(self._level, self._qualite, self._fruit.power)
 
 	def regenerateHealth(self):
 		self._stats[0]=100*self._level*(5-self._qualite)
@@ -62,7 +59,7 @@ class Pirate(object):
 	
 	def increaseLevel(self):
 		self._level+=1
-		self._stats=self.generateStats()
+		self._stats=Pirate.generateStats(self._level, self._qualite, self._fruit.power)
 
 
 	def attaque(self):
@@ -111,8 +108,9 @@ class Pirate(object):
 		else:
 			return FruitFactory.giveThatFruit(fruit)
 
-	def generateStats(self):
-
+	@staticmethod
+	def generateStats(self, level, qualite, fruitsPower):
+		'''
 		vie=100*self._level*(5-self._qualite)
 		degats=20*self._level*(5-self._qualite)
 		defense=10*self._level*(5-self._qualite)
@@ -121,6 +119,12 @@ class Pirate(object):
 		if self._fruit==None:
 			return [vie, degats, defense, fatigue]
 		return [vie, degats, defense, fatigue]+self._fruit.power
+		'''
+		vie=100*level*(5-qualite)
+		degats=20*level*(5-qualite)
+		defense=10*level*(5-qualite)
+		fatigue=100*(5-qualite)
+		return [vie, degats, defense, fatigue]+fruitsPower
 
 
 	def generateQualite(self, percentageQualite, qualite):

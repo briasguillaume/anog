@@ -121,8 +121,11 @@ class Joueur(object):
 
 
 	def getMyLocation(self):
-		return World.carte()[0].islands[0]
-		#get it from db
+		if Joueur.debug:
+			return World.carte()[0].islands[0]
+		else:
+			InteractBDD.getMyLocation(self._username)
+	
 
 
 

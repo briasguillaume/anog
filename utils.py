@@ -2,6 +2,12 @@ import random
 import numpy as np
 import os
 
+
+
+import json
+from collections import namedtuple
+from json import JSONEncoder
+
 class Static:
 	def __new__(cls):
 		raise TypeError('Static classes cannot be instantiated')
@@ -72,9 +78,13 @@ class Utils(Static):
 
 
 
+	@staticmethod
+	def decodePirate(pirateDict):
+		return namedtuple('X', pirateDict.keys())(*pirateDict.values())
 
-					
-
+	@staticmethod
+	def loadPirate(pirateJson):
+		return json.loads(pirateJson, object_hook=Utils.decodePirate)
 
 
 

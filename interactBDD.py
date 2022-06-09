@@ -1,4 +1,6 @@
 import mariadb
+from pirate import Pirate
+from fruitdemon import FruitFactory
 
 class Static:
 	def __new__(cls):
@@ -57,11 +59,20 @@ class InteractBDD(Static):
 		for pirateid in piratesid:
 			request = "SELECT * FROM pirate WHERE id='"+pirateid+"';"
 		    description = connectAndExecuteRequest(request)
-		    txt=""
 		    for elem in description:
+		    	level=str(elem[2])
+		    	qualite=str(elem[4])
+		    	fruit=FruitFactory.giveThatFruit(str(elem[3]))
+		    	txt='{"name": '+str(elem[1])+
+		    		', "level": '+level+
+		    		', "qualite": '+qualite+
+		    		', "fruit": '+ fruit+
+		    		', "stats": '+str(Pirate.generateStats(level, qualite, fruit.power))+
+		    		', "availableToFight": True'+
+		    		', "mort": False}'
 		    	
 
-		    pirates.append(txt)
+		    	pirates.append(txt) #pas besoin de separation avec une ',', il n'y en a qu'un avec cet id
 	    return pirates
 
 
@@ -75,6 +86,16 @@ class InteractBDD(Static):
 	    	return str(elem[0]).split(",")
 	    		
 	    return []
+
+
+
+	@staticmethod
+	def getMyLocation(username):
+		request = "SELECT position FROM equipage WHERE username='"+username+"';"
+	    description = connectAndExecuteRequest(request)
+	    
+	    for elem in description:
+	    	return Island(str(elem[0]), 0,0)
 
 
 
