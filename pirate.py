@@ -95,11 +95,9 @@ class Pirate(object):
 			self._mort=True
 		return txt
 
-	def generateNewName(self, name):
-		if name=="":
-			return Firstname()+Secondname()
-		else:
-			return name
+	def generateNewName(self):
+		return Firstname()+Secondname()
+		
 
 
 	def giveAFruit(self, fruit):
