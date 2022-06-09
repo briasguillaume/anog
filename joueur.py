@@ -21,7 +21,7 @@ class Joueur(object):
 		else:
 			print("User "+username+" enters the game, be careful or he will kick your ass!")
 			self.createNewUser(username, password)
-			Equipage([Pirate(1, True)]) #store it in db
+			InteractBDD.setMyCrew(username, World.carte()[0].islands[0], [Pirate(1, True)]) 
 
 
 		self._username= username

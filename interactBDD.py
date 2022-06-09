@@ -18,7 +18,7 @@ class InteractBDD(Static):
 	}
 
 
-
+	#___________________________CREDENTIALS_______________________
 
 	@staticmethod
 	def existInDB(username):
@@ -50,6 +50,7 @@ class InteractBDD(Static):
 	    return False
 
 
+	#_________________________GET___________________________
 
 	@staticmethod
 	def getMyCrew(username):
@@ -97,6 +98,23 @@ class InteractBDD(Static):
 	    for elem in description:
 	    	return Island(str(elem[0]), 0,0)
 
+
+	#_____________________STORE_______________________________
+
+	@staticmethod
+	def setMyCrew(username, position, pirates):
+		piratesid=""
+		for i in range(0,len(pirates)):
+			if i==0:
+				piratesid=piratesid+pirates[i].name
+			else:
+				piratesid=piratesid+","+pirates[i].name
+
+		request = "DELETE FROM equipage WHERE username='"+username+"';"
+	    description = connectAndExecuteRequest(request)
+		request = "INSERT INTO equipage VALUES('"+username+"','"+position+"','"+piratesid+"');"
+	    description = connectAndExecuteRequest(request)
+	    
 
 
 	#____________________________________________________________
