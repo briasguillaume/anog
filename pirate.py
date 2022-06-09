@@ -98,10 +98,18 @@ class Pirate(object):
 			self._mort=True
 		return txt
 
-	def generateNewName(self):
-		return Firstname()+Secondname()
+	def generateNewName(self, name):
+		if name=="":
+			return Firstname()+Secondname()
+		else:
+			return name
 
 
+	def giveAFruit(self, fruit):
+		if fruit=="":
+			return FruitFactory.giveAFruit()
+		else:
+			return FruitFactory.giveThatFruit(fruit)
 
 	def generateStats(self):
 
@@ -115,16 +123,17 @@ class Pirate(object):
 		return [vie, degats, defense, fatigue]+self._fruit.power
 
 
-	def generateQualite(self, percentageQualite):
-		percent = random.randint(0,100)
-		if percent<=percentageQualite[0]:
-			qualite=1
-		elif percent<=percentageQualite[1]:
-			qualite=2
-		elif percent<=percentageQualite[2]:
-			qualite=3
-		else:
-			qualite=4
+	def generateQualite(self, percentageQualite, qualite):
+		if qualite==0:
+			percent = random.randint(0,100)
+			if percent<=percentageQualite[0]:
+				qualite=1
+			elif percent<=percentageQualite[1]:
+				qualite=2
+			elif percent<=percentageQualite[2]:
+				qualite=3
+			else:
+				qualite=4
 
 		return qualite
 
