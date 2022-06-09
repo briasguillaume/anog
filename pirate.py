@@ -128,16 +128,16 @@ class Pirate(object):
 
 
 	def generateQualite(self, percentageQualite):
-		if qualite==0:
-			percent = random.randint(0,100)
-			if percent<=percentageQualite[0]:
-				qualite=1
-			elif percent<=percentageQualite[1]:
-				qualite=2
-			elif percent<=percentageQualite[2]:
-				qualite=3
-			else:
-				qualite=4
+		
+		percent = random.randint(0,100)
+		if percent<=percentageQualite[0]:
+			qualite=1
+		elif percent<=percentageQualite[1]:
+			qualite=2
+		elif percent<=percentageQualite[2]:
+			qualite=3
+		else:
+			qualite=4
 
 		return qualite
 
