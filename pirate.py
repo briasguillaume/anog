@@ -107,7 +107,7 @@ class Pirate(object):
 			return FruitFactory.giveThatFruit(fruit)
 
 	@staticmethod
-	def generateStats(self, level, qualite, fruitsPower):
+	def generateStats(level, qualite, fruitsPower):
 		'''
 		vie=100*self._level*(5-self._qualite)
 		degats=20*self._level*(5-self._qualite)
