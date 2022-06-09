@@ -22,4 +22,26 @@ class Menu(object):
 			password = input ("Et votre mot de passe?")
 			Joueur([username, password])
 		else:
-			return "Not implemented yet"
+			return """
+			<!DOCTYPE html>
+			<html>
+			    <head>
+			        <title>
+			            ANOG
+			        </title>
+			    </head>
+			    <body>
+			        <h3>
+			            ANOG: Another Neat Onepiece Game - by Corentin RENAULT & Adrien TURCHET
+			        </h3>
+			        <p>
+			            Enjoy the game!<br>
+
+			            <form action="/" method="post">
+			                User input: <input type="text" name="user_input" />
+			                <input type="submit" value="Submit" />
+			            </form>
+			        </p>
+			    </body>
+			</html>
+			"""
