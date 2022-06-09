@@ -42,7 +42,7 @@ class InteractBDD(Static):
 	@staticmethod
 	def checkPassword(username, password):
 		request = "SELECT password FROM joueur WHERE username='"+username+"';"
-	    description = connectAndExecuteRequest(request)
+		description = connectAndExecuteRequest(request)
 	    
 	    for elem in description:
 	    	if str(elem[0])==password:
@@ -81,7 +81,7 @@ class InteractBDD(Static):
 	@staticmethod
 	def getMyPiratesID(username):
 		request = "SELECT piratesid FROM equipage WHERE username='"+username+"';"
-	    description = connectAndExecuteRequest(request)
+		description = connectAndExecuteRequest(request)
 	    
 	    for elem in description:
 	    	return str(elem[0]).split(",")
@@ -93,7 +93,7 @@ class InteractBDD(Static):
 	@staticmethod
 	def getMyLocation(username):
 		request = "SELECT position FROM equipage WHERE username='"+username+"';"
-	    description = connectAndExecuteRequest(request)
+		description = connectAndExecuteRequest(request)
 	    
 	    for elem in description:
 	    	return Island(str(elem[0]), 0,0)
@@ -111,9 +111,9 @@ class InteractBDD(Static):
 				piratesid=piratesid+","+pirates[i].name
 
 		request = "DELETE FROM equipage WHERE username='"+username+"';"
-	    description = connectAndExecuteRequest(request)
+		description = connectAndExecuteRequest(request)
 		request = "INSERT INTO equipage VALUES('"+username+"','"+position+"','"+piratesid+"');"
-	    description = connectAndExecuteRequest(request)
+		description = connectAndExecuteRequest(request)
 	    
 
 
