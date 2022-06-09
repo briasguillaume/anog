@@ -127,7 +127,7 @@ class Pirate(object):
 		return [vie, degats, defense, fatigue]+fruitsPower
 
 
-	def generateQualite(self, percentageQualite, qualite):
+	def generateQualite(self, percentageQualite):
 		if qualite==0:
 			percent = random.randint(0,100)
 			if percent<=percentageQualite[0]:
