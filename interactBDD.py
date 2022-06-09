@@ -35,8 +35,8 @@ class InteractBDD(Static):
 	@staticmethod
 	def createUser(username, password):
 		request = "INSERT INTO joueur VALUES('"+username+"','"+password+"');"
-	    description = connectAndExecuteRequest(request)
-	    
+		description = connectAndExecuteRequest(request)
+
 
 
 	@staticmethod
