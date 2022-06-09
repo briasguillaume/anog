@@ -15,7 +15,7 @@ class Menu(object):
 
 	@staticmethod
 	def showMenu():
-		if Menu.debug==False:
+		if Menu.debug:
 			Utils.clear()
 			print("Bonjour et bienvenu dans ce petit jeu! ;)\n")
 			username = input ("Pouvez-vous indiquer votre nom d'utilisateur?")
