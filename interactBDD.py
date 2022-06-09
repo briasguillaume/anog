@@ -43,11 +43,11 @@ class InteractBDD(Static):
 	def checkPassword(username, password):
 		request = "SELECT password FROM joueur WHERE username='"+username+"';"
 		description = connectAndExecuteRequest(request)
-	    
-	    for elem in description:
-	    	if str(elem[0])==password:
-	    		return True
-	    return False
+
+		for elem in description:
+			if str(elem[0])==password:
+				return True
+		return False
 
 
 	#_________________________GET___________________________
@@ -59,22 +59,21 @@ class InteractBDD(Static):
 		pirates=[]
 		for pirateid in piratesid:
 			request = "SELECT * FROM pirate WHERE id='"+pirateid+"';"
-		    description = connectAndExecuteRequest(request)
-		    for elem in description:
-		    	level=str(elem[2])
-		    	qualite=str(elem[4])
-		    	fruit=FruitFactory.giveThatFruit(str(elem[3]))
-		    	txt='{"name": '+str(elem[1])+
+			description = connectAndExecuteRequest(request)
+			for elem in description:
+				level=str(elem[2])
+				qualite=str(elem[4])
+				fruit=FruitFactory.giveThatFruit(str(elem[3]))
+				txt='{"name": '+str(elem[1])+
 		    		', "level": '+level+
 		    		', "qualite": '+qualite+
 		    		', "fruit": '+ fruit+
 		    		', "stats": '+str(Pirate.generateStats(level, qualite, fruit.power))+
 		    		', "availableToFight": True'+
 		    		', "mort": False}'
-		    	
 
 		    	pirates.append(txt) #pas besoin de separation avec une ',', il n'y en a qu'un avec cet id
-	    return pirates
+		return pirates
 
 
 
@@ -82,11 +81,11 @@ class InteractBDD(Static):
 	def getMyPiratesID(username):
 		request = "SELECT piratesid FROM equipage WHERE username='"+username+"';"
 		description = connectAndExecuteRequest(request)
-	    
-	    for elem in description:
-	    	return str(elem[0]).split(",")
-	    		
-	    return []
+
+		for elem in description:
+			return str(elem[0]).split(",")
+
+		return []
 
 
 
