@@ -5,7 +5,7 @@ from utils import Utils
 class Menu(object):
 
 	debug=False
-	userInput=["Beefr", "b"]
+	userInput=[]
 	steps={1: "Menu.askForUsername", 2: "Menu.askForPassword", 3: "Joueur"}
 	parameters={1: [], 2: [], 3: [userInput[0], userInput[1]]}
 	currentStep=1
@@ -26,7 +26,6 @@ class Menu(object):
 			password = input ("Et votre mot de passe?")
 			Joueur(username, password)
 		else:
-			return "" + Menu.getParameters()
 			txt=Menu.beginningHTML() + eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")") + Menu.endHTML()
 
 			Menu.nextStep(user_input)
@@ -47,7 +46,9 @@ class Menu(object):
 		array=Menu.parameters[Menu.currentStep]
 		txt=""
 		for param in array:
-			txt=txt+eval(param)
+			if txt!="":
+				txt=txt+","
+			txt=txt+param
 		return txt
 
 
