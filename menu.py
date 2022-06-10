@@ -34,10 +34,10 @@ class Menu(object):
 	@staticmethod
 	def nextStep(user_input):
 		if user_input!="":
-			if Menu.currentStep<3:
-				Menu.currentStep+=1
 			if Menu.currentStep==3:
 				Menu.userInput=[]
+			if Menu.currentStep<3:
+				Menu.currentStep+=1
 			Menu.userInput.append(user_input)
 
 
