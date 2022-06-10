@@ -35,7 +35,7 @@ class Joueur(object):
 			username=credentials[0]
 			password=credentials[1]
 			if self.existInDB(username):
-				
+				pass
 				# TODO check password
 
 			else:
