@@ -105,7 +105,7 @@ class InteractBDD(Static):
 
 		request = "DELETE FROM equipage WHERE username='"+username+"';"
 		description = InteractBDD.connectAndExecuteRequest(request)
-		request = "INSERT INTO equipage VALUES('"+username+"','"+position+"','"+piratesid+"');"
+		request = "INSERT INTO equipage VALUES('"+username+"','"+position.name+"','"+piratesid+"');"
 		description = InteractBDD.connectAndExecuteRequest(request)
 	    
 
