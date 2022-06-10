@@ -7,7 +7,7 @@ class Menu(object):
 	debug=False
 	steps={"1": "Menu.askForUsername",
 						"2": "Menu.askForPassword"}
-	currentStep=1
+	currentStep=0
 
 	userInput=[]
 
