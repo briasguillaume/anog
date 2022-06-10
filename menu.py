@@ -28,8 +28,8 @@ class Menu(object):
 		else:
 
 			while user_input=="": 
-				txt=Menu.beginningHTML() + eval(Menu.steps[Menu.currentStep] + "()") + Menu.endHTML()
-
+				txt=Menu.beginningHTML() + Menu.endHTML()
+#+ eval(Menu.steps[Menu.currentStep] + "()") 
 			Menu.userInput.append(user_input)
 			Menu.currentStep+=1
 			return txt
