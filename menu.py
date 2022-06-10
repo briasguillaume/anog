@@ -45,10 +45,11 @@ class Menu(object):
 	def getParameters():
 		array=eval(Menu.parameters[Menu.currentStep])
 		txt=""
-		for param in array:
-			if txt!="":
-				txt=txt+","
-			txt=txt+param
+		if array!=[]:
+			for param in array:
+				if txt!="":
+					txt=txt+","
+				txt=txt+'"'+param+'"'
 		return txt
 
 
