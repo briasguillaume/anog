@@ -5,9 +5,8 @@ from utils import Utils
 class Menu(object):
 
 	debug=False
-	steps={"1": "Menu.askForUsername",
-						"2": "Menu.askForPassword"}
-	currentStep=0
+	steps={1: "Menu.askForUsername", 2: "Menu.askForPassword"}
+	currentStep=1
 
 	userInput=[]
 
@@ -26,7 +25,6 @@ class Menu(object):
 			password = input ("Et votre mot de passe?")
 			Joueur([username, password])
 		else:
-
 			txt=Menu.beginningHTML() + eval(Menu.steps[Menu.currentStep] + "()") + Menu.endHTML()
 
 			if user_input!="":
