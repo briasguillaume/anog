@@ -25,7 +25,6 @@ class InteractBDD(Static):
 	    request = "SELECT username FROM joueur WHERE username='"+username+"';"
 	    description = InteractBDD.connectAndExecuteRequest(request)
 	    
-	    return False
 	    for elem in description:
 	    	if str(elem[0])==username:
 	    		return True
@@ -37,7 +36,7 @@ class InteractBDD(Static):
 	def createUser(username, password):
 		request = "INSERT INTO joueur VALUES('"+username+"','"+password+"');"
 		description = InteractBDD.connectAndExecuteRequest(request)
-
+		return None
 
 
 	@staticmethod
@@ -108,6 +107,7 @@ class InteractBDD(Static):
 		description = InteractBDD.connectAndExecuteRequest(request)
 		request = "INSERT INTO equipage VALUES('"+username+"','"+position.name+"','"+piratesid+"');"
 		description = InteractBDD.connectAndExecuteRequest(request)
+		return None
 	    
 
 
