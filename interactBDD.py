@@ -23,7 +23,7 @@ class InteractBDD(Static):
 	@staticmethod
 	def existInDB(username):
 	    request = "SELECT username FROM joueur WHERE username='"+username+"';"
-	    description = connectAndExecuteRequest(request)
+	    description = InteractBDD.connectAndExecuteRequest(request)
 	    
 	    for elem in description:
 	    	if str(elem[0])==username:
@@ -35,14 +35,14 @@ class InteractBDD(Static):
 	@staticmethod
 	def createUser(username, password):
 		request = "INSERT INTO joueur VALUES('"+username+"','"+password+"');"
-		description = connectAndExecuteRequest(request)
+		description = InteractBDD.connectAndExecuteRequest(request)
 
 
 
 	@staticmethod
 	def checkPassword(username, password):
 		request = "SELECT password FROM joueur WHERE username='"+username+"';"
-		description = connectAndExecuteRequest(request)
+		description = InteractBDD.connectAndExecuteRequest(request)
 
 		for elem in description:
 			if str(elem[0])==password:
@@ -54,12 +54,12 @@ class InteractBDD(Static):
 
 	@staticmethod
 	def getMyCrew(username):
-		piratesid=getMyPiratesID(username)
+		piratesid=InteractBDD.getMyPiratesID(username)
 
 		pirates=[]
 		for pirateid in piratesid:
 			request = "SELECT * FROM pirate WHERE id='"+pirateid+"';"
-			description = connectAndExecuteRequest(request)
+			description = InteractBDD.connectAndExecuteRequest(request)
 			for elem in description:
 				level=str(elem[2])
 				qualite=str(elem[4])
@@ -74,7 +74,7 @@ class InteractBDD(Static):
 	@staticmethod
 	def getMyPiratesID(username):
 		request = "SELECT piratesid FROM equipage WHERE username='"+username+"';"
-		description = connectAndExecuteRequest(request)
+		description = InteractBDD.connectAndExecuteRequest(request)
 
 		for elem in description:
 			return str(elem[0]).split(",")
@@ -86,7 +86,7 @@ class InteractBDD(Static):
 	@staticmethod
 	def getMyLocation(username):
 		request = "SELECT position FROM equipage WHERE username='"+username+"';"
-		description = connectAndExecuteRequest(request)
+		description = InteractBDD.connectAndExecuteRequest(request)
 
 		for elem in description:
 			return Island(str(elem[0]), 0,0)
@@ -104,9 +104,9 @@ class InteractBDD(Static):
 				piratesid=piratesid+","+pirates[i].name
 
 		request = "DELETE FROM equipage WHERE username='"+username+"';"
-		description = connectAndExecuteRequest(request)
+		description = InteractBDD.connectAndExecuteRequest(request)
 		request = "INSERT INTO equipage VALUES('"+username+"','"+position+"','"+piratesid+"');"
-		description = connectAndExecuteRequest(request)
+		description = InteractBDD.connectAndExecuteRequest(request)
 	    
 
 
