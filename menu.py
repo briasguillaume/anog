@@ -27,10 +27,8 @@ class Menu(object):
 		else:
 
 			while user_input=="": 
-				txt=Menu.beginningHTML() +
-					eval(self._steps[self._currentStep] + "()") +
-					Menu.endHTML()
-			
+				txt=Menu.beginningHTML() + eval(self._steps[self._currentStep] + "()") + Menu.endHTML()
+
 			self._userInput.append(user_input)
 			self._currentStep+=1
 			return txt
@@ -39,8 +37,7 @@ class Menu(object):
 
 	@staticmethod
 	def askForUsername():
-		txt="Bonjour et bienvenu dans ce petit jeu! ;) <br>" +
-			"Pouvez-vous indiquer votre nom d'utilisateur? <br>"
+		txt="Bonjour et bienvenu dans ce petit jeu! ;) <br>" + "Pouvez-vous indiquer votre nom d'utilisateur? <br>"
 		return txt
 
 
