@@ -47,7 +47,7 @@ class Menu(object):
 		array=Menu.parameters[Menu.currentStep]
 		txt=""
 		for param in array:
-			txt=txt+str(param)
+			txt=txt+eval(param)
 		return txt
 
 
