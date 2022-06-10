@@ -5,7 +5,8 @@ from utils import Utils
 class Menu(object):
 
 	debug=False
-	steps={1: "Menu.askForUsername", 2: "Menu.askForPassword"}
+	steps={1: "Menu.askForUsername", 2: "Menu.askForPassword", 3: "Joueur"}
+	parameters={1: "()", 2: "()", 3: "(Menu.userInput)"}
 	currentStep=1
 
 	userInput=[]
@@ -25,12 +26,20 @@ class Menu(object):
 			password = input ("Et votre mot de passe?")
 			Joueur([username, password])
 		else:
-			txt=Menu.beginningHTML() + eval(Menu.steps[Menu.currentStep] + "()") + Menu.endHTML()
+			txt=Menu.beginningHTML() + eval(Menu.steps[Menu.currentStep] + Menu.parameters[Menu.currentStep]) + Menu.endHTML()
 
-			if user_input!="":
-				Menu.userInput.append(user_input)
-				Menu.currentStep+=1
+			Menu.nextStep(user_input)
 			return txt
+
+	@staticmethod
+	def nextStep(user_input):
+		if user_input!="":
+			if Menu.currentStep<3:
+				Menu.currentStep+=1
+			if Menu.currentStep==3:
+				Menu.userInput=[]
+			Menu.userInput.append(user_input)
+
 
 
 

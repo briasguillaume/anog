@@ -15,25 +15,46 @@ class Static:
 
 class Utils(Static):
 
+	debug=False
+
 	@staticmethod
 	def fight(equipage1, equipage2):
-		first=random.randint(1,2)
-		turnsCount=0
-		while equipage1.availableToFight and equipage2.availableToFight:
-			print("Tour "+str(turnsCount)+":")
-			print("Equipage 2:"+equipage2.attaque(equipage1))
-			equipage1.updateStatus()
-			print("Equipage 1:"+equipage1.attaque(equipage2))
-			equipage2.updateStatus()
-			print("\n")
-			turnsCount+=1
-		if equipage1.availableToFight:
-			equipage1.increaseCrewLevel()
-			print("Cet équipage remporte le combat, ils remportent tous un niveau:\n"+str(equipage1)+"\n")
+		if Utils.debug:
+			first=random.randint(1,2)
+			turnsCount=0
+			while equipage1.availableToFight and equipage2.availableToFight:
+				print("Tour "+str(turnsCount)+":")
+				print("Equipage 2:"+equipage2.attaque(equipage1))
+				equipage1.updateStatus()
+				print("Equipage 1:"+equipage1.attaque(equipage2))
+				equipage2.updateStatus()
+				print("\n")
+				turnsCount+=1
+			if equipage1.availableToFight:
+				equipage1.increaseCrewLevel()
+				print("Cet équipage remporte le combat, ils remportent tous un niveau:\n"+str(equipage1)+"\n")
+			else:
+				equipage2.increaseCrewLevel()
+				print("Cet équipage remporte le combat:\n"+str(equipage2)+"\nIls remportent tous un niveau!\n")
 		else:
-			equipage2.increaseCrewLevel()
-			print("Cet équipage remporte le combat:\n"+str(equipage2)+"\nIls remportent tous un niveau!\n")
-
+			txt=""
+			first=random.randint(1,2)
+			turnsCount=0
+			while equipage1.availableToFight and equipage2.availableToFight:
+				txt=txt+"Tour "+str(turnsCount)+":<br>"
+				txt=txt+"Equipage 2:"+equipage2.attaque(equipage1)+"<br>"
+				equipage1.updateStatus()
+				txt=txt+"Equipage 1:"+equipage1.attaque(equipage2)+"<br>"
+				equipage2.updateStatus()
+				txt=txt+"<br>"
+				turnsCount+=1
+			if equipage1.availableToFight:
+				equipage1.increaseCrewLevel()
+				txt=txt+"Cet équipage remporte le combat, ils remportent tous un niveau:<br>"+str(equipage1)+"<br>"
+			else:
+				equipage2.increaseCrewLevel()
+				txt=txt+"Cet équipage remporte le combat:<br>"+str(equipage2)+"<br>Ils remportent tous un niveau!<br>"
+			return txt
 
 
 	@staticmethod

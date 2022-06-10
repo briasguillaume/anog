@@ -5,6 +5,7 @@ from stage import Stage
 
 class World(object):
 
+	debug=False
 
 	#store it in db
 	world=[Stage([Island("Karugarner", 0,0)],0),
@@ -42,43 +43,81 @@ class World(object):
 
 	@staticmethod
 	def next(currentIslandName):
-		maxIndex=len(World.world)-1
-		index=World.avancee[currentIslandName]+1
-		if index<=maxIndex:
-			stage=World.world[index]
-			if len(stage.islands)==1:
-				island=stage.islands[0]
+		if World.debug:
+			maxIndex=len(World.world)-1
+			index=World.avancee[currentIslandName]+1
+			if index<=maxIndex:
+				stage=World.world[index]
+				if len(stage.islands)==1:
+					island=stage.islands[0]
+					island.regenerate()
+					return island
+				print(stage)
+				choix=int(input("Dans quelle ile veux-tu aller?"))
+				while choix>=len(stage.islands):
+					choix=input("Dans quelle ile veux-tu aller?")
+				island=stage.islands[choix]
 				island.regenerate()
-				return island
-			print(stage)
-			choix=int(input("Dans quelle ile veux-tu aller?"))
-			while choix>=len(stage.islands):
-				choix=input("Dans quelle ile veux-tu aller?")
-			island=stage.islands[choix]
-			island.regenerate()
+			else:
+				return None
+			return island
 		else:
-			return None
-		return island
+			txt=""
+			maxIndex=len(World.world)-1
+			index=World.avancee[currentIslandName]+1
+			if index<=maxIndex:
+				stage=World.world[index]
+				if len(stage.islands)==1:
+					island=stage.islands[0]
+					island.regenerate()
+					return island
+				txt=txt+"Dans quelle ile veux-tu aller?"
+				choix=int(input("Dans quelle ile veux-tu aller?"))
+				
+				# TODO handle input
+
+				try:
+					island=stage.islands[choix]
+				except:
+					island=stage.islands[0]
+				island.regenerate()
+			else:
+				return None
+			return island
 
 
 	@staticmethod
 	def showMap():
-		txt=""
-		for stage in World.world:
-			txt=txt+"------------------------------------------------------------\n" #60
-			#1 20 20
-			#2 5 55 55 5
-			spaceLength=60/(len(stage.islands)+1) -10
-			for island in stage.islands:
-				for i in range(int(spaceLength)):
-					txt=txt+" "
-				txt=txt+"|"+island.name+"|"
-				for i in range(int(spaceLength)):
-					txt=txt+" "
-			txt=txt+"\n"
-
-
-		print(txt)
+		if World.debug:
+			txt=""
+			for stage in World.world:
+				txt=txt+"------------------------------------------------------------\n" #60
+				#1 20 20
+				#2 5 55 55 5
+				spaceLength=60/(len(stage.islands)+1) -10
+				for island in stage.islands:
+					for i in range(int(spaceLength)):
+						txt=txt+" "
+					txt=txt+"|"+island.name+"|"
+					for i in range(int(spaceLength)):
+						txt=txt+" "
+				txt=txt+"\n"
+			print(txt)
+		else:
+			txt=""
+			for stage in World.world:
+				txt=txt+"------------------------------------------------------------<br>" #60
+				#1 20 20
+				#2 5 55 55 5
+				spaceLength=60/(len(stage.islands)+1) -10
+				for island in stage.islands:
+					for i in range(int(spaceLength)):
+						txt=txt+" "
+					txt=txt+"|"+island.name+"|"
+					for i in range(int(spaceLength)):
+						txt=txt+" "
+				txt=txt+"\n"
+			return txt
 
 
 
