@@ -5,14 +5,15 @@ from utils import Utils
 class Menu(object):
 
 	debug=False
+	steps={"1": "Menu.askForUsername",
+						"2": "Menu.askForPassword"}
+	currentStep=1
+
+	userInput=[]
 
 
 	def __init__(self):
-		self._steps={"1": "Menu.askForUsername",
-						"2": "Menu.askForPassword"}
-		self._currentStep=1
-
-		self._userInput=[]
+		print("")
 
 
 
@@ -27,10 +28,10 @@ class Menu(object):
 		else:
 
 			while user_input=="": 
-				txt=Menu.beginningHTML() + eval(self._steps[self._currentStep] + "()") + Menu.endHTML()
+				txt=Menu.beginningHTML() + eval(Menu.steps[Menu.currentStep] + "()") + Menu.endHTML()
 
-			self._userInput.append(user_input)
-			self._currentStep+=1
+			Menu.userInput.append(user_input)
+			Menu.currentStep+=1
 			return txt
 
 
