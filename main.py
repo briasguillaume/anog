@@ -18,4 +18,4 @@ Utils.fight(equipage1,equipage2)
 
 
 
-Menu().showMenu()
+Menu().showMenu("")
