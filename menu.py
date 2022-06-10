@@ -7,7 +7,7 @@ class Menu(object):
 	debug=False
 	userInput=[]
 	steps={1: "Menu.askForUsername", 2: "Menu.askForPassword", 3: "Joueur"}
-	parameters={1: "[]", 2: "[]", 3: "[userInput[0], userInput[1]]"}
+	parameters={1: "[]", 2: "[]", 3: "[Menu.userInput[0], Menu.userInput[1]]"}
 	currentStep=1
 
 
