@@ -114,7 +114,7 @@ class InteractBDD(Static):
 	
 	@staticmethod
 	def connectAndExecuteRequest(request):
-		conn = mariadb.connect(**config)
+		conn = mariadb.connect(**InteractBDD.config)
 		cur = conn.cursor()
 		cur.execute(request)
 
