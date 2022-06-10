@@ -12,17 +12,6 @@ class Joueur(object):
 
 	def __init__(self, username, password):
 		if Joueur.debug:
-			if self.existInDB(username):
-				print("\n\n")
-				while self.checkPassword(username, password)==False:
-					print("Ton mot de passe semble faux, réessaye")
-					password=self.askForPassword()
-			else:
-				print("User "+username+" enters the game, be careful or he will kick your ass!")
-				self.createNewUser(username, password)
-				 
-
-
 			self._username= username
 			self._equipage= self.getMyCrew()
 
