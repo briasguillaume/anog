@@ -6,10 +6,10 @@ class Menu(object):
 
 	debug=False
 	steps={1: "Menu.askForUsername", 2: "Menu.askForPassword", 3: "Joueur"}
-	parameters={1: "()", 2: "()", 3: "(Menu.userInput[0], Menu.userInput[1])"}
+	parameters={1: [], 2: [], 3: [Menu.userInput[0], Menu.userInput[1]]}
 	currentStep=1
 
-	userInput=[]
+	userInput=["Beefr", "b"]
 
 
 	def __init__(self):
@@ -26,8 +26,8 @@ class Menu(object):
 			password = input ("Et votre mot de passe?")
 			Joueur(username, password)
 		else:
-			return "" + Menu.steps[3] + Menu.parameters[3]
-			txt=Menu.beginningHTML() + eval(Menu.steps[Menu.currentStep] + Menu.parameters[Menu.currentStep]) + Menu.endHTML()
+			return "" + Menu.getParameters()
+			txt=Menu.beginningHTML() + eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")") + Menu.endHTML()
 
 			Menu.nextStep(user_input)
 			return txt
@@ -42,6 +42,13 @@ class Menu(object):
 			Menu.userInput.append(user_input)
 
 
+	@staticmethod
+	def getParameters():
+		array=Menu.parameters[Menu.currentStep]
+		txt=""
+		for param in array:
+			txt=txt+str(param)
+		return txt
 
 
 	@staticmethod
