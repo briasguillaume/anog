@@ -6,7 +6,7 @@ class Menu(object):
 
 	debug=False
 	steps={1: "Menu.askForUsername", 2: "Menu.askForPassword", 3: "Joueur"}
-	parameters={1: "()", 2: "()", 3: "(Menu.userInput)"}
+	parameters={1: "()", 2: "()", 3: "(Menu.userInput[0], Menu.userInput[1])"}
 	currentStep=1
 
 	userInput=[]
@@ -24,7 +24,7 @@ class Menu(object):
 			print("Bonjour et bienvenu dans ce petit jeu! ;)\n")
 			username = input ("Pouvez-vous indiquer votre nom d'utilisateur?")
 			password = input ("Et votre mot de passe?")
-			Joueur([username, password])
+			Joueur(username, password)
 		else:
 			txt=Menu.beginningHTML() + eval(Menu.steps[Menu.currentStep] + Menu.parameters[Menu.currentStep]) + Menu.endHTML()
 

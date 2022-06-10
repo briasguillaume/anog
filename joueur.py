@@ -10,10 +10,8 @@ class Joueur(object):
 	debug=False
 
 
-	def __init__(self, credentials):
+	def __init__(self, username, password):
 		if Joueur.debug:
-			username=credentials[0]
-			password=credentials[1]
 			if self.existInDB(username):
 				print("\n\n")
 				while self.checkPassword(username, password)==False:
@@ -32,8 +30,6 @@ class Joueur(object):
 
 			self.showMenu()
 		else:
-			username=credentials[0]
-			password=credentials[1]
 			if self.existInDB(username):
 				pass
 				# TODO check password
