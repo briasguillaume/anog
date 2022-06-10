@@ -131,11 +131,6 @@ class Joueur(object):
 
 
 
-
-
-
-
-
 	def existInDB(self, username):
 		if Joueur.debug:
 			return True

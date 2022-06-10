@@ -25,6 +25,7 @@ class InteractBDD(Static):
 	    request = "SELECT username FROM joueur WHERE username='"+username+"';"
 	    description = InteractBDD.connectAndExecuteRequest(request)
 	    
+	    return False
 	    for elem in description:
 	    	if str(elem[0])==username:
 	    		return True
