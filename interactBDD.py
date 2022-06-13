@@ -1,6 +1,7 @@
 import mariadb
 from pirate import Pirate
 from fruitdemon import FruitFactory
+from island import Island
 
 class Static:
 	def __new__(cls):
