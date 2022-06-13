@@ -43,6 +43,10 @@ class Pirate(object):
 		return self._level
 
 	@property
+	def qualite(self):
+		return self._qualite
+		
+	@property
 	def mort(self):
 		if self._stats[0]<=0:
 			self._mort=True
