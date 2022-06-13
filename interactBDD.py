@@ -92,7 +92,7 @@ class InteractBDD(Static):
 
 		for elem in description:
 			name=str(elem[0])
-			if name=="":
+			if name==None:
 				return World.carte()[0].islands[0]
 			return Island(name, 0,0)
 		return World.carte()[0].islands[0]
