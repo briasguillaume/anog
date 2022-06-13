@@ -188,7 +188,7 @@ class Firstname(Name):
 
 
 	def generateName(self):
-		dictionnaire=["Kevin", "Roger", "Tiburce", "Gertrude", "Berthe", "Robert", "Blaise", "Titeuf", "Bob", "Bérénice", "Bénédicte"]
+		dictionnaire=["Kevin", "Roger", "Tiburce", "Gertrude", "Berthe", "Robert", "Blaise", "Titeuf", "Bob", "Berenice", "Benedicte"]
 		index=random.randint(0,len(dictionnaire)-1)
 		return dictionnaire[index]
 
@@ -209,7 +209,7 @@ class Secondname(Name):
 
 
 	def generateName(self):
-		dictionnaire=["Tapedur", "Tankfor", "Grossbarb", "Epéenmousse", "Lechauv", "Coursurpat", "Penkibit", "Grofiak", "Moudujnou", "potrèmalin"]
+		dictionnaire=["Tapedur", "Tankfor", "Grossbarb", "Epeenmousse", "Lechauv", "Coursurpat", "Penkibit", "Grofiak", "Moudujnou", "potremalin"]
 		index=random.randint(0,len(dictionnaire)-1)
 		return dictionnaire[index]
 

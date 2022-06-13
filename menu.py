@@ -13,7 +13,8 @@ class Menu(object):
 
 
 	def __init__(self):
-		print("")
+		Menu.userInput=[]
+		Menu.currentStep=1
 
 
 
@@ -95,3 +96,9 @@ class Menu(object):
 			    </body>
 			</html>
 			"""
+
+
+
+	@staticmethod
+	def clean():
+		return InteractBDD.clean()

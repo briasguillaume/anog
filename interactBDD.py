@@ -97,19 +97,41 @@ class InteractBDD(Static):
 
 	@staticmethod
 	def setMyCrew(username, position, pirates):
-		piratesid=""
-		for i in range(0,len(pirates)):
-			if i==0:
-				piratesid=piratesid+pirates[i].name
+
+		indexes=""
+		for pirate in pirates:
+			index=getAvailableID()
+			if not indexes:
+				indexes=str(index)
 			else:
-				piratesid=piratesid+","+pirates[i].name
+				indexes=indexes+str(index)
+			request = "INSERT INTO pirate VALUES('"+index+"','"+pirate.name+"','"+pirate.level+"','"+pirate.fruit.name+"','"+pirate.qualite+"');"
+			description = InteractBDD.connectAndExecuteRequest(request, True)
+
 
 		request = "DELETE FROM equipage WHERE username='"+username+"';"
 		description = InteractBDD.connectAndExecuteRequest(request, True)
-		request = "INSERT INTO equipage VALUES('"+username+"','"+position.name+"','"+piratesid+"');"
+
+
+		request = "INSERT INTO equipage VALUES('"+username+"','"+position.name+"','"+indexes+"');"
 		description = InteractBDD.connectAndExecuteRequest(request, True)
 		return None
-	    
+	 
+
+
+
+	#_________________________DELETE_________________________________
+
+
+	@staticmethod
+	def deleteAll():
+		request = "DELETE FROM equipage;"
+		description = InteractBDD.connectAndExecuteRequest(request, True)
+		request = "DELETE FROM joueur;"
+		description = InteractBDD.connectAndExecuteRequest(request, True)
+		request = "DELETE FROM pirate;"
+		description = InteractBDD.connectAndExecuteRequest(request, True)
+		return None
 
 
 	#____________________________________________________________
@@ -133,3 +155,13 @@ class InteractBDD(Static):
 
 
 
+	@staticmethod
+	def getAvailableID():
+		index=0
+		request="SELECT id FROM pirate WHERE index='"+index+"';"
+		description = InteractBDD.connectAndExecuteRequest(request, False)
+		while description[0]==index:
+			index+=1
+			request="SELECT id FROM pirate WHERE index='"+index+"';"
+			description = InteractBDD.connectAndExecuteRequest(request, False)
+		return index
