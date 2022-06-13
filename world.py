@@ -72,8 +72,8 @@ class World(object):
 					island.regenerate()
 					return island
 				txt=txt+"Dans quelle ile veux-tu aller?"
-				choix=int(input("Dans quelle ile veux-tu aller?"))
-				
+				#choix=int(input("Dans quelle ile veux-tu aller?"))
+				choix=0
 				# TODO handle input
 
 				try:
