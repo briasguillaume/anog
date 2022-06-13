@@ -3,6 +3,7 @@ from pirate import Pirate
 from fruitdemon import FruitFactory
 from island import Island
 from world import World
+from equipage import Equipage
 
 class Static:
 	def __new__(cls):
@@ -69,7 +70,7 @@ class InteractBDD(Static):
 				txt='{"name": '+str(elem[1])+ ', "level": '+level+ ', "qualite": '+qualite+', "fruit": '+ fruit+', "stats": '+str(Pirate.generateStats(level, qualite, fruit.power))+', "availableToFight": True'+', "mort": False}'
 
 				pirates.append(txt) #pas besoin de separation avec une ',', il n'y en a qu'un avec cet id
-		return pirates
+		return Equipage(pirates)
 
 
 
