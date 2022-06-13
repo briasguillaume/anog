@@ -23,7 +23,7 @@ class InteractBDD(Static):
 	@staticmethod
 	def existInDB(username):
 	    request = "SELECT username FROM joueur WHERE username='"+username+"';"
-	    description = InteractBDD.connectAndExecuteRequest(request)
+	    description = InteractBDD.connectAndExecuteRequest(request, False)
 	    
 	    for elem in description:
 	    	if str(elem[0])==username:
@@ -35,14 +35,14 @@ class InteractBDD(Static):
 	@staticmethod
 	def createUser(username, password):
 		request = "INSERT INTO joueur VALUES('"+username+"','"+password+"');"
-		description = InteractBDD.connectAndExecuteRequest(request)
+		description = InteractBDD.connectAndExecuteRequest(request, True)
 		return None
 
 
 	@staticmethod
 	def checkPassword(username, password):
 		request = "SELECT password FROM joueur WHERE username='"+username+"';"
-		description = InteractBDD.connectAndExecuteRequest(request)
+		description = InteractBDD.connectAndExecuteRequest(request, False)
 
 		for elem in description:
 			if str(elem[0])==password:
@@ -59,7 +59,7 @@ class InteractBDD(Static):
 		pirates=[]
 		for pirateid in piratesid:
 			request = "SELECT * FROM pirate WHERE id='"+pirateid+"';"
-			description = InteractBDD.connectAndExecuteRequest(request)
+			description = InteractBDD.connectAndExecuteRequest(request, False)
 			for elem in description:
 				level=str(elem[2])
 				qualite=str(elem[4])
@@ -74,7 +74,7 @@ class InteractBDD(Static):
 	@staticmethod
 	def getMyPiratesID(username):
 		request = "SELECT piratesid FROM equipage WHERE username='"+username+"';"
-		description = InteractBDD.connectAndExecuteRequest(request)
+		description = InteractBDD.connectAndExecuteRequest(request, False)
 
 		for elem in description:
 			return str(elem[0]).split(",")
@@ -86,7 +86,7 @@ class InteractBDD(Static):
 	@staticmethod
 	def getMyLocation(username):
 		request = "SELECT position FROM equipage WHERE username='"+username+"';"
-		description = InteractBDD.connectAndExecuteRequest(request)
+		description = InteractBDD.connectAndExecuteRequest(request, False)
 
 		for elem in description:
 			return Island(str(elem[0]), 0,0)
@@ -104,9 +104,9 @@ class InteractBDD(Static):
 				piratesid=piratesid+","+pirates[i].name
 
 		request = "DELETE FROM equipage WHERE username='"+username+"';"
-		description = InteractBDD.connectAndExecuteRequest(request)
+		description = InteractBDD.connectAndExecuteRequest(request, True)
 		request = "INSERT INTO equipage VALUES('"+username+"','"+position.name+"','"+piratesid+"');"
-		description = InteractBDD.connectAndExecuteRequest(request)
+		description = InteractBDD.connectAndExecuteRequest(request, True)
 		return None
 	    
 
@@ -114,14 +114,17 @@ class InteractBDD(Static):
 	#____________________________________________________________
 	
 	@staticmethod
-	def connectAndExecuteRequest(request):
+	def connectAndExecuteRequest(request, needCommit):
 		conn = mariadb.connect(**InteractBDD.config)
 		cur = conn.cursor()
-		try:
+		if needCommit:
+			try:
+				cur.execute(request)
+				conn.commit()
+			except:
+				conn.rollback()
+		else:
 			cur.execute(request)
-			conn.commit()
-		except:
-			conn.rollback()
 
 		description=cur
 		conn.close
