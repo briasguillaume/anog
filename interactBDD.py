@@ -162,10 +162,15 @@ class InteractBDD(Static):
 	@staticmethod
 	def getAvailableID():
 		index=0
+		temp=-1
 		request="SELECT id FROM pirate WHERE id="+str(index)+";"
 		description = InteractBDD.connectAndExecuteRequest(request, False)
-		while description[0]==index:
+		for elem in description:
+			temp=elem[0]
+		while temp==index:
 			index+=1
 			request="SELECT id FROM pirate WHERE id="+str(index)+";"
 			description = InteractBDD.connectAndExecuteRequest(request, False)
+			for elem in description:
+				temp=elem[0]
 		return index
