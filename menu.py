@@ -22,7 +22,7 @@ class Menu(object):
 			Joueur(username, password)
 		else:
 			if Menu.currentStep==1:
-				Menu.user_input=Menu.user_input[-1]
+				Menu.userInput=Menu.userInput[-1]
 			txt=Menu.beginningHTML() + str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")")) + Menu.endHTML()
 
 			Menu.nextStep(user_input)
