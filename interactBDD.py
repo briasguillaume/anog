@@ -95,6 +95,7 @@ class InteractBDD(Static):
 			if name=="":
 				return World.carte()[0].islands[0]
 			return Island(name, 0,0)
+		return World.carte()[0].islands[0]
 
 
 	#_____________________STORE_______________________________

@@ -82,9 +82,7 @@ class World(object):
 					island=stage.islands[0]
 				island.regenerate()
 			else:
-				#TODO bug makes it return all the time
-				#return None (and NoneType has no attribute name)
-				return World.carte()[6].islands[1] #Fesse
+				return None
 			return island
 
 
