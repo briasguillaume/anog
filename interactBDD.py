@@ -92,16 +92,15 @@ class InteractBDD(Static):
 
 		for elem in description:
 			name=str(elem[0])
-			if name==None:
-				return World.carte()[0].islands[0]
-			return Island(name, 0,0)
+			if World.has(name):
+				return Island(name, 0,0)
 		return World.carte()[0].islands[0]
 
 
 	#_____________________STORE_______________________________
 
 	@staticmethod
-	def setMyCrew(username, position, pirates):
+	def setMyCrew(username, positionsName, pirates):
 
 		indexes=""
 		for pirate in pirates:
@@ -118,7 +117,7 @@ class InteractBDD(Static):
 		description = InteractBDD.connectAndExecuteRequest(request, True)
 
 
-		request = "INSERT INTO equipage VALUES('"+username+"','"+position.name+"','"+indexes+"');"
+		request = "INSERT INTO equipage VALUES('"+username+"','"+positionsName+"','"+indexes+"');"
 		description = InteractBDD.connectAndExecuteRequest(request, True)
 		return None
 	 

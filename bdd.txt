@@ -1,27 +1,32 @@
+select * from joueur;
+select * from equipage;
+select * from pirate;
+
+
 Joueur
-- username string
-- password string
+- username 			string
+- password 			string
 
 Equipage
-- username string
-- position's name string
-- pirates's id string
+- username 			string
+- position's name 	string
+- pirates's id 		string
 
 Fruits
-- names string
-- powers string
-- allocated bool
+- names 			string
+- powers 			string
+- allocated 		int
 
 Pirate
-- id int
-- name string
-- level int
-- fruit's name string
-- qualite int
+- id 				int
+- name 				string
+- level 			int
+- fruit's name 		string
+- qualite 			int
 
 World
-- name string
-- stage int
+- name 				string
+- stage 			int
 
 
 

@@ -86,6 +86,15 @@ class World(object):
 			return island
 
 
+
+	@staticmethod
+	def has(name):
+		for stage in World.world:
+			for island in stage.islands:
+				if island.name==name:
+					return True
+		return False
+
 	@staticmethod
 	def showMap():
 		if World.debug:
