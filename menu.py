@@ -21,8 +21,8 @@ class Menu(object):
 			password = input ("Et votre mot de passe?")
 			Joueur(username, password)
 		else:
-			if currentStep==1:
-				user_input=user_input[-1]
+			if Menu.currentStep==1:
+				Menu.user_input=Menu.user_input[-1]
 			txt=Menu.beginningHTML() + str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")")) + Menu.endHTML()
 
 			Menu.nextStep(user_input)
