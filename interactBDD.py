@@ -109,7 +109,7 @@ class InteractBDD(Static):
 				indexes=str(index)
 			else:
 				indexes=indexes+str(index)
-			request = "INSERT INTO pirate VALUES('"+index+"','"+pirate.name+"','"+pirate.level+"','"+pirate.fruit.name+"','"+pirate.qualite+"');"
+			request = "INSERT INTO pirate VALUES('"+str(index)+"','"+pirate.name+"','"+str(pirate.level)+"','"+pirate.fruit.name+"','"+str(pirate.qualite)+"');"
 			description = InteractBDD.connectAndExecuteRequest(request, True)
 
 
