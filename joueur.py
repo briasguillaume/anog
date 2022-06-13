@@ -145,28 +145,28 @@ class Joueur(object):
 		if Joueur.debug:
 			pass
 		else:
-			InteractBDD.createUser(username, password)
+			return InteractBDD.createUser(username, password)
 
 
 	def checkPassword(self, username, password):
 		if Joueur.debug:
 			return True
 		else:
-			InteractBDD.checkPassword(username, password)
+			return InteractBDD.checkPassword(username, password)
 
 
 	def getMyCrew(self):
 		if Joueur.debug:
 			return Equipage([Pirate(1, True)])
 		else:
-			InteractBDD.getMyCrew(self._username)
+			return InteractBDD.getMyCrew(self._username)
 
 
 	def getMyLocation(self):
 		if Joueur.debug:
 			return World.carte()[0].islands[0]
 		else:
-			InteractBDD.getMyLocation(self._username)
+			return InteractBDD.getMyLocation(self._username)
 	
 
 
