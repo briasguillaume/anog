@@ -23,9 +23,9 @@ class Menu(object):
 		else:
 			txt=Menu.beginningHTML() + str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")")) + Menu.endHTML()
 
-			if Menu.currentStep==1:
+			if Menu.currentStep==2:
 				Menu.userInput=Menu.userInput[-1]
-				
+
 			Menu.nextStep(user_input)
 			return txt
 
