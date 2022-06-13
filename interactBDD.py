@@ -2,6 +2,7 @@ import mariadb
 from pirate import Pirate
 from fruitdemon import FruitFactory
 from island import Island
+from world import World
 
 class Static:
 	def __new__(cls):
@@ -90,6 +91,9 @@ class InteractBDD(Static):
 		description = InteractBDD.connectAndExecuteRequest(request, False)
 
 		for elem in description:
+			name=str(elem[0])
+			if name=="":
+				return World.carte()[0].islands[0]
 			return Island(str(elem[0]), 0,0)
 
 
