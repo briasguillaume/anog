@@ -12,12 +12,6 @@ class Menu(object):
 
 
 
-	def __init__(self):
-		Menu.userInput=[]
-		Menu.currentStep=1
-
-
-
 	@staticmethod
 	def showMenu(user_input):
 		if Menu.debug:
