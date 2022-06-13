@@ -21,10 +21,11 @@ class Menu(object):
 			password = input ("Et votre mot de passe?")
 			Joueur(username, password)
 		else:
-			if Menu.currentStep==1:
-				Menu.userInput=Menu.userInput[-1]
 			txt=Menu.beginningHTML() + str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")")) + Menu.endHTML()
 
+			if Menu.currentStep==1:
+				Menu.userInput=Menu.userInput[-1]
+				
 			Menu.nextStep(user_input)
 			return txt
 
