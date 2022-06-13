@@ -21,6 +21,7 @@ class Utils(Static):
 	def fight(equipage1, equipage2):
 		if Utils.debug:
 			first=random.randint(1,2)
+			# TODO HANDLE FIRST
 			turnsCount=0
 			while equipage1.availableToFight and equipage2.availableToFight:
 				print("Tour "+str(turnsCount)+":")

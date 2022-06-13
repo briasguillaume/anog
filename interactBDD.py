@@ -94,7 +94,7 @@ class InteractBDD(Static):
 			name=str(elem[0])
 			if World.has(name):
 				return Island(name, 0,0)
-		return World.carte()[0].islands[0]
+		return Island("Karuganer", 0,0)#World.carte()[0].islands[0]
 
 
 	#_____________________STORE_______________________________

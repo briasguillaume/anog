@@ -34,9 +34,6 @@ class World(object):
 			}
 
 
-	def __init__(self):
-		print("Bonjour je suis la carte.")
-
 	@staticmethod
 	def carte():
 		return World.world
