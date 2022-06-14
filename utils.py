@@ -100,7 +100,7 @@ class Utils(Static):
 		
 
 
-
+	'''
 	@staticmethod
 	def decode(dict):
 		tuple=namedtuple('Metamorph', dict.keys())(*dict.values())
@@ -113,7 +113,7 @@ class Utils(Static):
 			obj= FruitDemon(tuple.name, tuple.power)
 		else:
 			obj=None
-		return obj
+		return obj'''
 
 	'''
 	@staticmethod
@@ -121,9 +121,11 @@ class Utils(Static):
 		return namedtuple('Metamorph', dict.keys())(*dict.values())
 	# TODO handle it with metaclasses'''
 
+
+	'''
 	@staticmethod
 	def load(obj):
-		return json.loads(obj, object_hook=Utils.decode)
+		return json.loads(obj, object_hook=Utils.decode)'''
 
 
 

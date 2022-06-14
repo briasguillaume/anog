@@ -70,7 +70,7 @@ class Equipage(object):
 
 	def regenerateHealth(self):
 		for pirate in self._team:
-			pirate.regenerateHealth()
+			pirate.regenerateHealth(pirate.level, pirate.qualite)
 
 	def increaseCrewLevel(self):
 		for pirate in self._team:

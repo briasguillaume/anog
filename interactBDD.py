@@ -4,7 +4,6 @@ from fruitdemon import FruitFactory
 from island import Island
 from world import World
 from equipage import Equipage
-from utils import Utils
 
 
 class Static:
@@ -70,7 +69,7 @@ class InteractBDD(Static):
 				qualite=elem[4]
 				fruit=FruitFactory.giveThatFruit(str(elem[3]))
 				txt='{"type": "Pirate", "name": \"'+str(elem[0])+'\", "level": '+str(level)+ ', "qualite": '+str(qualite)+', "fruit": '+ str(fruit)+', "stats": '+str(Pirate.generateStats(level, qualite, fruit.power))+', "availableToFight": "True", "mort": "False"}'
-				pirate=Utils.load(txt)
+				pirate=InteractBDD.load(txt)
 				pirates.append(pirate) #pas besoin de separation avec une ',', il n'y en a qu'un avec cet id
 		return Equipage(pirates)
 
@@ -177,3 +176,27 @@ class InteractBDD(Static):
 			for elem in description:
 				temp=elem[0]
 		return index
+
+
+
+
+	#_________________________________LOADING DYNAMICALLY____________________________
+
+	@staticmethod
+	def decode(dict):
+		tuple=namedtuple('Metamorph', dict.keys())(*dict.values())
+		if tuple.type=="Pirate":
+			obj= Pirate(tuple.level)
+			obj.name=tuple.name
+			obj.qualite=tuple.qualite
+			obj.fruit=tuple.fruit
+		elif tuple.type=="FruitDemon":
+			obj= FruitDemon(tuple.name, tuple.power)
+		else:
+			obj=None
+		return obj
+
+
+	@staticmethod
+	def load(obj):
+		return json.loads(obj, object_hook=Utils.decode)
