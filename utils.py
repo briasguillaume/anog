@@ -2,7 +2,8 @@ import random
 import numpy as np
 import os
 
-
+from fruitdemon import FruitDemon
+from pirate import Pirate
 
 import json
 from collections import namedtuple
@@ -102,8 +103,23 @@ class Utils(Static):
 
 	@staticmethod
 	def decode(dict):
-		return namedtuple('X', dict.keys())(*dict.values())
-	# TODO handle it with metaclasses
+		tuple=namedtuple('Metamorph', dict.keys())(*dict.values())
+		if tuple.type=="Pirate":
+			obj= Pirate(tuple.level)
+			obj.name=tuple.name
+			obj.qualite=tuple.qualite
+			obj.fruit=tuple.fruit
+		elif tuple.type=="FruitDemon":
+			obj= FruitDemon(tuple.name, tuple.power)
+		else:
+			obj=None
+		return obj
+
+	'''
+	@staticmethod
+	def decode(dict):
+		return namedtuple('Metamorph', dict.keys())(*dict.values())
+	# TODO handle it with metaclasses'''
 
 	@staticmethod
 	def load(obj):

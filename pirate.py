@@ -52,13 +52,28 @@ class Pirate(object):
 			self._mort=True
 		return self._mort
 
+
+	@name.setter
+	def name(self, name):
+		self._name=name
+
+	@qualite.setter
+	def qualite(self, qualite):
+		self._qualite=qualite
+		self._stats=Pirate.generateStats(self._level, self._qualite, self._fruit.power)
+
 	@fruit.setter
 	def fruit(self, frui):
 		self._fruit=frui
 		self._stats=Pirate.generateStats(self._level, self._qualite, self._fruit.power)
 
+	'''
 	def regenerateHealth(self):
-		self._stats[0]=100*self._level*(5-self._qualite)
+		self._stats[0]=100*self._level*(5-self._qualite)'''
+
+	@staticmethod
+	def regenerateHealth(level, qualite):
+		return 100*level*(5-qualite)
 
 	
 	def increaseLevel(self):

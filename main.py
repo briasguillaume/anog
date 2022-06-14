@@ -29,12 +29,12 @@ nom="trouduc"
 level=5
 qualite=0
 fruit=FruitFactory.giveThatFruit("GumGum")
-print(fruit)
-print("_______________")
+#print(fruit)
+#print("_______________")
 
 txt='{"type": "Pirate", "name": \"'+str(nom)+'\", "level": '+str(level)+ ', "qualite": '+str(qualite)+', "fruit": '+ str(fruit)+', "stats": '+str(Pirate.generateStats(level, qualite, fruit.power))+', "availableToFight": "True", "mort": "False"}'
-print(txt)
-print("_______________")
+#print(txt)
+#print("_______________")
 
 pirate=Utils.load(txt)
 print(pirate)
@@ -42,5 +42,7 @@ print("_______________")
 
 print(pirate.fruit)
 print("_______________")
+
+pirate.regenerateHealth(pirate.level, pirate.qualite)
 '''
 
