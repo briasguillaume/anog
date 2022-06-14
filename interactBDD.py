@@ -203,4 +203,4 @@ class InteractBDD(Static):
 
 	@staticmethod
 	def load(obj):
-		return json.loads(obj, object_hook=Utils.decode)
+		return json.loads(obj, object_hook=InteractBDD.decode)
