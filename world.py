@@ -103,17 +103,17 @@ class World(object):
 		else:
 			txt=""
 			for stage in World.world:
-				txt=txt+"------------------------------------------------------------<br>" #60
+				txt=txt+"------------------------------------------------------------ <br>" #60
 				#1 20 20
 				#2 5 55 55 5
 				spaceLength=60/(len(stage.islands)+1) -10
 				for island in stage.islands:
 					for i in range(int(spaceLength)):
-						txt=txt+" "
+						txt=txt+"&nbsp;"
 					txt=txt+"|"+island.name+"|"
 					for i in range(int(spaceLength)):
-						txt=txt+" "
-				txt=txt+"\n"
+						txt=txt+"&nbsp;"
+				txt=txt+"<br>"
 			return txt
 
 

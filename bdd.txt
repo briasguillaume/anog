@@ -2,6 +2,10 @@ select * from joueur;
 select * from equipage;
 select * from pirate;
 
+DELETE FROM joueur;
+DELETE FROM equipage;
+DELETE FROM pirate;
+
 
 Joueur
 - username 			string
