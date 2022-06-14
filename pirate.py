@@ -7,6 +7,8 @@ from fruitdemon import FruitDemon
 
 class Pirate(object):
 
+	debug=False
+
 	def __init__(self, level, capitaine=False):
 		if capitaine:
 			self._qualite=1
@@ -170,11 +172,19 @@ class Pirate(object):
 
 
 	def __str__(self):
-		txt=self._name+"\n"
-		txt=txt+"niveau: "+str(self._level)+" | qualité: "+str(self._qualite)+" | fruit: "+self._fruit.name+"\n"
-		txt=txt+"vie: "+str(self._stats[0])+" | dps: "+str(self._stats[1])+" | def: "+str(self._stats[2])+" | fatigue: "+str(self._stats[3])+"\n"
-		txt=txt+"___________________________________________________\n"
-		return txt
+		if Pirate.debug:
+			txt=self._name+"\n"
+			txt=txt+"niveau: "+str(self._level)+" | qualité: "+str(self._qualite)+" | fruit: "+self._fruit.name+"\n"
+			txt=txt+"vie: "+str(self._stats[0])+" | dps: "+str(self._stats[1])+" | def: "+str(self._stats[2])+" | fatigue: "+str(self._stats[3])+"\n"
+			txt=txt+"___________________________________________________\n"
+			return txt
+		else:
+			txt=self._name+"<br>"
+			txt=txt+"niveau: "+str(self._level)+" | qualité: "+str(self._qualite)+" | fruit: "+self._fruit.name+"<br>"
+			txt=txt+"vie: "+str(self._stats[0])+" | dps: "+str(self._stats[1])+" | def: "+str(self._stats[2])+" | fatigue: "+str(self._stats[3])+"<br>"
+			txt=txt+"___________________________________________________<br>"
+			return txt
+
 
 
 

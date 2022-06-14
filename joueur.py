@@ -15,7 +15,7 @@ class Joueur(object):
 			self._username= username
 			self._equipage= self.getMyCrew()
 			self._position= self.getMyLocation()
-			self.showMenu()
+			
 			
 		else:
 			if self.existInDB(username):
@@ -28,12 +28,7 @@ class Joueur(object):
 			self._username= username
 			self._equipage= self.getMyCrew()
 			self._position= self.getMyLocation()
-			self.showMenu()
-
-
-
-
-
+			
 
 	def showMenu(self):
 		if Joueur.debug:
@@ -69,9 +64,10 @@ class Joueur(object):
 			txt="Voici ton équipage:\n"+str(self._equipage)+"<br>"
 			txt=txt+"Vous êtes actuellement ici: "+str(self._position)+"<br>"
 			txt=txt+World.showMap()
-			nextIsland=World.next(self._position.name)
-			if nextIsland==None:
-				return "GG t'es devenu le roi des pirates"
+			#nextIsland=World.next(self._position.name)
+			#if nextIsland==None:
+			#	return "GG t'es devenu le roi des pirates"
+			# TODO HANDLE INPUT
 
 			self._position=nextIsland
 			self._equipage.regenerateHealth()
@@ -83,15 +79,11 @@ class Joueur(object):
 				self._equipage= self.getMyCrew()
 				self._position= self.getMyLocation()
 				txt=txt+"Ton équipage est mort, il va falloir recommencer du début pour devenir le roi des pirates. y/n <br>"
-				
-				#TODO HANDLE INPUT
-
 			return txt
 
 
 
-
-	def recrutement(self, number):
+	def recrutement(self, number, pirates=[], value=0):
 		if Joueur.debug:
 			pirates=[]
 			print("Des pirates sont disponibles au recrutement.\n")
@@ -103,16 +95,6 @@ class Joueur(object):
 			if value<number:
 				self._equipage.newFighter(pirates[value])
 		else:
-			pirates=[]
-			txt=""
-			txt=txt+"Des pirates sont disponibles au recrutement. <br>"
-			for i in range(0,number):
-				pirate=Pirate(self._position.level)
-				pirates.append(pirate)
-				txt=txt+"Choix "+str(i)+": "+str(pirate)
-
-			txt=txt+"Lequel voulez-vous recruter?<br>"
-			value = int(input("Lequel voulez-vous recruter?<br>"))
 # TODO HANDLE INPUT
 			if value<number:
 				self._equipage.newFighter(pirates[value])

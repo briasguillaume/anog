@@ -59,17 +59,10 @@ class World(object):
 				return None
 			return island
 		else:
-			txt=""
 			maxIndex=len(World.world)-1
 			index=World.avancee[currentIslandName]+1
 			if index<=maxIndex:
 				stage=World.world[index]
-				if len(stage.islands)==1:
-					island=stage.islands[0]
-					island.regenerate()
-					return island
-				txt=txt+"Dans quelle ile veux-tu aller?"
-				#choix=int(input("Dans quelle ile veux-tu aller?"))
 				choix=0
 				# TODO handle input
 

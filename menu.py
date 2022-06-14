@@ -6,10 +6,14 @@ class Menu(object):
 
 	debug=False
 	userInput=[]
-	steps={1: "Menu.askForUsername", 2: "Menu.askForPassword", 3: "Joueur"}
-	parameters={1: "[]", 2: "[]", 3: "[Menu.userInput[0], Menu.userInput[1]]"}
+	steps={1: "Menu.askForUsername", 2: "Menu.askForPassword", 3: "Menu.joueur", 4: "Menu.askForNextIsland", 5: "Menu.askForRecruitment"}
+	parameters={1: "[]", 2: "[]", 3: "[Menu.userInput[0], Menu.userInput[1]]", 4: "[]", 5: "[Menu.userInput[-1]]", 6: "[]" 7: "[Menu.userInput[-1]]"}
 	currentStep=1
+	tempData=None
 
+
+	def __init__(self):
+		self._joueur=None
 
 
 	@staticmethod
@@ -19,7 +23,7 @@ class Menu(object):
 			print("Bonjour et bienvenu dans ce petit jeu! ;)\n")
 			username = input ("Pouvez-vous indiquer votre nom d'utilisateur?")
 			password = input ("Et votre mot de passe?")
-			Joueur(username, password)
+			Joueur(username, password).showMenu()
 		else:
 			txt=Menu.beginningHTML() + str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")")) + Menu.endHTML()
 
@@ -34,8 +38,10 @@ class Menu(object):
 		if user_input!="":
 			if Menu.currentStep==3:
 				Menu.userInput=[]
-			if Menu.currentStep<3:
+			if Menu.currentStep<7:
 				Menu.currentStep+=1
+			elif Menu.currentStep==7:
+				Menu.currentStep=4
 			Menu.userInput.append(user_input)
 
 
@@ -63,6 +69,30 @@ class Menu(object):
 		return txt
 
 
+	@staticmethod
+	def askForNextIsland():
+		txt="Dans quelle ile veux-tu aller maintenant? <br>"
+		return txt
+
+
+	@staticmethod
+	def askForRecruitment():
+		pirates=[]
+		txt="Des pirates sont disponibles au recrutement. <br>"
+		for i in range(0,number):
+			pirate=Pirate(self._position.level)
+			pirates.append(pirate)
+			txt=txt+"Choix "+str(i)+": "+str(pirate)
+
+		txt=txt+"Lequel voulez-vous recruter?<br>"
+		Menu.tempData=pirates
+		return txt
+
+
+	@staticmethod
+	def joueur(username, password):
+		self._joueur=Joueur(username, password)
+		return self._joueur.showMenu()
 
 	@staticmethod
 	def beginningHTML():
