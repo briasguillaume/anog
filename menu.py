@@ -25,6 +25,7 @@ class Menu(object):
 
 	def __init__(self):
 		self._joueur=None
+		
 
 
 	@property
@@ -85,12 +86,6 @@ class Menu(object):
 	def askForPassword():
 		txt="Et votre mot de passe? <br>" 
 		return txt
-
-	'''
-	@staticmethod
-	def askForNextIsland():
-		txt="Dans quelle ile veux-tu aller maintenant? <br>"
-		return txt'''
 
 	
 	def choseThatIsland(self, value):
