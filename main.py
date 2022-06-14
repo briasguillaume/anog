@@ -1,7 +1,8 @@
 
 
 from menu import Menu
-Menu().showMenu("")
+menu= Menu()
+menu.showMenu("")
 
 
 

@@ -1,6 +1,5 @@
 
 from joueur import Joueur
-from utils import Utils
 
 class Menu(object):
 
@@ -16,10 +15,9 @@ class Menu(object):
 		self._joueur=None
 
 
-	@staticmethod
-	def showMenu(user_input):
+	
+	def showMenu(self, user_input):
 		if Menu.debug:
-			Utils.clear()
 			print("Bonjour et bienvenu dans ce petit jeu! ;)\n")
 			username = input ("Pouvez-vous indiquer votre nom d'utilisateur?")
 			password = input ("Et votre mot de passe?")
