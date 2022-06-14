@@ -6,8 +6,8 @@ class Menu(object):
 
 	debug=False
 	userInput=[]
-	steps={1: "Menu.askForUsername", 2: "Menu.askForPassword", 3: "Menu.joueur", 4: "Menu.askForNextIsland", 5: "Menu.askForRecruitment"}
-	parameters={1: "[]", 2: "[]", 3: "[Menu.userInput[0], Menu.userInput[1]]", 4: "[]", 5: "[Menu.userInput[-1]]", 6: "[]" 7: "[Menu.userInput[-1]]"}
+	steps={1: "Menu.askForUsername", 2: "Menu.askForPassword", 3: "self.instanciateJoueur", 4: "Menu.askForNextIsland", 5: "self.choseThatIsland", 6: "Menu.askForRecruitment", 7: "self.choseThatPirate"}
+	parameters={1: "[]", 2: "[]", 3: "[Menu.userInput[0], Menu.userInput[1]]", 4: "[]", 5: "[Menu.userInput[-1]]", 6: "[]", 7: "[Menu.userInput[-1]]"}
 	currentStep=1
 	tempData=None
 
@@ -74,13 +74,20 @@ class Menu(object):
 		txt="Dans quelle ile veux-tu aller maintenant? <br>"
 		return txt
 
+	
+	def choseThatIsland(self, value):
+		self._joueur.goingToNextIsland(value)
+
+
+	def choseThatPirate(self, value):
+		self._joueur.recrutement(len(Menu.tempData), Menu.tempData, value)
 
 	@staticmethod
-	def askForRecruitment():
+	def askForRecruitment(joueur):
 		pirates=[]
 		txt="Des pirates sont disponibles au recrutement. <br>"
 		for i in range(0,number):
-			pirate=Pirate(self._position.level)
+			pirate=Pirate(joueur.position.level)
 			pirates.append(pirate)
 			txt=txt+"Choix "+str(i)+": "+str(pirate)
 
@@ -88,9 +95,8 @@ class Menu(object):
 		Menu.tempData=pirates
 		return txt
 
-
-	@staticmethod
-	def joueur(username, password):
+	
+	def instanciateJoueur(self, username, password):
 		self._joueur=Joueur(username, password)
 		return self._joueur.showMenu()
 

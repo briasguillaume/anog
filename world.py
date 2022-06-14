@@ -39,7 +39,7 @@ class World(object):
 		return World.world
 
 	@staticmethod
-	def next(currentIslandName):
+	def next(currentIslandName, choix=0):
 		if World.debug:
 			maxIndex=len(World.world)-1
 			index=World.avancee[currentIslandName]+1
@@ -63,9 +63,7 @@ class World(object):
 			index=World.avancee[currentIslandName]+1
 			if index<=maxIndex:
 				stage=World.world[index]
-				choix=0
-				# TODO handle input
-
+				
 				try:
 					island=stage.islands[choix]
 				except:
