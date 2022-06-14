@@ -27,7 +27,15 @@ class Menu(object):
 		self._joueur=None
 
 
-	
+	@property
+	def joueur(self):
+		return self._joueur
+
+	@joueur.setter
+	def joueur(self, joueur):
+		self._joueur=joueur
+
+
 	def showMenu(self, user_input):
 		if Menu.debug:
 			print("Bonjour et bienvenu dans ce petit jeu! ;)\n")
