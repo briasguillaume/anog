@@ -5,10 +5,6 @@ from utils import Utils
 from pirate import Pirate
 
 
-import json
-from collections import namedtuple
-from json import JSONEncoder
-
 class Equipage(object):
 
 
