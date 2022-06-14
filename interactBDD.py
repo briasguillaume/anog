@@ -195,7 +195,7 @@ class InteractBDD(Static):
 			obj.qualite=tuple.qualite
 			obj.fruit=tuple.fruit
 		elif tuple.type=="FruitDemon":
-			obj= FruitDemon(tuple.name, tuple.power)
+			obj= FruitFactory.giveThatFruit(tuple.name)
 		else:
 			obj=None
 		return obj

@@ -78,11 +78,11 @@ class Menu(object):
 		txt="Et votre mot de passe? <br>" 
 		return txt
 
-
+	'''
 	@staticmethod
 	def askForNextIsland():
 		txt="Dans quelle ile veux-tu aller maintenant? <br>"
-		return txt
+		return txt'''
 
 	
 	def choseThatIsland(self, value):

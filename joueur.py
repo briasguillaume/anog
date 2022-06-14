@@ -20,6 +20,11 @@ class Joueur(object):
 		else:
 			if self.existInDB(username):
 				if not InteractBDD.checkPassword:
+					# for testing purpose
+					self._username= username
+					self._equipage= self.getMyCrew()
+					self._position= self.getMyLocation()
+					#
 					return "Invalid password"
 					# TODO handle wrong passwords
 			else:
