@@ -64,10 +64,10 @@ class InteractBDD(Static):
 			request = "SELECT * FROM pirate WHERE id='"+pirateid+"';"
 			description = InteractBDD.connectAndExecuteRequest(request, False)
 			for elem in description:
-				level=str(elem[2])
-				qualite=str(elem[4])
+				level=elem[2]
+				qualite=elem[4]
 				fruit=FruitFactory.giveThatFruit(str(elem[3]))
-				txt='{"name": '+str(elem[1])+ ', "level": '+level+ ', "qualite": '+qualite+', "fruit": '+ str(fruit)+', "stats": '+str(Pirate.generateStats(level, qualite, fruit.power))+', "availableToFight": True'+', "mort": False}'
+				txt='{"name": '+str(elem[1])+ ', "level": '+str(level)+ ', "qualite": '+str(qualite)+', "fruit": '+ str(fruit)+', "stats": '+str(Pirate.generateStats(level, qualite, fruit.power))+', "availableToFight": True'+', "mort": False}'
 
 				pirates.append(txt) #pas besoin de separation avec une ',', il n'y en a qu'un avec cet id
 		return Equipage(pirates)
