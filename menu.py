@@ -1,5 +1,6 @@
 
 from joueur import Joueur
+from pirate import Pirate
 
 class Menu(object):
 
