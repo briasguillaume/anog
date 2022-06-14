@@ -67,7 +67,7 @@ class InteractBDD(Static):
 				level=str(elem[2])
 				qualite=str(elem[4])
 				fruit=FruitFactory.giveThatFruit(str(elem[3]))
-				txt='{"name": '+str(elem[1])+ ', "level": '+level+ ', "qualite": '+qualite+', "fruit": '+ fruit+', "stats": '+str(Pirate.generateStats(level, qualite, fruit.power))+', "availableToFight": True'+', "mort": False}'
+				txt='{"name": '+str(elem[1])+ ', "level": '+level+ ', "qualite": '+qualite+', "fruit": '+ str(fruit)+', "stats": '+str(Pirate.generateStats(level, qualite, fruit.power))+', "availableToFight": True'+', "mort": False}'
 
 				pirates.append(txt) #pas besoin de separation avec une ',', il n'y en a qu'un avec cet id
 		return Equipage(pirates)
