@@ -100,6 +100,7 @@ class Menu(object):
 	@staticmethod
 	def askForRecruitment(joueur):
 		pirates=[]
+		number=5
 		txt="Des pirates sont disponibles au recrutement. <br>"
 		for i in range(0,number):
 			pirate=Pirate(joueur.position.level)
