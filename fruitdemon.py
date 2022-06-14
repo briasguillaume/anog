@@ -27,6 +27,9 @@ class FruitDemon(object):
 	@name.setter
 	def name(self, name):
 		self._name=name
+
+	def __str__(self):
+		return '{"name": "'+self._name+',"power":'+str(self._power)+'}'
 	
 
 class FruitFactoryMeta(type):
