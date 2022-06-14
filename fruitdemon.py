@@ -29,7 +29,7 @@ class FruitDemon(object):
 		self._name=name
 
 	def __str__(self):
-		return '{"name": "'+self._name+',"power":'+str(self._power)+'}'
+		return '{"type": "FruitDemon", "name": \"'+self._name+'\","power": '+str(self._power)+'}'
 	
 
 class FruitFactoryMeta(type):

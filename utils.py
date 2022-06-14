@@ -101,12 +101,13 @@ class Utils(Static):
 
 
 	@staticmethod
-	def decodePirate(pirateDict):
-		return namedtuple('X', pirateDict.keys())(*pirateDict.values())
+	def decode(dict):
+		return namedtuple('X', dict.keys())(*dict.values())
+	# TODO handle it with metaclasses
 
 	@staticmethod
-	def loadPirate(pirateJson):
-		return json.loads(pirateJson, object_hook=Utils.decodePirate)
+	def load(obj):
+		return json.loads(obj, object_hook=Utils.decode)
 
 
 

@@ -126,7 +126,7 @@ class Pirate(object):
 		degats=20*level*(5-qualite)
 		defense=10*level*(5-qualite)
 		fatigue=100*(5-qualite)
-		return [vie, degats, defense, fatigue]+fruitsPower
+		return [vie+fruitsPower[0], degats+fruitsPower[1], defense+fruitsPower[2], fatigue+fruitsPower[3]]
 
 
 	def generateQualite(self, percentageQualite):
