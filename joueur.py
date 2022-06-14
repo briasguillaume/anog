@@ -80,7 +80,7 @@ class Joueur(object):
 		#	return "GG t'es devenu le roi des pirates"
 		# TODO HANDLE END OF THE MAP
 		self._equipage.regenerateHealth()
-		Utils.fight(self._equipage, self._position.pirates)
+		txt=Utils.fight(self._equipage, self._position.pirates)
 		''' TODO handle death
 		if self._equipage.availableToFight:
 			self.recrutement(5)
@@ -90,6 +90,7 @@ class Joueur(object):
 			self._position= self.getMyLocation()
 			txt=txt+"Ton équipage est mort, il va falloir recommencer du début pour devenir le roi des pirates. y/n <br>"
 		'''
+		return txt
 
 	def recrutement(self, number, pirates=[], value=0):
 		if Joueur.debug:

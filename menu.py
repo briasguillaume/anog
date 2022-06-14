@@ -10,22 +10,22 @@ class Menu(object):
 			3: "self.instanciateJoueur", 
 			#4: "Menu.askForNextIsland", 
 			4: "self.choseThatIsland", 
-			5: "Menu.askForRecruitment", 
-			6: "self.choseThatPirate"}
+			#5: "Menu.askForRecruitment", 
+			5: "self.choseThatPirate"}
 	parameters={1: "[]", 
 				2: "[]", 
 				3: "[Menu.userInput[0], Menu.userInput[1]]", 
 				#4: "[]", 
 				4: "[Menu.userInput[-1]]", 
-				5: "[]", 
-				6: "[Menu.userInput[-1]]"}
+				#5: "[]", 
+				5: "[Menu.userInput[-1]]"}
 	currentStep=1
 	tempData=None
 
 
 	def __init__(self):
 		self._joueur=None
-		
+
 
 
 	@property
@@ -57,9 +57,9 @@ class Menu(object):
 		if user_input!="":
 			if Menu.currentStep==3:
 				Menu.userInput=[]
-			if Menu.currentStep<6:
+			if Menu.currentStep<5:
 				Menu.currentStep+=1
-			elif Menu.currentStep==6:
+			elif Menu.currentStep==5:
 				Menu.currentStep=4
 			Menu.userInput.append(user_input)
 
@@ -89,7 +89,9 @@ class Menu(object):
 
 	
 	def choseThatIsland(self, value):
-		self._joueur.goingToNextIsland(value)
+		txt=self._joueur.goingToNextIsland(value)
+		txt=txt+Menu.askForRecruitment(self._joueur)
+		return txt
 
 
 	def choseThatPirate(self, value):
