@@ -14,28 +14,20 @@ class Joueur(object):
 		if Joueur.debug:
 			self._username= username
 			self._equipage= self.getMyCrew()
-
 			self._position= self.getMyLocation()
-
 			self.showMenu()
+			
 		else:
 			if self.existInDB(username):
 				if not InteractBDD.checkPassword:
 					return "Invalid password"
 					# TODO handle wrong passwords
-
 			else:
 				self.createNewUser(username, password)
 				InteractBDD.setMyCrew(username, World.carte()[0].islands[0].name, [Pirate(1, True)]) 
-			
-
-
 			self._username= username
-			
 			self._equipage= self.getMyCrew()
-
 			self._position= self.getMyLocation()
-
 			self.showMenu()
 
 

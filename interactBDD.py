@@ -4,6 +4,8 @@ from fruitdemon import FruitFactory
 from island import Island
 from world import World
 from equipage import Equipage
+from utils import Utils
+
 
 class Static:
 	def __new__(cls):
@@ -68,8 +70,8 @@ class InteractBDD(Static):
 				qualite=elem[4]
 				fruit=FruitFactory.giveThatFruit(str(elem[3]))
 				txt='{"name": '+str(elem[1])+ ', "level": '+str(level)+ ', "qualite": '+str(qualite)+', "fruit": '+ str(fruit)+', "stats": '+str(Pirate.generateStats(level, qualite, fruit.power))+', "availableToFight": True'+', "mort": False}'
-
-				pirates.append(txt) #pas besoin de separation avec une ',', il n'y en a qu'un avec cet id
+				pirate=Utils.loadPirate(txt)
+				pirates.append(pirate) #pas besoin de separation avec une ',', il n'y en a qu'un avec cet id
 		return Equipage(pirates)
 
 
