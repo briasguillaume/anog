@@ -105,8 +105,8 @@ class Joueur(object):
 				self._equipage.newFighter(pirates[value])
 
 		else:
-			if value<number:
-				self._equipage.newFighter(pirates[value])
+			if int(value)<number:
+				self._equipage.newFighter(pirates[int(value)])
 			self.showMenu()
 
 
