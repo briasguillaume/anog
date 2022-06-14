@@ -5,8 +5,20 @@ class Menu(object):
 
 	debug=False
 	userInput=[]
-	steps={1: "Menu.askForUsername", 2: "Menu.askForPassword", 3: "self.instanciateJoueur", 4: "Menu.askForNextIsland", 5: "self.choseThatIsland", 6: "Menu.askForRecruitment", 7: "self.choseThatPirate"}
-	parameters={1: "[]", 2: "[]", 3: "[Menu.userInput[0], Menu.userInput[1]]", 4: "[]", 5: "[Menu.userInput[-1]]", 6: "[]", 7: "[Menu.userInput[-1]]"}
+	steps={	1: "Menu.askForUsername", 
+			2: "Menu.askForPassword", 
+			3: "self.instanciateJoueur", 
+			#4: "Menu.askForNextIsland", 
+			4: "self.choseThatIsland", 
+			5: "Menu.askForRecruitment", 
+			6: "self.choseThatPirate"}
+	parameters={1: "[]", 
+				2: "[]", 
+				3: "[Menu.userInput[0], Menu.userInput[1]]", 
+				#4: "[]", 
+				4: "[Menu.userInput[-1]]", 
+				5: "[]", 
+				6: "[Menu.userInput[-1]]"}
 	currentStep=1
 	tempData=None
 
@@ -36,9 +48,9 @@ class Menu(object):
 		if user_input!="":
 			if Menu.currentStep==3:
 				Menu.userInput=[]
-			if Menu.currentStep<7:
+			if Menu.currentStep<6:
 				Menu.currentStep+=1
-			elif Menu.currentStep==7:
+			elif Menu.currentStep==6:
 				Menu.currentStep=4
 			Menu.userInput.append(user_input)
 

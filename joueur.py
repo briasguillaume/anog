@@ -61,11 +61,11 @@ class Joueur(object):
 			self.showMenu()
 
 		else:
-			txt="Voici ton équipage:\n"+str(self._equipage)+"<br>"
+			txt="Voici ton équipage:<br>"+str(self._equipage)+"<br>"
 			txt=txt+"Vous êtes actuellement ici: "+str(self._position)+"<br>"
 			txt=txt+World.showMap()
 			
-			
+			txt=txt+"Dans quelle ile veux-tu aller maintenant? <br>"
 			return txt
 
 
@@ -101,7 +101,7 @@ class Joueur(object):
 		else:
 			if value<number:
 				self._equipage.newFighter(pirates[value])
-
+			self.showMenu()
 
 
 	@property
