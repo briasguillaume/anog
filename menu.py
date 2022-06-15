@@ -7,16 +7,9 @@ class Menu(object):
 
 	debug=False
 	userInput=[]
-	steps={	#1: "Menu.askForUsername", 
-			#2: "Menu.askForPassword", 
-			#1: "self.instanciateJoueur", 
-			1: "self.choseThatIsland", 
+	steps={ 1: "self.choseThatIsland", 
 			2: "self.choseThatPirate"}
-	parameters={#1: "[]", 
-				#2: "[]", 
-				#1: "[Menu.userInput[0], Menu.userInput[1]]", 
-				#1: "[Menu.userInput[-1]]",
-				1: "[Menu.userInput[-1]]",  
+	parameters={1: "[Menu.userInput[-1]]",  
 				2: "[Menu.userInput[-1]]"}
 	currentStep=1
 	tempData=None
@@ -46,10 +39,11 @@ class Menu(object):
 			Joueur(username, password).showMenu()
 		else:
 			txt=Menu.beginningHTML() + str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")")) + Menu.endHTML()
-			txt=txt+"input: "+str(Menu.userInput)
+			
 			
 
 			Menu.nextStep(user_input)
+			txt=txt+"input: "+str(Menu.userInput)
 			return txt
 
 	@staticmethod
@@ -70,7 +64,7 @@ class Menu(object):
 
 
 	def sendCredentials(self, username, password):
-		return self.instanciateJoueur([username, password])
+		return Menu.beginningHTML() + self.instanciateJoueur(username, password) + Menu.endHTML()
 
 	@staticmethod
 	def nextStep(user_input):
@@ -130,12 +124,7 @@ class Menu(object):
 		return txt
 
 	
-	#def instanciateJoueur(self, username, password):
-	#	self._joueur=Joueur(username, password)
-	#	return self._joueur.showMenu()
-	
-	def instanciateJoueur(self, userinput):
-		[username, password]=userinput
+	def instanciateJoueur(self, username, password):
 		self._joueur=Joueur(username, password)
 		return self._joueur.showMenu()
 
