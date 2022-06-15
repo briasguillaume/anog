@@ -52,7 +52,7 @@ class Menu(object):
 			Menu.nextStep(user_input)
 			return txt
 
-
+	@staticmethod
 	def showLogin():
 		txt=Menu.beginningHTML()
 		txt=txt+Menu.askForUsername()+Menu.askForPassword()
@@ -66,6 +66,7 @@ class Menu(object):
 			    </body>
 			</html>
 			"""
+		return txt
 
 	@staticmethod
 	def nextStep(user_input):
@@ -168,4 +169,4 @@ class Menu(object):
 
 	@staticmethod
 	def clean():
-		return InteractBDD.clean()
+		return InteractBDD.deleteAll()
