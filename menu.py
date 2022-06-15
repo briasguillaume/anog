@@ -7,7 +7,7 @@ class Menu(object):
 
 	debug=False
 	userInput=[]
-	steps={ 1: "self.instanciateJoueur"
+	steps={ 1: "self.instanciateJoueur",
 			1: "self.choseThatIsland", 
 			2: "self.choseThatPirate"}
 	parameters={1: "[Menu.userInput[0],Menu.userInput[1]]",  
@@ -74,7 +74,7 @@ class Menu(object):
 				Menu.userInput.append(user_input[1])
 			else:
 				Menu.userInput.append(user_input)
-				
+
 			if Menu.currentStep<3:
 				Menu.currentStep+=1
 			elif Menu.currentStep==3:
