@@ -16,7 +16,7 @@ Equipage
 - position's name 	string
 - pirates's id 		string
 
-Fruits
+Fruit
 - names 			string
 - powers 			string
 - allocated 		int
