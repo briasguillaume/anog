@@ -96,7 +96,7 @@ class Menu(object):
 
 
 	def choseThatPirate(self, value):
-		self._joueur.recrutement(len(Menu.tempData), Menu.tempData, value)
+		return self._joueur.recrutement(len(Menu.tempData), Menu.tempData, value)
 
 	@staticmethod
 	def askForRecruitment(joueur):
