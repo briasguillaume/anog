@@ -7,18 +7,20 @@ class Menu(object):
 
 	debug=False
 	userInput=[]
-	steps={ 1: "self.choseThatIsland", 
+	steps={ 1: "self.instanciateJoueur"
+			1: "self.choseThatIsland", 
 			2: "self.choseThatPirate"}
-	parameters={1: "[Menu.userInput[-1]]",  
-				2: "[Menu.userInput[-1]]"}
-	currentStep=1
+	parameters={1: "[Menu.userInput[0],Menu.userInput[1]]",  
+				2: "[Menu.userInput[-1]]",  
+				3: "[Menu.userInput[-1]]"}
+	currentStep=0
 	tempData=None
 
 
 	def __init__(self):
 		self._joueur=None
 		Menu.userInput=[]
-		Menu.currentStep=1
+		Menu.currentStep=0
 
 
 
@@ -38,11 +40,9 @@ class Menu(object):
 			password = input ("Et votre mot de passe?")
 			Joueur(username, password).showMenu()
 		else:
+			Menu.nextStep(user_input)
 			txt=Menu.beginningHTML() + str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")")) + Menu.endHTML()
 			
-			
-
-			Menu.nextStep(user_input)
 			txt=txt+"input: "+str(Menu.userInput)
 			return txt
 
@@ -69,11 +69,16 @@ class Menu(object):
 	@staticmethod
 	def nextStep(user_input):
 		if user_input!="":
-			if Menu.currentStep<2:
+			if Menu.currentStep==0:
+				Menu.userInput.append(user_input[0])
+				Menu.userInput.append(user_input[1])
+			else:
+				Menu.userInput.append(user_input)
+				
+			if Menu.currentStep<3:
 				Menu.currentStep+=1
-			elif Menu.currentStep==2:
-				Menu.currentStep=1
-			Menu.userInput.append(user_input)
+			elif Menu.currentStep==3:
+				Menu.currentStep=2
 
 
 	@staticmethod
