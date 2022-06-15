@@ -9,15 +9,15 @@ class Menu(object):
 	userInput=[]
 	steps={	#1: "Menu.askForUsername", 
 			#2: "Menu.askForPassword", 
-			1: "self.instanciateJoueur", 
-			2: "self.choseThatIsland", 
-			3: "self.choseThatPirate"}
+			#1: "self.instanciateJoueur", 
+			1: "self.choseThatIsland", 
+			2: "self.choseThatPirate"}
 	parameters={#1: "[]", 
 				#2: "[]", 
 				#1: "[Menu.userInput[0], Menu.userInput[1]]", 
-				1: "[Menu.userInput[-1]]",
-				2: "[Menu.userInput[-1]]",  
-				3: "[Menu.userInput[-1]]"}
+				#1: "[Menu.userInput[-1]]",
+				1: "[Menu.userInput[-1]]",  
+				2: "[Menu.userInput[-1]]"}
 	currentStep=1
 	tempData=None
 
@@ -68,13 +68,17 @@ class Menu(object):
 			"""
 		return txt
 
+
+	def sendCredentials(self, username, password):
+		return self.instanciateJoueur([username, password])
+
 	@staticmethod
 	def nextStep(user_input):
 		if user_input!="":
-			if Menu.currentStep<3:
+			if Menu.currentStep<2:
 				Menu.currentStep+=1
-			elif Menu.currentStep==3:
-				Menu.currentStep=2
+			elif Menu.currentStep==2:
+				Menu.currentStep=1
 			Menu.userInput.append(user_input)
 
 
