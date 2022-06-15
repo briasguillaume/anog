@@ -1,25 +1,23 @@
 
 from joueur import Joueur
 from pirate import Pirate
+from interactBDD import InteractBDD
 
 class Menu(object):
 
 	debug=False
 	userInput=[]
-	steps={	1: "Menu.askForUsername", 
-			2: "Menu.askForPassword", 
-			3: "self.instanciateJoueur", 
-			#4: "Menu.askForNextIsland", 
-			4: "self.choseThatIsland", 
-			#5: "Menu.askForRecruitment", 
-			5: "self.choseThatPirate"}
-	parameters={1: "[]", 
-				2: "[]", 
-				3: "[Menu.userInput[0], Menu.userInput[1]]", 
-				#4: "[]", 
-				4: "[Menu.userInput[-1]]", 
-				#5: "[]", 
-				5: "[Menu.userInput[-1]]"}
+	steps={	#1: "Menu.askForUsername", 
+			#2: "Menu.askForPassword", 
+			1: "self.instanciateJoueur", 
+			2: "self.choseThatIsland", 
+			3: "self.choseThatPirate"}
+	parameters={#1: "[]", 
+				#2: "[]", 
+				#1: "[Menu.userInput[0], Menu.userInput[1]]", 
+				1: "[Menu.userInput[-1]]",
+				2: "[Menu.userInput[-1]]",  
+				3: "[Menu.userInput[-1]]"}
 	currentStep=1
 	tempData=None
 
@@ -54,15 +52,28 @@ class Menu(object):
 			Menu.nextStep(user_input)
 			return txt
 
+
+	def showLogin():
+		txt=Menu.beginningHTML()
+		txt=txt+Menu.askForUsername()+Menu.askForPassword()
+		txt=txt+"""
+			            <form action="/" method="post">
+			                Username: <input type="text" name="username" /> <br>
+			                Password: <input type="text" name="password" /> <br>
+			                <input type="submit" value="Submit" />
+			            </form>
+			        </p>
+			    </body>
+			</html>
+			"""
+
 	@staticmethod
 	def nextStep(user_input):
 		if user_input!="":
-			#if Menu.currentStep==3:
-			#	Menu.userInput=[]
-			if Menu.currentStep<5:
+			if Menu.currentStep<3:
 				Menu.currentStep+=1
-			elif Menu.currentStep==5:
-				Menu.currentStep=4
+			elif Menu.currentStep==3:
+				Menu.currentStep=2
 			Menu.userInput.append(user_input)
 
 
@@ -114,7 +125,12 @@ class Menu(object):
 		return txt
 
 	
-	def instanciateJoueur(self, username, password):
+	#def instanciateJoueur(self, username, password):
+	#	self._joueur=Joueur(username, password)
+	#	return self._joueur.showMenu()
+	
+	def instanciateJoueur(self, userinput):
+		[username, password]=userinput
 		self._joueur=Joueur(username, password)
 		return self._joueur.showMenu()
 
