@@ -93,7 +93,7 @@ class Equipage(object):
 
 
 	@staticmethod
-	def generateEnnemies(self, level, ennemies):
+	def generateEnnemies(level, ennemies):
 		pirates=[]
 		for i in range(ennemies):
 			pirates.append(Pirate(level))
