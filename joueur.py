@@ -107,7 +107,7 @@ class Joueur(object):
 		else:
 			if int(value)<number:
 				self._equipage.newFighter(pirates[int(value)])
-			self.showMenu()
+			return self.showMenu()
 
 
 	@property
