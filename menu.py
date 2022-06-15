@@ -49,8 +49,7 @@ class Menu(object):
 		else:
 			txt=Menu.beginningHTML() + str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")")) + Menu.endHTML()
 			txt=txt+"input: "+str(Menu.userInput)
-			if Menu.currentStep==2:
-				Menu.userInput=[Menu.userInput[-1]]
+			
 
 			Menu.nextStep(user_input)
 			return txt
@@ -58,8 +57,8 @@ class Menu(object):
 	@staticmethod
 	def nextStep(user_input):
 		if user_input!="":
-			if Menu.currentStep==3:
-				Menu.userInput=[]
+			#if Menu.currentStep==3:
+			#	Menu.userInput=[]
 			if Menu.currentStep<5:
 				Menu.currentStep+=1
 			elif Menu.currentStep==5:
