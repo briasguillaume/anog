@@ -46,7 +46,7 @@ class Menu(object):
 			Joueur(username, password).showMenu()
 		else:
 			txt=Menu.beginningHTML() + str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")")) + Menu.endHTML()
-
+txt=txt+str(userInput)
 			if Menu.currentStep==2:
 				Menu.userInput=[Menu.userInput[-1]]
 

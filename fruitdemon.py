@@ -51,10 +51,10 @@ class FruitFactoryMeta(type):
 class FruitFactory(metaclass=FruitFactoryMeta):
 
 	fruitsNames=["GumGum", "Fire", "Ice", "Electric"]
-	fruitsPower={"GumGum":[25,25,25,25], 
-				"Fire":[25,50,0,25], 
-				"Ice":[25,0,50,25], 
-				"Electric":[50,0,0,50]}
+	fruitsPower={"GumGum":[250,250,250,250], 
+				"Fire":[250,500,0,250], 
+				"Ice":[250,300,500,250], 
+				"Electric":[500,0,0,500]}
 	allocatedFruits={"GumGum":False, 
 				"Fire":False, 
 				"Ice":False, 

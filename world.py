@@ -80,6 +80,8 @@ class World(object):
 		index=World.avancee[currentIslandName]+1
 		if index<=maxIndex:
 			stage=World.world[index]
+		else:
+			return "GG t'es devenu le roi des pirates!"
 		return str(stage)
 
 	@staticmethod
