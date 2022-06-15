@@ -71,7 +71,7 @@ class World(object):
 				island.regenerate()
 			else:
 				return None
-			return island
+			return [island, str(stage)]
 
 
 

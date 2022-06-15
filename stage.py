@@ -2,6 +2,8 @@
 class Stage(object):
 
 
+	debug=False
+
 	def __init__(self, islands, avancee):
 		self._islands=islands
 		self._avancee=avancee
@@ -19,10 +21,19 @@ class Stage(object):
 
 
 	def __str__(self):
-		txt="Les prochaines iles sont: \n"
-		count=0
-		for island in self._islands:
-			txt=txt+"Choix "+str(count)+": "+str(island)
-			count+=1
+		if Stage.debug:
+			txt="Les prochaines iles sont: \n"
+			count=0
+			for island in self._islands:
+				txt=txt+"Choix "+str(count)+": "+str(island)
+				count+=1
 
-		return txt
+			return txt
+		else:
+			txt="Les prochaines iles sont: <br>"
+			count=0
+			for island in self._islands:
+				txt=txt+"Choix "+str(count)+": "+str(island)
+				count+=1
+
+			return txt

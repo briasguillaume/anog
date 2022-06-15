@@ -91,6 +91,14 @@ class Equipage(object):
 			txt=txt+ str(pirate)
 		return txt
 
+
+	@staticmethod
+	def generateEnnemies(self, level, ennemies):
+		pirates=[]
+		for i in range(ennemies):
+			pirates.append(Pirate(level))
+		return Equipage(pirates)
+
 class Turn(object):
 
 	def __init__(self, pirates):

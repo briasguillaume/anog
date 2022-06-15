@@ -1,6 +1,5 @@
 
 from equipage import Equipage
-from pirate import Pirate
 
 
 
@@ -12,15 +11,8 @@ class Island(object):
 		self._name=name
 		self._level=level
 		self._ennemies=ennemies
-		self._pirates=Equipage(self.generateEnnemies(level, ennemies))
+		self._pirates=Equipage.generateEnnemies(level, ennemies)
 
-
-
-	def generateEnnemies(self, level, ennemies):
-		pirates=[]
-		for i in range(ennemies):
-			pirates.append(Pirate(level))
-		return pirates
 
 
 	def __str__(self):
@@ -46,4 +38,4 @@ class Island(object):
 
 
 	def regenerate(self):
-		self._pirates=Equipage(self.generateEnnemies(self._level, self._ennemies))
+		self._pirates=Equipage.generateEnnemies(self._level, self._ennemies)
