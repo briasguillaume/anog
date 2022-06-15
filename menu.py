@@ -86,7 +86,7 @@ class Menu(object):
 				if txt!="":
 					txt=txt+","
 				txt=txt+'"'+param+'"'
-		return str(array)
+		return txt
 
 
 	@staticmethod
