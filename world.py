@@ -71,9 +71,16 @@ class World(object):
 				island.regenerate()
 			else:
 				return None
-			return [island, str(stage)]
+			return island
 
 
+	@staticmethod
+	def getNextStage(currentIslandName):
+		maxIndex=len(World.world)-1
+		index=World.avancee[currentIslandName]+1
+		if index<=maxIndex:
+			stage=World.world[index]
+		return str(stage)
 
 	@staticmethod
 	def has(name):

@@ -71,16 +71,17 @@ class Joueur(object):
 			txt=txt+World.showMap()
 			
 			txt=txt+"Dans quelle ile veux-tu aller maintenant? <br>"
+			txt=txt+World.getNextStage(self._position.name)
 			return txt
 
 
 	def goingToNextIsland(self, value):
-		[self._position, txt]=World.next(self._position.name, value)
+		self._position=World.next(self._position.name, value)
 		#if nextIsland==None:
 		#	return "GG t'es devenu le roi des pirates"
 		# TODO HANDLE END OF THE MAP
 		self._equipage.regenerateHealth()
-		txt=txt+Utils.fight(self._equipage, self._position.pirates)
+		txt=Utils.fight(self._equipage, self._position.pirates)
 		''' TODO handle death
 		if self._equipage.availableToFight:
 			self.recrutement(5)

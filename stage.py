@@ -30,10 +30,10 @@ class Stage(object):
 
 			return txt
 		else:
-			txt="Les prochaines iles sont: <br>"
+			txt="<br>Les prochaines iles sont: <br>"
 			count=0
 			for island in self._islands:
-				txt=txt+"Choix "+str(count)+": "+str(island)
+				txt=txt+"Choix "+str(count)+": "+str(island)+"<br>"
 				count+=1
-
+			txt=txt+"<br>"
 			return txt
