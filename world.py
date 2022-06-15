@@ -65,7 +65,7 @@ class World(object):
 				stage=World.world[index]
 				
 				try:
-					island=stage.islands[choix]
+					island=stage.islands[int(choix)]
 				except:
 					island=stage.islands[0]
 				island.regenerate()

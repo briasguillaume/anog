@@ -81,7 +81,8 @@ class Joueur(object):
 		#	return "GG t'es devenu le roi des pirates"
 		# TODO HANDLE END OF THE MAP
 		self._equipage.regenerateHealth()
-		txt=Utils.fight(self._equipage, self._position.pirates)
+		txt="Arrivé sur "+self._position.name+", tu fais face à de nombreux pirates hostiles.<br>"
+		txt=txt+Utils.fight(self._equipage, self._position.pirates)
 		''' TODO handle death
 		if self._equipage.availableToFight:
 			self.recrutement(5)

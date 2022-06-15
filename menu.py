@@ -43,7 +43,7 @@ class Menu(object):
 			Menu.nextStep(user_input)
 			txt=Menu.beginningHTML() + str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")")) + Menu.endHTML()
 			
-			txt=txt+"input: "+str(Menu.userInput)
+			#txt=txt+"input: "+str(Menu.userInput)
 			return txt
 
 	@staticmethod
