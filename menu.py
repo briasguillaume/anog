@@ -26,6 +26,8 @@ class Menu(object):
 
 	def __init__(self):
 		self._joueur=None
+		Menu.userInput=[]
+		Menu.currentStep=1
 
 
 
