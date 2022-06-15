@@ -8,8 +8,8 @@ class Menu(object):
 	debug=False
 	userInput=[]
 	steps={ 1: "self.instanciateJoueur",
-			1: "self.choseThatIsland", 
-			2: "self.choseThatPirate"}
+			2: "self.choseThatIsland", 
+			3: "self.choseThatPirate"}
 	parameters={1: "[Menu.userInput[0],Menu.userInput[1]]",  
 				2: "[Menu.userInput[-1]]",  
 				3: "[Menu.userInput[-1]]"}
@@ -61,10 +61,6 @@ class Menu(object):
 			</html>
 			"""
 		return txt
-
-
-	def sendCredentials(self, username, password):
-		return Menu.beginningHTML() + self.instanciateJoueur(username, password) + Menu.endHTML()
 
 	@staticmethod
 	def nextStep(user_input):
