@@ -103,6 +103,13 @@ class InteractBDD(Static):
 		return World.carte()[0].islands[0]
 
 
+	@staticmethod
+	def retrieveWholeDatabase():
+		pass
+		# TODO retrieve the whole database in a route, that would avoid connecting to mariadb
+		# maybe add an input to execute requests?
+
+
 	#_____________________STORE_______________________________
 
 	@staticmethod
@@ -131,6 +138,22 @@ class InteractBDD(Static):
 
 
 	#_________________________DELETE_________________________________
+
+
+	@staticmethod
+	def deleteUserProgress(username):
+		pirates=InteractBDD.getMyPiratesID(username)
+
+		request = "DELETE FROM equipage WHERE username='"+username+"';"
+		description = InteractBDD.connectAndExecuteRequest(request, True)
+
+		request = "DELETE FROM joueur WHERE username='"+username+"';"
+		description = InteractBDD.connectAndExecuteRequest(request, True)
+
+		for pirateid in piratesid:
+			request = "DELETE FROM pirate WHERE id='"+pirateid+"';"
+			description = InteractBDD.connectAndExecuteRequest(request, False)
+		return None
 
 
 	@staticmethod
