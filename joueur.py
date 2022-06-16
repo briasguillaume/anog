@@ -84,15 +84,6 @@ class Joueur(object):
 		txt="Arrivé sur "+self._position.name+", tu fais face à de nombreux pirates hostiles.<br>"
 		txt=txt+Utils.fight(self, self._position.pirates)
 		txt=txt+self.cleanUpDeadPirates()
-		''' TODO handle death
-		if self._equipage.availableToFight:
-			self.recrutement(5)
-		else:
-			#delete everything from db
-			self._equipage= self.getMyCrew()
-			self._position= self.getMyLocation()
-			txt=txt+"Ton équipage est mort, il va falloir recommencer du début pour devenir le roi des pirates. y/n <br>"
-		'''
 		return txt
 
 	def recrutement(self, number, pirates=[], value=0):

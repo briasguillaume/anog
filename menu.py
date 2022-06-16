@@ -48,7 +48,6 @@ class Menu(object):
 
 	@staticmethod
 	def showLogin(addedTxt):
-		self._joueur=None
 		Menu.userInput=[]
 		Menu.currentStep=0
 		txt=Menu.beginningHTML()
