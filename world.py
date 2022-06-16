@@ -8,19 +8,19 @@ class World(object):
 	debug=False
 
 	#store it in db
-	world=[Stage([Island("Karugarner", 0,0)],0),
-			Stage([Island("Cupcake", 1, 3), Island("Bonbons", 2, 1)],1),
-			Stage([Island("Bottle", 2, 3), Island("String", 3, 2), Island("Slip", 4, 1)],2),
-			Stage([Island("Diplodocus", 3 , 3), Island("Fridge", 4, 2), Island("Montgolfiere", 5, 1)],3),
-			Stage([Island("Picmin", 4 , 3)],4),
-			Stage([Island("PoissonRouge", 5 , 3), Island("Gateau", 7, 1)],5),
-			Stage([Island("Bouton", 6 , 3), Island("Fesse", 8, 1)],6),
-			Stage([Island("Shinsekai", 20 , 1)],7),
-			Stage([Island("Marguerite", 20 , 3), Island("Tulipe", 30, 1)],8),
-			Stage([Island("Serpent", 20 , 6), Island("Singe", 30, 3), Island("Chien", 40, 1), Island("Dragon", 50, 1)],9),
-			Stage([Island("Chaise", 25 , 6), Island("portefeuille", 35, 6), Island("Table", 45, 6), Island("Escalier", 55, 6), Island("Fourchette", 8, 1)],10),
-			Stage([Island("Voiture", 70 , 3), Island("Velo", 80, 3), Island("Train", 85, 3), Island("Avion", 90, 3)],11),
-			Stage([Island("Etoile", 100 , 1)],12)
+	world=[Stage([Island("Karugarner", 0,0)]),
+			Stage([Island("Cupcake", 1, 3), Island("Bonbons", 2, 1)]),
+			Stage([Island("Bottle", 2, 3), Island("String", 3, 2), Island("Slip", 4, 1)]),
+			Stage([Island("Diplodocus", 3 , 3), Island("Fridge", 4, 2), Island("Montgolfiere", 5, 1)]),
+			Stage([Island("Picmin", 4 , 3)]),
+			Stage([Island("PoissonRouge", 5 , 3), Island("Gateau", 7, 1)]),
+			Stage([Island("Bouton", 6 , 3), Island("Fesse", 8, 1)]),
+			Stage([Island("Shinsekai", 20 , 1)]),
+			Stage([Island("Marguerite", 20 , 3), Island("Tulipe", 30, 1)]),
+			Stage([Island("Serpent", 20 , 6), Island("Singe", 30, 3), Island("Chien", 40, 1), Island("Dragon", 50, 1)]),
+			Stage([Island("Chaise", 25 , 6), Island("portefeuille", 35, 6), Island("Table", 45, 6), Island("Escalier", 55, 6), Island("Fourchette", 8, 1)],),
+			Stage([Island("Voiture", 70 , 3), Island("Velo", 80, 3), Island("Train", 85, 3), Island("Avion", 90, 3)],),
+			Stage([Island("Etoile", 100 , 1)])
 			]
 
 	avancee={"Karugarner":0,
