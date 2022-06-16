@@ -95,9 +95,9 @@ class Utils(Static):
 				txt=txt+"L'équipage de "+entryA.username+" attaque:"+entryA.equipage.attaque(entryB)+"<br>"
 		elif entryA.isinstance()=="Equipage":
 			if entryB.isinstance()=="Joueur":
-				txt=txt+"Equipage 1:"+entryA.attaque(entryB.equipage)+"<br>"
+				txt=txt+"Tour de l'équipage PNJ d'attaquer:"+entryA.attaque(entryB.equipage)+"<br>"
 			elif entryB.isinstance()=="Equipage":
-				txt=txt+"Equipage 1:"+entryA.attaque(entryB)+"<br>"
+				txt=txt+"Tour de l'équipage PNJ d'attaquer:"+entryA.attaque(entryB)+"<br>"
 			
 		return txt
 		
@@ -108,7 +108,7 @@ class Utils(Static):
 		if entry.isinstance()=="Joueur":
 			txt=txt+"L'équipage de "+entry.username+" remporte le combat, ils remportent tous un niveau:<br>"+str(entry.equipage)+"<br>"
 		elif entry.isinstance()=="Equipage":
-			txt=txt+"Cet équipage remporte le combat, ils remportent tous un niveau:<br>"+str(entry)+"<br>"
+			txt=txt+"L'équipage PNJ remporte le combat! <br>"#, ils remportent tous un niveau:<br>"+str(entry)+"<br>"
 		return txt
 
 
