@@ -69,6 +69,10 @@ class Joueur(object):
 			txt=txt+World.getNextStage(self._position.name)
 			return txt
 
+	def isinstance(self):
+		return "Joueur"
+
+
 
 	def goingToNextIsland(self, value):
 		self._position=World.next(self._position.name, value)
@@ -78,7 +82,7 @@ class Joueur(object):
 		# TODO HANDLE END OF THE MAP
 		self._equipage.regenerateHealth()
 		txt="Arrivé sur "+self._position.name+", tu fais face à de nombreux pirates hostiles.<br>"
-		txt=txt+Utils.fight(self._equipage, self._position.pirates)
+		txt=txt+Utils.fight(self, self._position.pirates)
 		txt=txt+self.cleanUpDeadPirates()
 		''' TODO handle death
 		if self._equipage.availableToFight:

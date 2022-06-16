@@ -55,6 +55,8 @@ class Equipage(object):
 		return alive
 
 
+	def isinstance(self):
+		return "Equipage"
 
 	def updateStatus(self):
 		temp=[]

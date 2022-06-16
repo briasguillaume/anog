@@ -16,7 +16,17 @@ class Utils(Static):
 	debug=False
 
 	@staticmethod
-	def fight(equipage1, equipage2):
+	def fight(entry1, entry2):
+		if entry1.isinstance()=="Joueur":
+			equipage1=entry1.team
+		elif entry1.isinstance()=="Equipage":
+			equipage1=entry1 
+
+		if entry2.isinstance()=="Joueur":
+			equipage2=entry2.team
+		elif entry2.isinstance()=="Equipage":
+			equipage2=entry2 
+
 		if Utils.debug:
 			first=random.randint(1,2)
 			# TODO HANDLE FIRST
@@ -24,36 +34,59 @@ class Utils(Static):
 			while equipage1.availableToFight and equipage2.availableToFight:
 				print("Tour "+str(turnsCount)+":")
 				print("Equipage 2:"+equipage2.attaque(equipage1))
+				joueur1.cleanUpDeadPirates()
 				equipage1.updateStatus()
 				print("Equipage 1:"+equipage1.attaque(equipage2))
+				joueur2.cleanUpDeadPirates()
 				equipage2.updateStatus()
 				print("\n")
 				turnsCount+=1
 			if equipage1.availableToFight:
 				equipage1.increaseCrewLevel()
-				print("Cet équipage remporte le combat, ils remportent tous un niveau:\n"+str(equipage1)+"\n")
+				print(joueur1.username+" remporte le combat, ils remportent tous un niveau:\n"+str(equipage1)+"\n")
 			else:
 				equipage2.increaseCrewLevel()
-				print("Cet équipage remporte le combat:\n"+str(equipage2)+"\nIls remportent tous un niveau!\n")
+				print(joueur2.username+" remporte le combat:\n"+str(equipage2)+"\nIls remportent tous un niveau!\n")
 		else:
 			txt=""
 			first=random.randint(1,2)
 			turnsCount=0
 			while equipage1.availableToFight and equipage2.availableToFight:
 				txt=txt+"Tour "+str(turnsCount)+":<br>"
-				txt=txt+"Equipage 2:"+equipage2.attaque(equipage1)+"<br>"
+				txt=txt+Utils.phraseDeCombat(equipage2, equipage1)
 				equipage1.updateStatus()
-				txt=txt+"Equipage 1:"+equipage1.attaque(equipage2)+"<br>"
+				txt=txt+Utils.phraseDeCombat(equipage1, equipage2)
 				equipage2.updateStatus()
 				txt=txt+"<br>"
 				turnsCount+=1
 			if equipage1.availableToFight:
 				equipage1.increaseCrewLevel()
-				txt=txt+"Cet équipage remporte le combat, ils remportent tous un niveau:<br>"+str(equipage1)+"<br>"
+				# TODO interactBDD.increaseCrewLevel(joueur1.username)
+				txt=txt+Utils.phraseDeVictoire(entry1)
 			else:
 				equipage2.increaseCrewLevel()
-				txt=txt+"Cet équipage remporte le combat:<br>"+str(equipage2)+"<br>Ils remportent tous un niveau!<br>"
+				txt=txt+Utils.phraseDeVictoire(entry2)
 			return txt
+
+
+	@staticmethod
+	def phraseDeCombat(equipageA, equipageB):
+		txt=""
+		if equipageA.isinstance()=="Joueur":
+			txt=txt+"L'équipage de "+equipageA.username+" attaque:"+equipageA.attaque(equipageB)+"<br>"
+		elif equipageA.isinstance()=="Equipage":
+			txt=txt+"Equipage 1:"+equipageA.attaque(equipageB)+"<br>"
+		return txt
+		
+
+	@staticmethod
+	def phraseDeVictoire(entry):
+		txt=""
+		if entry.isinstance()=="Joueur":
+			txt=txt+"L'équipage de "+entry.username+" remporte le combat, ils remportent tous un niveau:<br>"+str(entry.team)+"<br>"
+		elif entry.isinstance()=="Equipage":
+			txt=txt+"Cet équipage remporte le combat, ils remportent tous un niveau:<br>"+str(entry)+"<br>"
+		return txt
 
 
 	@staticmethod

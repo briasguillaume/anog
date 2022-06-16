@@ -68,9 +68,6 @@ class Pirate(object):
 		self._fruit=frui
 		self._stats=Pirate.generateStats(self._level, self._qualite, self._fruit.power)
 
-	'''
-	def regenerateHealth(self):
-		self._stats[0]=100*self._level*(5-self._qualite)'''
 
 	@staticmethod
 	def regenerateHealth(level, qualite):
@@ -128,16 +125,6 @@ class Pirate(object):
 
 	@staticmethod
 	def generateStats(level, qualite, fruitsPower):
-		'''
-		vie=100*self._level*(5-self._qualite)
-		degats=20*self._level*(5-self._qualite)
-		defense=10*self._level*(5-self._qualite)
-		fatigue=100*(5-self._qualite)
-
-		if self._fruit==None:
-			return [vie, degats, defense, fatigue]
-		return [vie, degats, defense, fatigue]+self._fruit.power
-		'''
 		vie=100*level*(5-qualite)
 		degats=20*level*(5-qualite)
 		defense=10*level*(5-qualite)
@@ -199,7 +186,7 @@ class Name(object):
 	@abstractmethod
 	def generateName(self):
 		raise NotImplementedError("Hey, Don't forget to implement")
-
+		
 
 	@property
 	def name(self):
