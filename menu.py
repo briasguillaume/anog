@@ -86,7 +86,10 @@ class Menu(object):
 			for param in array:
 				if txt!="":
 					txt=txt+","
-				txt=txt+'"'+param+'"'
+				try:
+					txt=txt+'"'+param+'"'
+				except: 
+					txt= "Error: list and str concatenation"+str(param)
 		return txt
 
 
