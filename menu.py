@@ -140,7 +140,7 @@ class Menu(object):
 			self._joueur=None
 			Menu.userInput=[]
 			Menu.currentStep=0
-			return showLogin("Wrong password, try again.")
+			return Menu.showLogin("Wrong password, try again.")
 		return self._joueur.showMenu()
 
 	@staticmethod
