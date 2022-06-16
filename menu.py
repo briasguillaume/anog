@@ -119,6 +119,9 @@ class Menu(object):
 			return Menu.beginningHTML() + txt  + Menu.endHTML()
 
 		
+	@staticmethod
+	def showBDD():
+		return Menu.beginningHTML() + InteractBDD.retrieveWholeDatabase() + Menu.endHTML()
 
 	@staticmethod
 	def askForRecruitment(joueur):
