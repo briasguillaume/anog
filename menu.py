@@ -132,7 +132,7 @@ class Menu(object):
 
 		txt=txt+"Lequel voulez-vous recruter?<br>"
 		Menu.tempData=pirates
-		return Menu.beginningHTML() + txt  + Menu.endHTML()
+		return txt
 
 	
 	def instanciateJoueur(self, username, password):
