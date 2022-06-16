@@ -107,6 +107,7 @@ class InteractBDD(Static):
 	def retrieveWholeDatabase():
 		txt=""
 
+		txt=txt+"Joueur: <br>"
 		request = "select * from joueur;"
 		description = InteractBDD.connectAndExecuteRequest(request, False)
 		for elem in description:
@@ -114,6 +115,7 @@ class InteractBDD(Static):
 				txt= txt+"| " + str(elem[i])
 			txt=txt+"<br>"
 
+		txt=txt+"Equipage: <br>"
 		request = "select * from equipage;"
 		description = InteractBDD.connectAndExecuteRequest(request, False)
 		for elem in description:
@@ -121,11 +123,12 @@ class InteractBDD(Static):
 				txt= txt+"| " + str(elem[i])
 			txt=txt+"<br>"
 
+		txt=txt+"Pirate: <br>"
 		request = "select * from pirate;"
 		description = InteractBDD.connectAndExecuteRequest(request, False)
 		for elem in description:
-			for i in range(len(elem)-1):
-				txt= txt+"| " + str(elem[i])
+			for i in range(len(elem)):
+				txt= txt+" | " + str(elem[i])
 			txt=txt+"<br>"
 		return txt
 		# TODO maybe add an input to execute requests?
@@ -162,7 +165,7 @@ class InteractBDD(Static):
 
 	@staticmethod
 	def addNewFighter(username, pirate):
-		newid=getAvailableID()
+		newid=InteractBDD.getAvailableID()
 		request = "SELECT piratesid FROM equipage WHERE username='"+username+"';"
 		description = InteractBDD.connectAndExecuteRequest(request, False)
 		for elem in description:
