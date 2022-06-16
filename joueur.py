@@ -117,7 +117,7 @@ class Joueur(object):
 	def position(self):
 		return self._position
 
-	def availableToFight():
+	def availableToFight(self):
 		return self._equipage.availableToFight
 
 
