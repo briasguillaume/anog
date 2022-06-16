@@ -41,7 +41,7 @@ class Menu(object):
 			Joueur(username, password).showMenu()
 		else:
 			Menu.nextStep(user_input)
-			txt=Menu.beginningHTML() + str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")")) + Menu.endHTML()
+			txt=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
 			
 			#txt=txt+"input: "+str(Menu.userInput)
 			return txt
@@ -105,17 +105,18 @@ class Menu(object):
 	def choseThatIsland(self, value):
 		txt=self._joueur.goingToNextIsland(value)
 		txt=txt+Menu.askForRecruitment(self._joueur)
-		return txt
+		return Menu.beginningHTML() + txt  + Menu.endHTML()
 
 
 	def choseThatPirate(self, value):
 		if self._joueur.availableToFight():
-			return self._joueur.recrutement(len(Menu.tempData), Menu.tempData, value)
+			txt=self._joueur.recrutement(len(Menu.tempData), Menu.tempData, value)
+			return Menu.beginningHTML() + txt  + Menu.endHTML()
 		else:
 			InteractBDD.deleteUserProgress(self._username)
 			InteractBDD.setMyCrew(self._username, World.carte()[0].islands[0].name, [Pirate(1, True)])
-			return "Ton équipage est mort, il va falloir recommencer du début pour devenir le roi des pirates. y/n <br>"
-			
+			txt="Ton équipage est mort, il va falloir recommencer du début pour devenir le roi des pirates. y/n <br>"
+			return Menu.beginningHTML() + txt  + Menu.endHTML()
 
 		
 
@@ -131,7 +132,7 @@ class Menu(object):
 
 		txt=txt+"Lequel voulez-vous recruter?<br>"
 		Menu.tempData=pirates
-		return txt
+		return Menu.beginningHTML() + txt  + Menu.endHTML()
 
 	
 	def instanciateJoueur(self, username, password):
@@ -141,7 +142,8 @@ class Menu(object):
 			Menu.userInput=[]
 			Menu.currentStep=0
 			return Menu.showLogin("Wrong password, try again.")
-		return self._joueur.showMenu()
+		txt = self._joueur.showMenu()
+		return Menu.beginningHTML() + txt  + Menu.endHTML()
 
 	@staticmethod
 	def beginningHTML():
