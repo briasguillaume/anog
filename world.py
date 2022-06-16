@@ -85,7 +85,7 @@ class World(object):
 			choix=int(choix)
 			availableIslands=World.availableIslands(currentIslandName)
 			
-			if choix<=len(availableIslands)-1 && choix>=0: # TODO verify user input
+			if choix<=len(availableIslands)-1 and choix>=0: # TODO verify user input
 
 				try:
 					island=availableIslands[int(choix)]
