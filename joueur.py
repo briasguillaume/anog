@@ -15,7 +15,7 @@ class Joueur(object):
 			self._username= username
 			self._equipage= self.getMyCrew()
 			self._position= self.getMyLocation()
-			
+			self._availableToFight=True
 			
 		else:
 			if self.existInDB(username):
@@ -29,6 +29,7 @@ class Joueur(object):
 			self._username= username
 			self._equipage= self.getMyCrew()
 			self._position= self.getMyLocation()
+			self._availableToFight=True
 			
 
 	def showMenu(self):
@@ -129,8 +130,10 @@ class Joueur(object):
 	def equipage(self):
 		return self._equipage
 
+	@property
 	def availableToFight(self):
-		return self._equipage.availableToFight
+		self._availableToFight=self._equipage.availableToFight
+		return self._availableToFight
 
 	def existInDB(self, username):
 		if Joueur.debug:
