@@ -20,13 +20,9 @@ class Joueur(object):
 		else:
 			if self.existInDB(username):
 				if not InteractBDD.checkPassword(username, password):
-					# for testing purpose
-					self._username= username
-					self._equipage= self.getMyCrew()
-					self._position= self.getMyLocation()
-					#
-					return "Invalid password"
-					# TODO handle wrong passwords
+					
+					self._username= None
+					
 			else:
 				self.createNewUser(username, password)
 				InteractBDD.setMyCrew(username, World.carte()[0].islands[0].name, [Pirate(1, True)]) 
@@ -109,13 +105,19 @@ class Joueur(object):
 
 		else:
 			if int(value)<number:
-				self._equipage.newFighter(pirates[int(value)])
+				newPirate=pirates[int(value)]
+				self._equipage.newFighter(newPirate)
+				InteractBDD.addNewFighter(self._username, newPirate)
 			return self.showMenu()
 
 
 	@property
 	def position(self):
 		return self._position
+
+	@property
+	def username(self):
+		return self._username
 
 	def availableToFight(self):
 		return self._equipage.availableToFight

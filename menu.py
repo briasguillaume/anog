@@ -135,6 +135,11 @@ class Menu(object):
 	
 	def instanciateJoueur(self, username, password):
 		self._joueur=Joueur(username, password)
+		if self._joueur.username==None: #wrong password
+			self._joueur=None
+			Menu.userInput=[]
+			Menu.currentStep=0
+			return "Wrong password, try again."
 		return self._joueur.showMenu()
 
 	@staticmethod
