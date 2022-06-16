@@ -13,11 +13,11 @@ class Stage(object):
 	def islands(self):
 		return self._islands
 
-'''
+	'''
 	@property
 	def avancee(self):
 		return self._avancee
-'''
+	'''
 
 
 	def __str__(self):
