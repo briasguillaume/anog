@@ -105,16 +105,36 @@ class InteractBDD(Static):
 
 	@staticmethod
 	def retrieveWholeDatabase():
-		pass
-		# TODO retrieve the whole database in a route, that would avoid connecting to mariadb
-		# maybe add an input to execute requests?
+		txt=""
+
+		request = "select * from joueur;"
+		description = InteractBDD.connectAndExecuteRequest(request, False)
+		for elem in description:
+			for i in range(len(elem)-1):
+				txt= txt+"| " + str(elem[i])
+			txt=txt+"<br>"
+
+		request = "select * from equipage;"
+		description = InteractBDD.connectAndExecuteRequest(request, False)
+		for elem in description:
+			for i in range(len(elem)-1):
+				txt= txt+"| " + str(elem[i])
+			txt=txt+"<br>"
+
+		request = "select * from pirate;"
+		description = InteractBDD.connectAndExecuteRequest(request, False)
+		for elem in description:
+			for i in range(len(elem)-1):
+				txt= txt+"| " + str(elem[i])
+			txt=txt+"<br>"
+		return txt
+		# TODO maybe add an input to execute requests?
 
 
 	#_____________________STORE_______________________________
 
 	@staticmethod
 	def setMyCrew(username, positionsName, pirates):
-
 		indexes=""
 		for pirate in pirates:
 			index=InteractBDD.getAvailableID()
@@ -133,9 +153,27 @@ class InteractBDD(Static):
 		request = "INSERT INTO equipage VALUES('"+username+"','"+positionsName+"','"+indexes+"');"
 		description = InteractBDD.connectAndExecuteRequest(request, True)
 		return None
-	 
+	
+	@staticmethod
+	def setMyLocation(username, positionsName):
+		request = "UPDATE equipage SET position='"+positionsName+"' WHERE username='"+username+"';"
+		description = InteractBDD.connectAndExecuteRequest(request, True)
+		return None
 
+	@staticmethod
+	def addNewFighter(username, pirate):
+		newid=getAvailableID()
+		request = "SELECT piratesid FROM equipage WHERE username='"+username+"';"
+		description = InteractBDD.connectAndExecuteRequest(request, False)
+		for elem in description:
+			piratesid=str(elem[0])
+		piratesid=piratesid+","+str(newid)
+		request = "UPDATE equipage SET piratesid='"+piratesid+"' WHERE username='"+username+"';"
+		description = InteractBDD.connectAndExecuteRequest(request, True)
 
+		request = "INSERT INTO pirate VALUES('"+str(newid)+"','"+pirate.name+"','"+str(pirate.level)+"','"+pirate.fruit.name+"','"+str(pirate.qualite)+"');"
+		description = InteractBDD.connectAndExecuteRequest(request, True)
+		return None
 
 	#_________________________DELETE_________________________________
 
@@ -166,6 +204,25 @@ class InteractBDD(Static):
 		description = InteractBDD.connectAndExecuteRequest(request, True)
 		return None
 
+
+	@staticmethod
+	def removeFighter(username, pirate):
+		
+		request = "SELECT id FROM pirate WHERE name='"+pirate.name+"', level='"+str(pirate.level)+"', qualite='"+str(pirate.qualite)+"';"
+		description = InteractBDD.connectAndExecuteRequest(request, False)
+		for elem in description:
+			pirateid=str(elem[0])
+		request = "DELETE FROM pirate WHERE id='"+pirateid+"';"
+		description = InteractBDD.connectAndExecuteRequest(request, True)
+
+		request = "SELECT piratesid FROM equipage WHERE username='"+username+"';"
+		description = InteractBDD.connectAndExecuteRequest(request, False)
+		for elem in description:
+			piratesid=str(elem[0])
+		piratesid=InteractBDD.removeFromString(piratesid, pirateid)
+		request = "UPDATE equipage SET piratesid='"+piratesid+"' WHERE username='"+username+"';"
+		description = InteractBDD.connectAndExecuteRequest(request, True)
+		return None
 
 	#____________________________________________________________
 	
@@ -203,6 +260,17 @@ class InteractBDD(Static):
 			for elem in description:
 				temp=elem[0]
 		return index
+
+	@staticmethod
+	def removeFromString(string, elem):
+		array=string.split(",").remove(elem)
+		txt=""
+		for val in array:
+			if txt=="":
+				txt=str(val)
+			else:
+				txt=txt+","+str(val)
+		return txt
 
 
 
