@@ -4,7 +4,6 @@ from fruitdemon import FruitFactory
 import random
 from fruitdemon import FruitDemon
 
-
 class Pirate(object):
 
 	debug=False
@@ -217,7 +216,7 @@ class Firstname(Name):
 
 
 	def generateName(self):
-		dictionnaire=["Kevin", "Roger", "Tiburce", "Gertrude", "Berthe", "Robert", "Blaise", "Titeuf", "Bob", "Berenice", "Benedicte"]
+		dictionnaire=["Kevin", "Roger", "Tiburce", "Gertrude", "Berthe", "Robert", "Blaise", "Titeuf", "Bob", "Berenice", "Benedicte", "Sbleurgh"]
 		index=random.randint(0,len(dictionnaire)-1)
 		return dictionnaire[index]
 
@@ -238,7 +237,7 @@ class Secondname(Name):
 
 
 	def generateName(self):
-		dictionnaire=["Tapedur", "Tankfor", "Grossbarb", "Epeenmousse", "Lechauv", "Coursurpat", "Penkibit", "Grofiak", "Moudujnou", "potremalin"]
+		dictionnaire=["Tapedur", "Tankfor", "Grossbarb", "Epeenmousse", "Lechauv", "Coursurpat", "Penkibit", "Grofiak", "Moudujnou", "Potremalin", "Barbkipik", "Sendeloin", "Vendecarpet", "Aleuilkidifukalotr"]
 		index=random.randint(0,len(dictionnaire)-1)
 		return dictionnaire[index]
 

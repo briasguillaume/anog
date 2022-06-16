@@ -48,8 +48,6 @@ class Joueur(object):
 			if self._equipage.availableToFight:
 				self.recrutement(5)
 			else:
-				#InteractBDD.deleteUserProgress(self._username)
-				#InteractBDD.setMyCrew(self._username, World.carte()[0].islands[0].name, [Pirate(1, True)])
 				self._equipage= self.getMyCrew()
 				self._position= self.getMyLocation()
 
@@ -74,12 +72,14 @@ class Joueur(object):
 
 	def goingToNextIsland(self, value):
 		self._position=World.next(self._position.name, value)
+		InteractBDD.setMyLocation(self._username, self._position.name)
 		#if nextIsland==None:
 		#	return "GG t'es devenu le roi des pirates"
 		# TODO HANDLE END OF THE MAP
 		self._equipage.regenerateHealth()
 		txt="Arrivé sur "+self._position.name+", tu fais face à de nombreux pirates hostiles.<br>"
 		txt=txt+Utils.fight(self._equipage, self._position.pirates)
+		self.cleanUpDeadPirates()
 		''' TODO handle death
 		if self._equipage.availableToFight:
 			self.recrutement(5)
@@ -111,6 +111,14 @@ class Joueur(object):
 			return self.showMenu()
 
 
+	def cleanUpDeadPirates(self):
+		for pirate in self._equipage.team:
+			if pirate.mort:
+				InteractBDD.removeFighter(self._username, pirate)
+		return None
+
+
+
 	@property
 	def position(self):
 		return self._position
@@ -121,7 +129,6 @@ class Joueur(object):
 
 	def availableToFight(self):
 		return self._equipage.availableToFight
-
 
 	def existInDB(self, username):
 		if Joueur.debug:

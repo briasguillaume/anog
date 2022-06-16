@@ -108,28 +108,35 @@ class InteractBDD(Static):
 		txt=""
 
 		txt=txt+"Joueur: <br>"
+		txt=txt+"username | password <br>"
 		request = "select * from joueur;"
 		description = InteractBDD.connectAndExecuteRequest(request, False)
 		for elem in description:
 			for i in range(len(elem)-1):
 				txt= txt+"| " + str(elem[i])
 			txt=txt+"<br>"
+		txt=txt+"<br>"
 
 		txt=txt+"Equipage: <br>"
+		txt=txt+"username | position's name | pirate's id <br>"
 		request = "select * from equipage;"
 		description = InteractBDD.connectAndExecuteRequest(request, False)
 		for elem in description:
 			for i in range(len(elem)-1):
 				txt= txt+"| " + str(elem[i])
 			txt=txt+"<br>"
+		txt=txt+"<br>"
 
 		txt=txt+"Pirate: <br>"
+		txt=txt+"id | name | level | fruit's name | qualite <br>"
 		request = "select * from pirate;"
 		description = InteractBDD.connectAndExecuteRequest(request, False)
 		for elem in description:
 			for i in range(len(elem)):
 				txt= txt+" | " + str(elem[i])
 			txt=txt+"<br>"
+		txt=txt+"<br>"
+
 		return txt
 		# TODO maybe add an input to execute requests?
 
