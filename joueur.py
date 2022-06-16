@@ -126,8 +126,8 @@ class Joueur(object):
 		return self._username
 
 	@property
-	def team(self):
-		return self._team
+	def equipage(self):
+		return self._equipage
 
 	def availableToFight(self):
 		return self._equipage.availableToFight

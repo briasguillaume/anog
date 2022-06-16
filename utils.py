@@ -18,12 +18,12 @@ class Utils(Static):
 	@staticmethod
 	def fight(entry1, entry2):
 		if entry1.isinstance()=="Joueur":
-			equipage1=entry1.team
+			equipage1=entry1.equipage
 		elif entry1.isinstance()=="Equipage":
 			equipage1=entry1 
 
 		if entry2.isinstance()=="Joueur":
-			equipage2=entry2.team
+			equipage2=entry2.equipage
 		elif entry2.isinstance()=="Equipage":
 			equipage2=entry2 
 
