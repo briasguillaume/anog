@@ -25,7 +25,7 @@ class Joueur(object):
 					
 			else:
 				self.createNewUser(username, password)
-				InteractBDD.setMyCrew(username, World.carte()[0].islands[0].name, [Pirate(1, True)]) 
+				InteractBDD.setMyCrew(username, World.carte()[0].islands[0].name, [Pirate(1, True, username)]) 
 			self._username= username
 			self._equipage= self.getMyCrew()
 			self._position= self.getMyLocation()

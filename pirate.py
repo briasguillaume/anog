@@ -8,7 +8,7 @@ class Pirate(object):
 
 	debug=False
 
-	def __init__(self, level, capitaine=False):
+	def __init__(self, level, capitaine=False, name=None):
 		if capitaine:
 			self._qualite=1
 			self._fruit=FruitFactory.giveAFruit()
@@ -16,7 +16,7 @@ class Pirate(object):
 			self._qualite=self.generateQualite([1,10,50,100])
 			self._fruit=FruitFactory.allocateFruit([1,100])
 
-		self._name=self.generateNewName()
+		self._name=self.generateNewName(name)
 		self._level=level
 		self._stats=Pirate.generateStats(self._level, self._qualite, self._fruit.power)
 		self._availableToFight=True
@@ -112,8 +112,10 @@ class Pirate(object):
 			self._mort=True
 		return txt
 
-	def generateNewName(self):
-		return Firstname()+Secondname()
+	def generateNewName(self, name):
+		if name==None:
+			return Firstname()+Secondname()
+		return name
 		
 
 
@@ -186,7 +188,7 @@ class Name(object):
 	@abstractmethod
 	def generateName(self):
 		raise NotImplementedError("Hey, Don't forget to implement")
-		
+
 
 	@property
 	def name(self):
