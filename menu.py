@@ -114,7 +114,7 @@ class Menu(object):
 
 
 	def choseThatPirate(self, value):
-		if self._joueur.availableToFight():
+		if self._joueur.availableToFight:
 			txt=self._joueur.recrutement(len(Menu.tempData), Menu.tempData, value)
 			return Menu.beginningHTML() + txt  + Menu.endHTML()
 		else:
