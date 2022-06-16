@@ -47,8 +47,9 @@ class Menu(object):
 			return txt
 
 	@staticmethod
-	def showLogin():
+	def showLogin(addedTxt):
 		txt=Menu.beginningHTML()
+		txt=txt+addedTxt+"<br>"
 		txt=txt+Menu.askForUsername()+Menu.askForPassword()
 		txt=txt+"""
 			            <form action="/" method="post">
@@ -139,7 +140,7 @@ class Menu(object):
 			self._joueur=None
 			Menu.userInput=[]
 			Menu.currentStep=0
-			return "Wrong password, try again."
+			return showLogin("Wrong password, try again.")
 		return self._joueur.showMenu()
 
 	@staticmethod
