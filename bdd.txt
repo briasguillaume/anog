@@ -63,6 +63,23 @@ INSERT INTO world VALUES('PoissonRouge', 5);
 INSERT INTO world VALUES('Gateau', 5);
 INSERT INTO world VALUES('Bouton', 6);
 INSERT INTO world VALUES('Fesse', 6);
+INSERT INTO world VALUES('Shinsekai', 7);
+INSERT INTO world VALUES('Marguerite', 8);
+INSERT INTO world VALUES('Tulipe', 8);
+INSERT INTO world VALUES('Serpent', 9);
+INSERT INTO world VALUES('Singe', 9);
+INSERT INTO world VALUES('Chien', 9);
+INSERT INTO world VALUES('Dragon', 9);
+INSERT INTO world VALUES('Chaise', 10);
+INSERT INTO world VALUES('portefeuille', 10);
+INSERT INTO world VALUES('Table', 10);
+INSERT INTO world VALUES('Escalier', 10);
+INSERT INTO world VALUES('Fourchette', 10);
+INSERT INTO world VALUES('Voiture', 11);
+INSERT INTO world VALUES('Velo', 11);
+INSERT INTO world VALUES('Train', 11);
+INSERT INTO world VALUES('Avion', 11);
+INSERT INTO world VALUES('Etoile', 12);
 
 
 

@@ -4,20 +4,20 @@ class Stage(object):
 
 	debug=False
 
-	def __init__(self, islands, avancee):
+	def __init__(self, islands):#, avancee):
 		self._islands=islands
-		self._avancee=avancee
+		#self._avancee=avancee
 
 
 	@property
 	def islands(self):
 		return self._islands
 
-
+'''
 	@property
 	def avancee(self):
 		return self._avancee
-
+'''
 
 
 	def __str__(self):

@@ -14,7 +14,13 @@ class World(object):
 			Stage([Island("Diplodocus", 3 , 3), Island("Fridge", 4, 2), Island("Montgolfiere", 5, 1)],3),
 			Stage([Island("Picmin", 4 , 3)],4),
 			Stage([Island("PoissonRouge", 5 , 3), Island("Gateau", 7, 1)],5),
-			Stage([Island("Bouton", 6 , 3), Island("Fesse", 8, 1)],6)
+			Stage([Island("Bouton", 6 , 3), Island("Fesse", 8, 1)],6),
+			Stage([Island("Shinsekai", 20 , 1)],7),
+			Stage([Island("Marguerite", 20 , 3), Island("Tulipe", 30, 1)],8),
+			Stage([Island("Serpent", 20 , 6), Island("Singe", 30, 3), Island("Chien", 40, 1), Island("Dragon", 50, 1)],9),
+			Stage([Island("Chaise", 25 , 6), Island("portefeuille", 35, 6), Island("Table", 45, 6), Island("Escalier", 55, 6), Island("Fourchette", 8, 1)],10),
+			Stage([Island("Voiture", 70 , 3), Island("Velo", 80, 3), Island("Train", 85, 3), Island("Avion", 90, 3)],11),
+			Stage([Island("Etoile", 100 , 1)],12)
 			]
 
 	avancee={"Karugarner":0,
@@ -30,7 +36,24 @@ class World(object):
 			"PoissonRouge":5,
 			"Gateau":5,
 			"Bouton":6,
-			"Fesse":6
+			"Fesse":6,
+			"Shinsekai":7,
+			"Marguerite":8,
+			"Tulipe":8,
+			"Serpent":9,
+			"Singe":9,
+			"Chien":9,
+			"Dragon":9,
+			"Chaise":10,
+			"portefeuille":10,
+			"Table":10,
+			"Escalier":10,
+			"Fourchette":10,
+			"Voiture":11,
+			"Velo":11,
+			"Train":11,
+			"Avion":11,
+			"Etoile":12
 			}
 
 
@@ -59,30 +82,50 @@ class World(object):
 				return None
 			return island
 		else:
-			maxIndex=len(World.world)-1
-			index=World.avancee[currentIslandName]+1
-			if index<=maxIndex:
-				stage=World.world[index]
-				
+			choix=int(choix)
+			availableIslands=World.availableIslands(currentIslandName)
+			
+			if choix<=len(availableIslands)-1 && choix>=0: # TODO verify user input
+
 				try:
-					island=stage.islands[int(choix)]
+					island=availableIslands[int(choix)]
 				except:
-					island=stage.islands[0]
+					island=availableIslands[0]
 				island.regenerate()
 			else:
 				return None
 			return island
 
+	@staticmethod
+	def availableIslands(currentIslandName):
+		maxIndex=len(World.world)-1
+		minIndex=1
+		index=World.avancee[currentIslandName]
+		availableStages=[]
+		for i in range(index-1,index+2): #it takes values index-1, index, index+1
+			if i>=minIndex and i<=maxIndex:
+				availableStages.append(World.world[i])
+		availableIslands=[]
+		for stage in availableStages:
+			for island in stage.islands:
+				availableIslands.append(island)
+		return availableIslands
 
 	@staticmethod
 	def getNextStage(currentIslandName):
+		availableIslands=World.availableIslands(currentIslandName)
+		return str(Stage(availableIslands))#,0))
+		'''
 		maxIndex=len(World.world)-1
 		index=World.avancee[currentIslandName]+1
 		if index<=maxIndex:
 			stage=World.world[index]
 		else:
 			return "GG t'es devenu le roi des pirates!"
-		return str(stage)
+		return str(stage)''' #was initially made for single direction progress
+
+
+
 
 	@staticmethod
 	def has(name):
