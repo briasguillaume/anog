@@ -74,6 +74,8 @@ class Joueur(object):
 		return "Joueur"
 
 
+	def increaseCrewLevel(self):
+		self._equipage.increaseCrewLevel()
 
 	def goingToNextIsland(self, value):
 		self._position=World.next(self._position.name, value)
