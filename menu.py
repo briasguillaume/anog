@@ -108,7 +108,15 @@ class Menu(object):
 
 
 	def choseThatPirate(self, value):
-		return self._joueur.recrutement(len(Menu.tempData), Menu.tempData, value)
+		if self._joueur.availableToFight():
+			return self._joueur.recrutement(len(Menu.tempData), Menu.tempData, value)
+		else:
+			InteractBDD.deleteUserProgress(self._username)
+			InteractBDD.setMyCrew(self._username, World.carte()[0].islands[0].name, [Pirate(1, True)])
+			return "Ton équipage est mort, il va falloir recommencer du début pour devenir le roi des pirates. y/n <br>"
+			
+
+		
 
 	@staticmethod
 	def askForRecruitment(joueur):

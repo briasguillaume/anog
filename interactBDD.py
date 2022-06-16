@@ -152,7 +152,7 @@ class InteractBDD(Static):
 
 		for pirateid in piratesid:
 			request = "DELETE FROM pirate WHERE id='"+pirateid+"';"
-			description = InteractBDD.connectAndExecuteRequest(request, False)
+			description = InteractBDD.connectAndExecuteRequest(request, False) # TODO remove allocated fruits
 		return None
 
 

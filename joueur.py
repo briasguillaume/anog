@@ -19,7 +19,7 @@ class Joueur(object):
 			
 		else:
 			if self.existInDB(username):
-				if not InteractBDD.checkPassword:
+				if not InteractBDD.checkPassword(username, password):
 					# for testing purpose
 					self._username= username
 					self._equipage= self.getMyCrew()
@@ -52,7 +52,8 @@ class Joueur(object):
 			if self._equipage.availableToFight:
 				self.recrutement(5)
 			else:
-				#delete everything from db
+				#InteractBDD.deleteUserProgress(self._username)
+				#InteractBDD.setMyCrew(self._username, World.carte()[0].islands[0].name, [Pirate(1, True)])
 				self._equipage= self.getMyCrew()
 				self._position= self.getMyLocation()
 
@@ -116,7 +117,8 @@ class Joueur(object):
 	def position(self):
 		return self._position
 
-
+	def availableToFight():
+		return self._equipage.availableToFight
 
 
 	def existInDB(self, username):
