@@ -79,7 +79,7 @@ class Joueur(object):
 		self._equipage.regenerateHealth()
 		txt="Arrivé sur "+self._position.name+", tu fais face à de nombreux pirates hostiles.<br>"
 		txt=txt+Utils.fight(self._equipage, self._position.pirates)
-		self.cleanUpDeadPirates()
+		txt=txt+self.cleanUpDeadPirates()
 		''' TODO handle death
 		if self._equipage.availableToFight:
 			self.recrutement(5)
@@ -112,10 +112,13 @@ class Joueur(object):
 
 
 	def cleanUpDeadPirates(self):
+		txt="<br>Ces pirates sont tombés au combat:<br>"
 		for pirate in self._equipage.team:
 			if pirate.mort:
 				InteractBDD.removeFighter(self._username, pirate)
-		return None
+				txt=txt+str(pirate)+"<br>"
+		txt=txt+"<br><br>"
+		return txt
 
 
 
