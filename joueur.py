@@ -127,6 +127,18 @@ class Joueur(object):
 
 
 
+	def askForRecruitment():
+		pirates=[]
+		number=5
+		txt="Des pirates sont disponibles au recrutement. <br>"
+		for i in range(0,number):
+			pirate=Pirate(self._position.level)
+			pirates.append(pirate)
+			txt=txt+"Choix "+str(i)+": "+str(pirate)
+
+		txt=txt+"Lequel voulez-vous recruter?<br>"
+		return [txt, pirates]
+		
 	@property
 	def position(self):
 		return self._position

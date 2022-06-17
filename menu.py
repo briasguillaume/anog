@@ -1,6 +1,5 @@
 
 from joueur import Joueur
-from pirate import Pirate
 from interactBDD import InteractBDD
 
 
@@ -119,7 +118,7 @@ class Menu(object):
 
 	def checkAliveForRecruitment(self):
 		if self._joueur.availableToFight:
-			return Menu.askForRecruitment(self._joueur)
+			return Menu.askForRecruitment()
 		else:
 			self._joueur.resetCrew()
 			txt="Ton équipage est mort, il va falloir recommencer du début pour devenir le roi des pirates. y/n <br>"
@@ -130,18 +129,8 @@ class Menu(object):
 	def showBDD():
 		return Menu.beginningHTML() + InteractBDD.retrieveWholeDatabase() + Menu.endHTML()
 
-	@staticmethod
-	def askForRecruitment(joueur):
-		pirates=[]
-		number=5
-		txt="Des pirates sont disponibles au recrutement. <br>"
-		for i in range(0,number):
-			pirate=Pirate(joueur.position.level)
-			pirates.append(pirate)
-			txt=txt+"Choix "+str(i)+": "+str(pirate)
-
-		txt=txt+"Lequel voulez-vous recruter?<br>"
-		Menu.tempData=pirates
+	def askForRecruitment():
+		[txt, Menu.tempData]=self._joueur.askForRecruitment()
 		return txt
 
 	
