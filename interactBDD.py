@@ -151,7 +151,7 @@ class InteractBDD(Static):
 			if not indexes:
 				indexes=str(index)
 			else:
-				indexes=indexes+str(index)
+				indexes=indexes+","+str(index)
 			request = "INSERT INTO pirate VALUES('"+str(index)+"','"+pirate.name+"','"+str(pirate.level)+"','"+pirate.fruit.name+"','"+str(pirate.qualite)+"');"
 			description = InteractBDD.connectAndExecuteRequest(request, True)
 
@@ -236,7 +236,7 @@ class InteractBDD(Static):
 
 	@staticmethod
 	def removeFighter(username, pirate):
-		
+		# level='"+str(pirate.level)+"' AND
 		request = "SELECT id FROM pirate WHERE name='"+pirate.name+"' AND qualite='"+str(pirate.qualite)+"';"
 		description = InteractBDD.connectAndExecuteRequest(request, False)
 		pirateid=""
@@ -296,13 +296,15 @@ class InteractBDD(Static):
 	@staticmethod
 	def removeFromString(string, elem):
 		array=string.split(",").remove(elem)
+		return ','.join(array)
+		'''
 		txt=""
 		for val in array:
 			if txt=="":
 				txt=str(val)
 			else:
 				txt=txt+","+str(val)
-		return txt
+		return txt'''
 
 
 
