@@ -242,6 +242,8 @@ class InteractBDD(Static):
 		pirateid=""
 		for elem in description:
 			pirateid=str(elem[0])
+		if pirateid=="":
+			return None
 		request = "DELETE FROM pirate WHERE id='"+pirateid+"';"
 		description = InteractBDD.connectAndExecuteRequest(request, True)
 
