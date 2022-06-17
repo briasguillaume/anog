@@ -165,10 +165,10 @@ class Pirate(object):
 			txt=txt+"___________________________________________________\n"
 			return txt
 		else:
-			txt=self._name+"<br>"
-			txt=txt+"niveau: "+str(self._level)+" | qualité: "+str(self._qualite)+" | fruit: "+self._fruit.name+"<br>"
-			txt=txt+"vie: "+str(self._stats[0])+" | dps: "+str(self._stats[1])+" | def: "+str(self._stats[2])+" | fatigue: "+str(self._stats[3])+"<br>"
-			txt=txt+"___________________________________________________<br>"
+			txt="<p><span style="color:red;"><b>"+self._name+"<b><br>"
+			txt=txt+"niveau: "+str(self._level)+" | qualité: "+str(self._qualite)+" | fruit: "+self._fruit.name+"</span><br>"
+			txt=txt+"<span style="color:green;">vie: "+str(self._stats[0])+" | dps: "+str(self._stats[1])+" | def: "+str(self._stats[2])+" | fatigue: "+str(self._stats[3])+"</span><br>"
+			txt=txt+"___________________________________________________<br></p>"
 			return txt
 
 
