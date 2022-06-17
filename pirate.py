@@ -4,6 +4,7 @@ from fruitdemon import FruitFactory
 import random
 from fruitdemon import FruitDemon
 from interactBDD import InteractBDD
+from pirateStats import PirateStats
 
 class Pirate(object):
 
@@ -19,7 +20,7 @@ class Pirate(object):
 
 		self._name=self.generateNewName(name)
 		self._level=level
-		self._stats=Pirate.generateStats(self._level, self._qualite, self._fruit.power)
+		self._stats=PirateStats.generateStats(self._level, self._qualite, self._fruit.power)
 		self._availableToFight=True
 		self._mort=False
 
@@ -62,12 +63,12 @@ class Pirate(object):
 	@qualite.setter
 	def qualite(self, qualite):
 		self._qualite=qualite
-		self._stats=Pirate.generateStats(self._level, self._qualite, self._fruit.power)
+		self._stats=PirateStats.generateStats(self._level, self._qualite, self._fruit.power)
 
 	@fruit.setter
 	def fruit(self, frui):
 		self._fruit=frui
-		self._stats=Pirate.generateStats(self._level, self._qualite, self._fruit.power)
+		self._stats=PirateStats.generateStats(self._level, self._qualite, self._fruit.power)
 
 
 	@staticmethod
@@ -81,7 +82,7 @@ class Pirate(object):
 		else:
 			increase=3
 		self._level=InteractBDD.increasePirateLevel(self, increase)
-		self._stats=Pirate.generateStats(self._level, self._qualite, self._fruit.power)
+		self._stats=PirateStats.generateStats(self._level, self._qualite, self._fruit.power)
 
 
 	def attaque(self):
@@ -130,14 +131,7 @@ class Pirate(object):
 		else:
 			return FruitFactory.giveThatFruit(fruit)
 
-	@staticmethod
-	def generateStats(level, qualite, fruitsPower):
-		vie=100*level*(5-qualite)
-		degats=20*level*(5-qualite)
-		defense=10*level*(5-qualite)
-		fatigue=100*(5-qualite)
-		return [vie+fruitsPower[0], degats+fruitsPower[1], defense+fruitsPower[2], fatigue+fruitsPower[3]]
-
+	
 
 	def generateQualite(self, percentageQualite):
 		
