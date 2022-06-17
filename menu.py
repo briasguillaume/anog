@@ -120,7 +120,7 @@ class Menu(object):
 			return Menu.askForRecruitment(self._joueur)
 		else:
 			InteractBDD.deleteUserProgress(self._joueur.username)
-			InteractBDD.setMyCrew(self._username, World.carte()[0].islands[0].name, [Pirate(1, True)])
+			InteractBDD.setMyCrew(self._joueur.username, World.carte()[0].islands[0].name, [Pirate(1, True)])
 			txt="Ton équipage est mort, il va falloir recommencer du début pour devenir le roi des pirates. y/n <br>"
 			return Menu.beginningHTML() + txt  + Menu.endHTML()
 
