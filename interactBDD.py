@@ -301,6 +301,7 @@ class InteractBDD(Static):
 	def removeFromString(string, elem):
 		array=string.split(",")
 		array.remove(elem)
+		array=list(set(array))
 		newString=','.join(array)
 		return newString
 
