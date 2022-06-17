@@ -244,11 +244,13 @@ class InteractBDD(Static):
 			pirateid=str(elem[0])
 		if pirateid=="":
 			return None
+
 		request = "DELETE FROM pirate WHERE id='"+pirateid+"';"
 		description = InteractBDD.connectAndExecuteRequest(request, True)
 
 		request = "SELECT piratesid FROM equipage WHERE username='"+username+"';"
 		description = InteractBDD.connectAndExecuteRequest(request, False)
+		piratesid=""
 		for elem in description:
 			piratesid=str(elem[0])
 		piratesid=InteractBDD.removeFromString(piratesid, pirateid)
