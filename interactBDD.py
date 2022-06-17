@@ -190,7 +190,6 @@ class InteractBDD(Static):
 
 	@staticmethod
 	def deleteUserProgress(username):
-		pirates=InteractBDD.getMyPiratesID(username)
 
 		request = "DELETE FROM equipage WHERE username='"+username+"';"
 		description = InteractBDD.connectAndExecuteRequest(request, True)
@@ -198,6 +197,7 @@ class InteractBDD(Static):
 		request = "DELETE FROM joueur WHERE username='"+username+"';"
 		description = InteractBDD.connectAndExecuteRequest(request, True)
 
+		piratesid=InteractBDD.getMyPiratesID(username)
 		for pirateid in piratesid:
 			request = "DELETE FROM pirate WHERE id='"+pirateid+"';"
 			description = InteractBDD.connectAndExecuteRequest(request, False) # TODO remove allocated fruits
