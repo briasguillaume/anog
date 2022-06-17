@@ -3,7 +3,7 @@ from fruitdemon import FruitFactory
 from island import Island
 from world import World
 from equipage import Equipage
-
+from utils import Utils
 
 import json
 from collections import namedtuple
