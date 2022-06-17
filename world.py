@@ -162,19 +162,19 @@ class World(object):
 				txt=txt+"\n"
 			print(txt)
 		else:
-			txt=""
+			txt="<p>"
 			for stage in World.world:
-				txt=txt+'<p style="color:blue;">------------------------------------------------------------ </p><br>' #60
+				txt=txt+'<span style="color:blue;">------------------------------------------------------------ </span><br>' #60
 				#1 20 20
 				#2 5 55 55 5
 				spaceLength=60/(len(stage.islands)+1) -10
 				for island in stage.islands:
 					for i in range(int(spaceLength)):
 						txt=txt+"&nbsp;"
-					txt=txt+'<p style="color:blue;">|</p><p style="color:red;">'+island.name+'</p><p style="color:blue;">|</p>'
+					txt=txt+'<span style="color:blue;">|</span><span style="color:red;">'+island.name+'</span><span style="color:blue;">|</span>'
 					for i in range(int(spaceLength)):
 						txt=txt+"&nbsp;"
-				txt=txt+"<br>"
+				txt=txt+"<br></p>"
 			return txt
 
 
