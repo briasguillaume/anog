@@ -4,7 +4,7 @@ from fruitdemon import FruitFactory
 import random
 from fruitdemon import FruitDemon
 from interactBDD import InteractBDD
-from pirateStats import PirateStats
+from statsPirate import StatsPirate
 
 class Pirate(object):
 
