@@ -80,6 +80,7 @@ class Joueur(object):
 
 	def increaseCrewLevel(self):
 		self._equipage.increaseCrewLevel()
+		InteractBDD.increaseCrewLevel(self._username)
 
 	def goingToNextIsland(self, value):
 		self._position=World.next(self._position.name, value)

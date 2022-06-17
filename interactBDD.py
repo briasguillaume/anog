@@ -185,6 +185,25 @@ class InteractBDD(Static):
 		description = InteractBDD.connectAndExecuteRequest(request, True)
 		return None
 
+
+	@staticmethod
+	def increaseCrewLevel(username):
+		request = "SELECT piratesid FROM equipage WHERE username='"+username+"';"
+		description = InteractBDD.connectAndExecuteRequest(request, False)
+		for elem in description:
+			piratesid=str(elem[0])
+
+		for pirateid in piratesid:
+			request = "SELECT level FROM pirate WHERE id='"+pirateid+"';"
+			description = InteractBDD.connectAndExecuteRequest(request, False)
+			for elem in description:
+				level=int(elem[0])+1
+
+			request = "UPDATE pirate SET level='"+str(level)+"' WHERE id='"+pirateid+"';"
+			description = InteractBDD.connectAndExecuteRequest(request, True)
+		return None
+
+
 	#_________________________DELETE_________________________________
 
 
