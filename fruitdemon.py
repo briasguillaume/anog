@@ -98,6 +98,9 @@ class FruitFactory(metaclass=FruitFactoryMeta):
 
 	@staticmethod
 	def giveThatFruit(fruit):
+		if fruit=="None":
+			return FruitDemon("None",[0,0,0,0])
+
 		return FruitDemon(fruit, FruitFactory.fruitsPower[fruit])
 
 	@staticmethod
