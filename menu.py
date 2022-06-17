@@ -118,7 +118,7 @@ class Menu(object):
 
 	def checkAliveForRecruitment(self):
 		if self._joueur.availableToFight:
-			return Menu.askForRecruitment()
+			return self.askForRecruitment()
 		else:
 			self._joueur.resetCrew()
 			txt="Ton équipage est mort, il va falloir recommencer du début pour devenir le roi des pirates. y/n <br>"
@@ -129,7 +129,7 @@ class Menu(object):
 	def showBDD():
 		return Menu.beginningHTML() + InteractBDD.retrieveWholeDatabase() + Menu.endHTML()
 
-	def askForRecruitment():
+	def askForRecruitment(self):
 		[txt, Menu.tempData]=self._joueur.askForRecruitment()
 		return txt
 
