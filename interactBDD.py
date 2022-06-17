@@ -237,13 +237,11 @@ class InteractBDD(Static):
 	@staticmethod
 	def removeFighter(username, pirate):
 		
-		request = "SELECT id FROM pirate WHERE name='"+pirate.name+"' AND level='"+str(pirate.level)+"' AND qualite='"+str(pirate.qualite)+"';"
+		request = "SELECT id FROM pirate WHERE name='"+pirate.name+"' AND qualite='"+str(pirate.qualite)+"';"
 		description = InteractBDD.connectAndExecuteRequest(request, False)
 		pirateid=""
 		for elem in description:
 			pirateid=str(elem[0])
-		if pirateid=="":
-			return None
 
 		request = "DELETE FROM pirate WHERE id='"+pirateid+"';"
 		description = InteractBDD.connectAndExecuteRequest(request, True)
