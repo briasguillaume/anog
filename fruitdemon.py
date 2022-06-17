@@ -102,19 +102,18 @@ class FruitFactory(metaclass=FruitFactoryMeta):
 
 	@staticmethod
 	def giveAFruit():
-		if True:
-			availableFruits=FruitFactory.countAvailableFruits()
-			if availableFruits==0:
-				return FruitDemon("None",[0,0,0,0])
+		availableFruits=FruitFactory.countAvailableFruits()
+		if availableFruits==0:
+			return FruitDemon("None",[0,0,0,0])
 
-			fruitsNumber=random.randint(0,availableFruits-1)
-			count=0
-			for fruit in FruitFactory.fruitsNames:
-				if FruitFactory.allocatedFruits[fruit]==False:
-					if count==fruitsNumber:
-						FruitFactory.allocatedFruits[fruit]=True
-						return FruitDemon(fruit,FruitFactory.fruitsPower[fruit])
-					count+=1
+		fruitsNumber=random.randint(0,availableFruits-1)
+		count=0
+		for fruit in FruitFactory.fruitsNames:
+			if FruitFactory.allocatedFruits[fruit]==False:
+				if count==fruitsNumber:
+					FruitFactory.allocatedFruits[fruit]=True
+					return FruitDemon(fruit,FruitFactory.fruitsPower[fruit])
+				count+=1
 
 			
 		return FruitDemon("None",[0,0,0,0])
