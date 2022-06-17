@@ -60,7 +60,7 @@ class InteractBDD(Static):
 
 		pirates=[]
 		for pirateid in piratesid:
-			request = "SELECT * FROM pirate WHERE id='"+pirateid+"';"
+			request = "SELECT * FROM pirate WHERE id='"+str(pirateid)+"';"
 			description = InteractBDD.connectAndExecuteRequest(request, False)
 			for elem in description:
 				level=elem[2]
@@ -220,7 +220,7 @@ class InteractBDD(Static):
 
 		piratesid=InteractBDD.getMyPiratesID(username)
 		for pirateid in piratesid:
-			request = "DELETE FROM pirate WHERE id='"+pirateid+"';"
+			request = "DELETE FROM pirate WHERE id='"+str(pirateid)+"';"
 			description = InteractBDD.connectAndExecuteRequest(request, False) # TODO remove allocated fruits
 		return None
 

@@ -20,7 +20,7 @@ class World(object):
 			Stage([Island("Serpent", 20 , 6), Island("Singe", 30, 3), Island("Chien", 40, 1), Island("Dragon", 50, 1)]),
 			Stage([Island("Chaise", 25 , 6), Island("portefeuille", 35, 6), Island("Table", 45, 6), Island("Escalier", 55, 6), Island("Fourchette", 65, 6)],),
 			Stage([Island("Voiture", 70 , 3), Island("Velo", 80, 3), Island("Train", 85, 3), Island("Avion", 90, 3)],),
-			Stage([Island("Etoile", 100 , 1)])
+			Stage([Island("Etoile", 150 , 1)])
 			]
 
 	avancee={"Karugarner":0,
