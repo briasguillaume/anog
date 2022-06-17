@@ -1,7 +1,7 @@
 import mariadb
 
 from fruitdemon import FruitFactory
-from pirateStats import PirateStats
+from statsPirate import StatsPirate
 
 import json
 from collections import namedtuple
