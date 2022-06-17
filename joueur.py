@@ -168,7 +168,12 @@ class Joueur(object):
 		if Joueur.debug:
 			return Equipage([Pirate(1, True)])
 		else:
-			return Equipage(InteractBDD.getMyCrew(self._username))
+			pirates=[]
+			txtPirates=InteractBDD.getMyCrew(self._username)
+			for txt in txtPirates:
+				pirate=Utils.load(txt)
+				pirates.append(pirate)
+			return Equipage(pirates)
 
 
 	def getMyLocation(self):

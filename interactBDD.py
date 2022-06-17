@@ -2,7 +2,6 @@ import mariadb
 from fruitdemon import FruitFactory
 from island import Island
 from world import World
-from utils import Utils
 
 import json
 from collections import namedtuple
@@ -71,8 +70,8 @@ class InteractBDD(Static):
 				qualite=elem[4]
 				fruit=FruitFactory.giveThatFruit(str(elem[3]))
 				txt='{"type": "Pirate", "name": \"'+str(elem[1])+'\", "level": '+str(level)+ ', "qualite": '+str(qualite)+', "fruit": '+ str(fruit)+', "stats": '+str(Pirate.generateStats(level, qualite, fruit.power))+', "availableToFight": "True", "mort": "False"}'
-				pirate=Utils.load(txt)
-				pirates.append(pirate) #pas besoin de separation avec une ',', il n'y en a qu'un avec cet id
+				#pirate=Utils.load(txt)
+				pirates.append(txt) #pas besoin de separation avec une ',', il n'y en a qu'un avec cet id
 		return pirates
 
 
