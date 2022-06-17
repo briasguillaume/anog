@@ -23,6 +23,7 @@ class Menu(object):
 		Menu.userInput=[]
 		Menu.currentStep=0
 
+	#TODO clean imports
 	#TODO use fruit's allocation
 	#TODO hook values from bdd and not code
 	#TODO cookies/sessions for multiplayer

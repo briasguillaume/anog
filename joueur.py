@@ -168,7 +168,7 @@ class Joueur(object):
 		if Joueur.debug:
 			return Equipage([Pirate(1, True)])
 		else:
-			return InteractBDD.getMyCrew(self._username)
+			return Equipage(InteractBDD.getMyCrew(self._username))
 
 
 	def getMyLocation(self):
