@@ -141,6 +141,16 @@ class InteractBDD(Static):
 		# TODO maybe add an input to execute requests?
 
 
+	@staticmethod
+	def getPirateID(pirate):
+		# level='"+str(pirate.level)+"' AND
+		request = "SELECT id FROM pirate WHERE name='"+pirate.name+"' AND qualite='"+str(pirate.qualite)+"';"
+		description = InteractBDD.connectAndExecuteRequest(request, False)
+		for elem in description:
+			return str(elem[0])
+
+
+
 	#_____________________STORE_______________________________
 
 	@staticmethod
@@ -187,25 +197,17 @@ class InteractBDD(Static):
 
 
 	@staticmethod
-	def increaseCrewLevel(username):
-		request = "SELECT piratesid FROM equipage WHERE username='"+username+"';"
+	def increasePirateLevel(pirate, increase):
+		pirateid=InteractBDD.getPirateID(pirate)
+
+		request = "SELECT level FROM pirate WHERE id='"+pirateid+"';"
 		description = InteractBDD.connectAndExecuteRequest(request, False)
 		for elem in description:
-			piratesid=str(elem[0])
+			level=int(elem[0])+increase
 
-		for pirateid in piratesid:
-			request = "SELECT level, fruit FROM pirate WHERE id='"+pirateid+"';"
-			description = InteractBDD.connectAndExecuteRequest(request, False)
-			for elem in description:
-				fruit=str(elem[1])
-				if fruit=="None":
-					level=int(elem[0])+1
-				else:
-					level=int(elem[0])+3
-
-			request = "UPDATE pirate SET level='"+str(level)+"' WHERE id='"+pirateid+"';"
-			description = InteractBDD.connectAndExecuteRequest(request, True)
-		return None
+		request = "UPDATE pirate SET level='"+str(level)+"' WHERE id='"+pirateid+"';"
+		description = InteractBDD.connectAndExecuteRequest(request, True)
+		return level
 
 
 	#_________________________DELETE_________________________________
@@ -240,12 +242,7 @@ class InteractBDD(Static):
 
 	@staticmethod
 	def removeFighter(username, pirate):
-		# level='"+str(pirate.level)+"' AND
-		request = "SELECT id FROM pirate WHERE name='"+pirate.name+"' AND qualite='"+str(pirate.qualite)+"';"
-		description = InteractBDD.connectAndExecuteRequest(request, False)
-		pirateid=""
-		for elem in description:
-			pirateid=str(elem[0])
+		pirateid=InteractBDD.getPirateID(pirate)
 
 		request = "DELETE FROM pirate WHERE id='"+pirateid+"';"
 		description = InteractBDD.connectAndExecuteRequest(request, True)
@@ -259,6 +256,7 @@ class InteractBDD(Static):
 		request = "UPDATE equipage SET piratesid='"+newid+"' WHERE username='"+username+"';"
 		description = InteractBDD.connectAndExecuteRequest(request, True)
 		return None
+
 
 	#____________________________________________________________
 	

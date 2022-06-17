@@ -3,6 +3,7 @@ from abc import abstractmethod
 from fruitdemon import FruitFactory
 import random
 from fruitdemon import FruitDemon
+from interactBDD import InteractBDD
 
 class Pirate(object):
 
@@ -75,7 +76,11 @@ class Pirate(object):
 
 	
 	def increaseLevel(self):
-		self._level+=1
+		if self._fruit.name=="None":
+			increase=1
+		else:
+			increase=3
+		self._level=InteractBDD.increasePirateLevel(self, increase)
 		self._stats=Pirate.generateStats(self._level, self._qualite, self._fruit.power)
 
 
