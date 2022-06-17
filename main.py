@@ -5,8 +5,6 @@ menu= Menu()
 menu.showMenu("")
 
 
-
-
 '''
 from equipage import Equipage
 from pirate import Pirate

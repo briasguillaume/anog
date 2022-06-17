@@ -13,8 +13,8 @@ Joueur
 
 Equipage
 - username 			string
-- position's name 	string
-- pirates's id 		string
+- position 			string
+- piratesid 		string
 
 Fruit
 - names 			string
@@ -25,7 +25,7 @@ Pirate
 - id 				int
 - name 				string
 - level 			int
-- fruit's name 		string
+- fruit		 		string
 - qualite 			int
 
 World

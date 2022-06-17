@@ -295,17 +295,10 @@ class InteractBDD(Static):
 
 	@staticmethod
 	def removeFromString(string, elem):
-		array=string.split(",").remove(elem)
+		array=string.split(",")
+		array.remove(elem)
 		return ','.join(array)
-		'''
-		txt=""
-		for val in array:
-			if txt=="":
-				txt=str(val)
-			else:
-				txt=txt+","+str(val)
-		return txt'''
-
+		
 
 
 
