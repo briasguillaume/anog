@@ -251,8 +251,8 @@ class InteractBDD(Static):
 		piratesid=""
 		for elem in description:
 			piratesid=str(elem[0])
-		piratesid=InteractBDD.removeFromString(piratesid, pirateid)
-		request = "UPDATE equipage SET piratesid='"+piratesid+"' WHERE username='"+username+"';"
+		newid=InteractBDD.removeFromString(piratesid, pirateid)
+		request = "UPDATE equipage SET piratesid='"+newid+"' WHERE username='"+username+"';"
 		description = InteractBDD.connectAndExecuteRequest(request, True)
 		return None
 
@@ -297,8 +297,8 @@ class InteractBDD(Static):
 	def removeFromString(string, elem):
 		array=string.split(",")
 		array.remove(elem)
-		return ','.join(array)
-		
+		newString=','.join(array)
+		return newString
 
 
 
