@@ -22,7 +22,10 @@ class Menu(object):
 		Menu.userInput=[]
 		Menu.currentStep=0
 
-
+	#TODO recap de mort toujours HS
+	#TODO apres etre allé à Shinsekai je me suis retrouvé à gateau
+	#TODO les iles ne sont pas regenerees apres mon depart
+	#TODO cookies/sessions for multiplayer
 
 	@property
 	def joueur(self):
@@ -52,7 +55,7 @@ class Menu(object):
 		Menu.currentStep=0
 		txt=Menu.beginningHTML()
 		txt=txt+addedTxt+"<br>"
-		txt=txt+Menu.askForUsername()+Menu.askForPassword()
+		txt=txt+Menu.askForUsername()
 		txt=txt+"""
 			            <form action="/" method="post">
 			                Username: <input type="text" name="username" /> <br>
@@ -98,25 +101,23 @@ class Menu(object):
 	@staticmethod
 	def askForUsername():
 		txt="Bonjour et bienvenu dans ce petit jeu! ;) <br>" + "Pouvez-vous indiquer votre nom d'utilisateur? <br>"
+		txt=txt+"Et votre mot de passe? <br>"
 		return txt
-
-
-	@staticmethod
-	def askForPassword():
-		txt="Et votre mot de passe? <br>" 
-		return txt
-
 	
 	def choseThatIsland(self, value):
 		txt=self._joueur.goingToNextIsland(value)
-		txt=txt+Menu.askForRecruitment(self._joueur)
+		txt=txt+self.checkAliveForRecruitment()
 		return Menu.beginningHTML() + txt  + Menu.endHTML()
 
 
 	def choseThatPirate(self, value):
+		txt=self._joueur.recrutement(len(Menu.tempData), Menu.tempData, value)
+		return Menu.beginningHTML() + txt  + Menu.endHTML()
+
+
+	def checkAliveForRecruitment(self):
 		if self._joueur.availableToFight:
-			txt=self._joueur.recrutement(len(Menu.tempData), Menu.tempData, value)
-			return Menu.beginningHTML() + txt  + Menu.endHTML()
+			return Menu.askForRecruitment(self._joueur)
 		else:
 			InteractBDD.deleteUserProgress(self._username)
 			InteractBDD.setMyCrew(self._username, World.carte()[0].islands[0].name, [Pirate(1, True)])
