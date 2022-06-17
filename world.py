@@ -100,7 +100,7 @@ class World(object):
 	def getIsland(currentIslandName):
 		index=World.avancee[currentIslandName]
 		stage=World.world[index]
-		for island in stage:
+		for island in stage.islands:
 			if island.name==currentIslandName:
 				return island
 
