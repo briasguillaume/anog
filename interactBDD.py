@@ -194,10 +194,14 @@ class InteractBDD(Static):
 			piratesid=str(elem[0])
 
 		for pirateid in piratesid:
-			request = "SELECT level FROM pirate WHERE id='"+pirateid+"';"
+			request = "SELECT level, fruit FROM pirate WHERE id='"+pirateid+"';"
 			description = InteractBDD.connectAndExecuteRequest(request, False)
 			for elem in description:
-				level=int(elem[0])+1
+				fruit=str(elem[1])
+				if fruit=="None":
+					level=int(elem[0])+1
+				else:
+					level=int(elem[0])+5
 
 			request = "UPDATE pirate SET level='"+str(level)+"' WHERE id='"+pirateid+"';"
 			description = InteractBDD.connectAndExecuteRequest(request, True)
