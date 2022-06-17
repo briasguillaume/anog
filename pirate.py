@@ -2,7 +2,6 @@
 from abc import abstractmethod
 from fruitdemon import FruitFactory
 import random
-from fruitdemon import FruitDemon
 from interactBDD import InteractBDD
 from statsPirate import StatsPirate
 
@@ -20,7 +19,7 @@ class Pirate(object):
 
 		self._name=self.generateNewName(name)
 		self._level=level
-		self._stats=PirateStats.generateStats(self._level, self._qualite, self._fruit.power)
+		self._stats=StatsPirate.generateStats(self._level, self._qualite, self._fruit.power)
 		self._availableToFight=True
 		self._mort=False
 
