@@ -127,7 +127,7 @@ class Joueur(object):
 
 
 
-	def askForRecruitment():
+	def askForRecruitment(self):
 		pirates=[]
 		number=5
 		txt="Des pirates sont disponibles au recrutement. <br>"
@@ -138,7 +138,7 @@ class Joueur(object):
 
 		txt=txt+"Lequel voulez-vous recruter?<br>"
 		return [txt, pirates]
-		
+
 	@property
 	def position(self):
 		return self._position
