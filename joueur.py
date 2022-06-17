@@ -73,6 +73,10 @@ class Joueur(object):
 	def isinstance(self):
 		return "Joueur"
 
+	def resetCrew(self):
+		InteractBDD.deleteUserProgress(self._username)
+		InteractBDD.setMyCrew(self._username, World.carte()[0].islands[0].name, [Pirate(1, True)])
+
 
 	def increaseCrewLevel(self):
 		self._equipage.increaseCrewLevel()

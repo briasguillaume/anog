@@ -2,6 +2,7 @@
 from joueur import Joueur
 from pirate import Pirate
 from interactBDD import InteractBDD
+from 
 
 class Menu(object):
 
@@ -119,8 +120,7 @@ class Menu(object):
 		if self._joueur.availableToFight:
 			return Menu.askForRecruitment(self._joueur)
 		else:
-			InteractBDD.deleteUserProgress(self._joueur.username)
-			InteractBDD.setMyCrew(self._joueur.username, World.carte()[0].islands[0].name, [Pirate(1, True)])
+			self._joueur.resetCrew()
 			txt="Ton équipage est mort, il va falloir recommencer du début pour devenir le roi des pirates. y/n <br>"
 			return Menu.beginningHTML() + txt  + Menu.endHTML()
 
