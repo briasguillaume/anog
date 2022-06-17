@@ -2,7 +2,7 @@
 from joueur import Joueur
 from pirate import Pirate
 from interactBDD import InteractBDD
-from 
+
 
 class Menu(object):
 
