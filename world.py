@@ -116,7 +116,8 @@ class World(object):
 		availableIslands=[]
 		for stage in availableStages:
 			for island in stage.islands:
-				availableIslands.append(island)
+				if island.name!=currentIslandName:
+					availableIslands.append(island)
 		return availableIslands
 
 	@staticmethod

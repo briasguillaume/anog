@@ -201,7 +201,7 @@ class InteractBDD(Static):
 				if fruit=="None":
 					level=int(elem[0])+1
 				else:
-					level=int(elem[0])+5
+					level=int(elem[0])+3
 
 			request = "UPDATE pirate SET level='"+str(level)+"' WHERE id='"+pirateid+"';"
 			description = InteractBDD.connectAndExecuteRequest(request, True)

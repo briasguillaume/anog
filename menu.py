@@ -23,8 +23,11 @@ class Menu(object):
 		Menu.userInput=[]
 		Menu.currentStep=0
 
-	#TODO les iles ne sont pas regenerees apres mon depart
+	#TODO use fruit's allocation
+	#TODO retirer des propositions l'ile actuelle
+	#TODO hook values from bdd and not code
 	#TODO cookies/sessions for multiplayer
+
 
 	@property
 	def joueur(self):
