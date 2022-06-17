@@ -6,6 +6,10 @@ from fruitdemon import FruitDemon
 from pirate import Pirate
 
 
+import json
+from collections import namedtuple
+from json import JSONEncoder
+
 class Static:
 	def __new__(cls):
 		raise TypeError('Static classes cannot be instantiated')

@@ -3,9 +3,6 @@ import mariadb
 from fruitdemon import FruitFactory
 from statsPirate import StatsPirate
 
-import json
-from collections import namedtuple
-from json import JSONEncoder
 
 class Static:
 	def __new__(cls):
