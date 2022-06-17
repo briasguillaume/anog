@@ -153,7 +153,8 @@ class Utils(Static):
 		
 
 
-	'''
+	#_________________________________LOADING DYNAMICALLY____________________________
+
 	@staticmethod
 	def decode(dict):
 		tuple=namedtuple('Metamorph', dict.keys())(*dict.values())
@@ -163,22 +164,15 @@ class Utils(Static):
 			obj.qualite=tuple.qualite
 			obj.fruit=tuple.fruit
 		elif tuple.type=="FruitDemon":
-			obj= FruitDemon(tuple.name, tuple.power)
+			obj= FruitFactory.giveThatFruit(tuple.name)
 		else:
 			obj=None
-		return obj'''
-
-	'''
-	@staticmethod
-	def decode(dict):
-		return namedtuple('Metamorph', dict.keys())(*dict.values())
-	# TODO handle it with metaclasses'''
+		return obj
 
 
-	'''
 	@staticmethod
 	def load(obj):
-		return json.loads(obj, object_hook=Utils.decode)'''
+		return json.loads(obj, object_hook=InteractBDD.decode)
 
 
 

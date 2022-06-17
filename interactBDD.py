@@ -1,5 +1,4 @@
 import mariadb
-from pirate import Pirate
 from fruitdemon import FruitFactory
 from island import Island
 from world import World
@@ -73,7 +72,7 @@ class InteractBDD(Static):
 				qualite=elem[4]
 				fruit=FruitFactory.giveThatFruit(str(elem[3]))
 				txt='{"type": "Pirate", "name": \"'+str(elem[1])+'\", "level": '+str(level)+ ', "qualite": '+str(qualite)+', "fruit": '+ str(fruit)+', "stats": '+str(Pirate.generateStats(level, qualite, fruit.power))+', "availableToFight": "True", "mort": "False"}'
-				pirate=InteractBDD.load(txt)
+				pirate=Utils.load(txt)
 				pirates.append(pirate) #pas besoin de separation avec une ',', il n'y en a qu'un avec cet id
 		return Equipage(pirates)
 
@@ -305,23 +304,3 @@ class InteractBDD(Static):
 
 
 
-	#_________________________________LOADING DYNAMICALLY____________________________
-
-	@staticmethod
-	def decode(dict):
-		tuple=namedtuple('Metamorph', dict.keys())(*dict.values())
-		if tuple.type=="Pirate":
-			obj= Pirate(tuple.level)
-			obj.name=tuple.name
-			obj.qualite=tuple.qualite
-			obj.fruit=tuple.fruit
-		elif tuple.type=="FruitDemon":
-			obj= FruitFactory.giveThatFruit(tuple.name)
-		else:
-			obj=None
-		return obj
-
-
-	@staticmethod
-	def load(obj):
-		return json.loads(obj, object_hook=InteractBDD.decode)
