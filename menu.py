@@ -23,8 +23,6 @@ class Menu(object):
 		Menu.userInput=[]
 		Menu.currentStep=0
 
-	#TODO recap de mort toujours HS
-	#TODO apres etre allé à Shinsekai je me suis retrouvé à gateau
 	#TODO les iles ne sont pas regenerees apres mon depart
 	#TODO cookies/sessions for multiplayer
 

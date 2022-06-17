@@ -84,17 +84,25 @@ class World(object):
 		else:
 			choix=int(choix)
 			availableIslands=World.availableIslands(currentIslandName)
-			
+			World.getIsland(currentIslandName).regenerate()
 			if choix<=len(availableIslands)-1 and choix>=0: # TODO verify user input
 
 				try:
 					island=availableIslands[int(choix)]
 				except:
 					island=availableIslands[0]
-				island.regenerate()
 			else:
 				return None
 			return island
+
+
+	@staticmethod
+	def getIsland(currentIslandName):
+		index=World.avancee[currentIslandName]
+		stage=World.world[index]
+		for island in stage:
+			if island.name==currentIslandName:
+				return island
 
 	@staticmethod
 	def availableIslands(currentIslandName):
