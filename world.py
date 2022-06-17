@@ -145,7 +145,7 @@ class World(object):
 		return False
 
 	@staticmethod
-	def showMap():
+	def showMap(currentIslandName):
 		if World.debug:
 			txt=""
 			for stage in World.world:
@@ -171,7 +171,12 @@ class World(object):
 				for island in stage.islands:
 					for i in range(int(spaceLength)):
 						txt=txt+"&nbsp;"
-					txt=txt+'<span style="color:blue;">|</span><span style="color:red;">'+island.name+'</span><span style="color:blue;">|</span>'
+					txt=txt+'<span style="color:blue;">|</span>'
+					if island.name!=currentIslandName:
+						txt=txt+'<span style="color:red;">'+island.name+'</span>'
+					else:
+						txt=txt+'<span style="color:green;">'+island.name+'</span>'
+					txt=txt+'<span style="color:blue;">|</span>'
 					for i in range(int(spaceLength)):
 						txt=txt+"&nbsp;"
 				txt=txt+"<br></p>"
