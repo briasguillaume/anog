@@ -4,6 +4,7 @@ from equipage import Equipage
 from pirate import Pirate
 from world import World
 from interactBDD import InteractBDD
+from island import Island
 
 class Joueur(object):
 
@@ -180,7 +181,7 @@ class Joueur(object):
 		if Joueur.debug:
 			return World.carte()[0].islands[0]
 		else:
-			return InteractBDD.getMyLocation(self._username)
+			return Island(InteractBDD.getMyLocation(self._username),0,0)
 	
 
 
