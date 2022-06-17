@@ -3,6 +3,7 @@ import numpy as np
 import os
 
 from fruitdemon import FruitDemon
+from fruitdemon import FruitFactory
 from pirate import Pirate
 
 
@@ -176,7 +177,7 @@ class Utils(Static):
 
 	@staticmethod
 	def load(obj):
-		return json.loads(obj, object_hook=InteractBDD.decode)
+		return json.loads(obj, object_hook=Utils.decode)
 
 
 
