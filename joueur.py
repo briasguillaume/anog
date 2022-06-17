@@ -114,12 +114,14 @@ class Joueur(object):
 
 
 	def cleanUpDeadPirates(self):
+		if len(self._equipage.dead)==0:
+			return ""
 		txt="<br>Ces pirates sont tombés au combat:<br>"
-		for pirate in self._equipage.team:
-			if pirate.mort:
-				InteractBDD.removeFighter(self._username, pirate)
-				txt=txt+str(pirate)+"<br>"
+		for pirate in self._equipage.dead:
+			InteractBDD.removeFighter(self._username, pirate)
+			txt=txt+str(pirate)+"<br>"
 		txt=txt+"<br><br>"
+		self._equipage.cleanUpDeadArray()
 		return txt
 
 

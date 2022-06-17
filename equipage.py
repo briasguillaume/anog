@@ -14,7 +14,7 @@ class Equipage(object):
 		self._turn=Turn(pirates)
 		self._availableToFight=True
 		self._numberOfPirates=len(self._team)
-
+		self._dead=[]
 
 	@property
 	def team(self):
@@ -31,6 +31,13 @@ class Equipage(object):
 	def numberOfPirates(self):
 		return self._numberOfPirates
 
+
+	@property
+	def dead(self):
+		return self._dead
+
+	def cleanUpDeadArray(self):
+		self._dead=[]
 
 	def attaque(self, equipage):
 		pirate=self._turn.next()
@@ -62,6 +69,7 @@ class Equipage(object):
 		temp=[]
 		for pirate in self._team:
 			if pirate.updateStatus():
+				self._dead.append(pirate)
 				print(pirate.name+" meurt au combat. RIP")
 				self._turn.removePirate()
 			else:

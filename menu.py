@@ -122,7 +122,7 @@ class Menu(object):
 		else:
 			self._joueur.resetCrew()
 			txt="Ton équipage est mort, il va falloir recommencer du début pour devenir le roi des pirates. y/n <br>"
-			return Menu.beginningHTML() + txt  + Menu.endHTML()
+			return txt
 
 		
 	@staticmethod
