@@ -62,12 +62,12 @@ class Pirate(object):
 	@qualite.setter
 	def qualite(self, qualite):
 		self._qualite=qualite
-		self._stats=PirateStats.generateStats(self._level, self._qualite, self._fruit.power)
+		self._stats=StatsPirate.generateStats(self._level, self._qualite, self._fruit.power)
 
 	@fruit.setter
 	def fruit(self, frui):
 		self._fruit=frui
-		self._stats=PirateStats.generateStats(self._level, self._qualite, self._fruit.power)
+		self._stats=StatsPirate.generateStats(self._level, self._qualite, self._fruit.power)
 
 
 	@staticmethod
@@ -81,7 +81,7 @@ class Pirate(object):
 		else:
 			increase=3
 		self._level=InteractBDD.increasePirateLevel(self, increase)
-		self._stats=PirateStats.generateStats(self._level, self._qualite, self._fruit.power)
+		self._stats=StatsPirate.generateStats(self._level, self._qualite, self._fruit.power)
 
 
 	def attaque(self):
