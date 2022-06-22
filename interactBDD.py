@@ -152,6 +152,7 @@ class InteractBDD(Static):
 		description = InteractBDD.connectAndExecuteRequest(request, False)
 		for elem in description:
 			return str(elem[0])
+		return None
 
 
 	#_____________________STORE_______________________________
