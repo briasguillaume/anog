@@ -178,7 +178,7 @@ class World(object):
 						txt=txt+'<span style="color:green;">'+island.name+'</span>'
 					txt=txt+'<span style="color:blue;">|</span>'
 					for i in range(int(spaceLength)):
-						txt=txt+"&nbsp;"
+						txt=txt+"&nbsp;"  #&nbsp; est un espace
 				txt=txt+"<br></p>"
 			return txt
 

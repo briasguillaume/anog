@@ -53,11 +53,11 @@ class Utils(Static):
 				equipage2.increaseCrewLevel()
 				print(joueur2.username+" remporte le combat:\n"+str(equipage2)+"\nIls remportent tous un niveau!\n")
 		else:
-			txt=""
+			txt="<p>"
 			first=random.randint(1,2)
 			turnsCount=0
 			while entry1.availableToFight and entry2.availableToFight:
-				txt=txt+"Tour "+str(turnsCount)+":<br>"
+				txt=txt+"<b>Tour "+str(turnsCount)+":</b><br>"
 				txt=txt+Utils.phraseDeCombat(entry2, entry1)
 				Utils.updateStatus(entry1)
 				txt=txt+Utils.phraseDeCombat(entry1, entry2)
@@ -71,7 +71,7 @@ class Utils(Static):
 			else:
 				entry2.increaseCrewLevel()
 				txt=txt+Utils.phraseDeVictoire(entry2)
-			return txt
+			return txt+"</p>"
 
 
 	@staticmethod
@@ -92,10 +92,10 @@ class Utils(Static):
 
 	@staticmethod
 	def phraseDeCombat(entryA, entryB):
-		txt=""
+		txt="<p>"
 		if entryA.isinstance()=="Joueur":
 			if entryB.isinstance()=="Joueur":
-				txt=txt+"L'équipage de "+entryA.username+" attaque:"+entryA.equipage.attaque(entryB.equipage)+"<br>"
+				txt=txt+"L'équipage de <b>"+entryA.username+"</b> attaque:"+entryA.equipage.attaque(entryB.equipage)+"<br>"
 			elif entryB.isinstance()=="Equipage":
 				txt=txt+"L'équipage de "+entryA.username+" attaque:"+entryA.equipage.attaque(entryB)+"<br>"
 		elif entryA.isinstance()=="Equipage":
@@ -104,17 +104,17 @@ class Utils(Static):
 			elif entryB.isinstance()=="Equipage":
 				txt=txt+"Tour de l'équipage PNJ d'attaquer:"+entryA.attaque(entryB)+"<br>"
 			
-		return txt
+		return txt +"</p>"
 		
 
 	@staticmethod
 	def phraseDeVictoire(entry):
-		txt=""
+		txt="<p>"
 		if entry.isinstance()=="Joueur":
-			txt=txt+"L'équipage de "+entry.username+" remporte le combat, ils remportent tous un niveau:<br>"+str(entry.equipage)+"<br>"
+			txt=txt+"L'équipage de <b>"+entry.username+"</b> remporte le combat, ils remportent tous un niveau:<br>"+str(entry.equipage)+"<br>"
 		elif entry.isinstance()=="Equipage":
 			txt=txt+"L'équipage PNJ remporte le combat! <br>"#, ils remportent tous un niveau:<br>"+str(entry)+"<br>"
-		return txt
+		return txt+"</p>"
 
 
 	@staticmethod
