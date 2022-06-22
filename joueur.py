@@ -88,13 +88,16 @@ class Joueur(object):
 		isThereOtherPlayer=InteractBDD.checkPlayer(self._position.name) # returns the username or None
 		if isThereOtherPlayer!=None:
 			self._position.pirates=Equipage(InteractBDD.getMyCrew(isThereOtherPlayer))
+			txt="Aie c'est le bordel sur "+self._position.name+", "+isThereOtherPlayer+" et son équipage est présent sur l'ile, le combat est inévitable.<br>"
+		else:
+			txt="Arrivé sur "+self._position.name+", tu fais face à de nombreux pirates hostiles.<br>"
 
+		# TODO gerer cette histoire d'equipage qui n'a pas de champ available to fight
+		# TODO ne pas oublier de delete l'equipage du mec déjà présent sur l'ile s'il perd
+		# TODO eventuellement rajouter un petit message quand le gars se reconnecte
 		InteractBDD.setMyLocation(self._username, self._position.name)
-		#if nextIsland==None:
-		#	return "GG t'es devenu le roi des pirates"
-		# TODO HANDLE END OF THE MAP
+
 		self._equipage.regenerateHealth()
-		txt="Arrivé sur "+self._position.name+", tu fais face à de nombreux pirates hostiles.<br>"
 		txt=txt+Utils.fight(self, self._position.pirates)
 		txt=txt+self.cleanUpDeadPirates()
 		return txt
