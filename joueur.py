@@ -87,7 +87,7 @@ class Joueur(object):
 
 		isThereOtherPlayer=InteractBDD.checkPlayer(self._position.name) # returns the username or None
 		if isThereOtherPlayer!=None:
-			self._position.pirates=InteractBDD.getMyCrew(isThereOtherPlayer)
+			self._position.pirates=Equipage(InteractBDD.getMyCrew(isThereOtherPlayer))
 
 		InteractBDD.setMyLocation(self._username, self._position.name)
 		#if nextIsland==None:
