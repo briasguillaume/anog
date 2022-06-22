@@ -87,7 +87,12 @@ class Joueur(object):
 
 		isThereOtherPlayer=InteractBDD.checkPlayer(self._position.name) # returns the username or None
 		if isThereOtherPlayer!=None:
-			self._position.pirates=Equipage(InteractBDD.getMyCrew(isThereOtherPlayer))
+			ennemies=[]
+			txtPirates=InteractBDD.getMyCrew(isThereOtherPlayer)
+			for txt in txtPirates:
+				ennemy=Utils.load(txt)
+				ennemies.append(ennemy)
+			self._position.pirates=Equipage(ennemies)
 			txt="Aie c'est le bordel sur "+self._position.name+", "+isThereOtherPlayer+" et son équipage est présent sur l'ile, le combat est inévitable.<br>"
 		else:
 			txt="Arrivé sur "+self._position.name+", tu fais face à de nombreux pirates hostiles.<br>"
@@ -95,6 +100,7 @@ class Joueur(object):
 		# TODO gerer cette histoire d'equipage qui n'a pas de champ available to fight
 		# TODO ne pas oublier de delete l'equipage du mec déjà présent sur l'ile s'il perd
 		# TODO eventuellement rajouter un petit message quand le gars se reconnecte
+
 		InteractBDD.setMyLocation(self._username, self._position.name)
 
 		self._equipage.regenerateHealth()
