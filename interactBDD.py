@@ -146,6 +146,13 @@ class InteractBDD(Static):
 			return str(elem[0])
 
 
+	@staticmethod
+	def checkPlayer(islandName):
+		request = "SELECT username FROM equipage WHERE position='"+islandName+"';"
+		description = InteractBDD.connectAndExecuteRequest(request, False)
+		for elem in description:
+			return str(elem[0])
+
 
 	#_____________________STORE_______________________________
 

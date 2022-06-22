@@ -84,6 +84,11 @@ class Joueur(object):
 
 	def goingToNextIsland(self, value):
 		self._position=World.next(self._position.name, value)
+
+		isThereOtherPlayer=InteractBDD.checkPlayer(self._position.name) # returns the username or None
+		if isThereOtherPlayer!=None:
+			self._position.pirates=InteractBDD.getMyCrew(isThereOtherPlayer)
+
 		InteractBDD.setMyLocation(self._username, self._position.name)
 		#if nextIsland==None:
 		#	return "GG t'es devenu le roi des pirates"

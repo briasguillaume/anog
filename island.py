@@ -37,5 +37,10 @@ class Island(object):
 		return self._pirates
 
 
+	@pirates.setter
+	def pirates(self, joueur):
+		self._pirates=joueur
+
+
 	def regenerate(self):
 		self._pirates=Equipage.generateEnnemies(self._level, self._ennemies)
