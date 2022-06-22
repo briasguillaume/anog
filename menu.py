@@ -48,7 +48,6 @@ class Menu(object):
 			Menu.nextStep(user_input)
 			txt=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
 			
-			#txt=txt+"input: "+str(Menu.userInput)
 			return txt
 
 	@staticmethod
@@ -62,7 +61,7 @@ class Menu(object):
 			            <form action="/" method="post">
 			                Username: <input type="text" name="username" /> <br>
 			                Password: <input type="text" name="password" /> <br>
-			                <input type="submit" value="Submit" />
+			                <input type="submit" value="Valider" />
 			            </form>
 			        </p>
 			    </body>
@@ -168,7 +167,7 @@ class Menu(object):
 		return """
 			            <form action="/" method="post">
 			                User input: <input type="text" name="user_input" />
-			                <input type="submit" value="Submit" />
+			                <input type="submit" value="Valider" />
 			            </form>
 			        </p>
 			    </body>
