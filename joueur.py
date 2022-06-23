@@ -103,6 +103,7 @@ class Joueur(object):
 			otherPlayer.position=self._position
 			txt="Aie c'est le bordel sur "+self._position.name+", "+isThereOtherPlayer+" et son équipage sont présents sur l'ile, le combat est inévitable.<br>"
 			txt=txt+Utils.fight(self, otherPlayer)
+			otherPlayer.cleanUpDeadPirates()
 		else:
 			txt="Arrivé sur "+self._position.name+", tu fais face à de nombreux pirates hostiles.<br>"
 			txt=txt+Utils.fight(self, self._position.pirates)
