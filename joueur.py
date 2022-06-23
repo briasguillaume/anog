@@ -86,7 +86,7 @@ class Joueur(object):
 		self._position=World.next(self._position.name, value)
 
 		isThereOtherPlayer=InteractBDD.checkPlayer(self._position.name) # returns the username or None
-		if isThereOtherPlayer!=None:
+		if isThereOtherPlayer!="":
 			ennemies=[]
 			txtPirates=InteractBDD.getMyCrew(isThereOtherPlayer)
 			for txt in txtPirates:
