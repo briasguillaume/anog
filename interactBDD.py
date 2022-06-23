@@ -33,7 +33,6 @@ class InteractBDD(Static):
 	    return False
 
 
-
 	@staticmethod
 	def createUser(username, password):
 		request = "INSERT INTO joueur VALUES('"+username+"','"+password+"');"
@@ -255,6 +254,30 @@ class InteractBDD(Static):
 		request = "UPDATE equipage SET piratesid='"+newid+"' WHERE username='"+username+"';"
 		description = InteractBDD.connectAndExecuteRequest(request, True)
 		return None
+
+	@staticmethod
+	def cleanUpDB():
+		piratesid=[]
+		request = "SELECT piratesid FROM equipage;"
+		description = InteractBDD.connectAndExecuteRequest(request, False)
+		for elem in description:
+			array=str(elem[0]).split(",")
+			piratesid.append(array) #we get all the pirates id that belong to a crew
+		piratesid=list(set(piratesid))
+
+		pid=[]
+		request = "SELECT id FROM pirate;"
+		description = InteractBDD.connectAndExecuteRequest(request, False)
+		for elem in description:
+			array=str(elem[0]).split(",")
+			pid.append(array) #we get all the pirates id that exist in the db
+
+		for pirate in pid: #for each existing pirate(id) in db
+			if pirate not in pirates: # if it is in a crew it's fine, otherwise we delete it from db
+				request = "DELETE FROM pirate WHERE id='"+str(pirate)+"';"
+				description = InteractBDD.connectAndExecuteRequest(request, True)
+		return None
+		
 
 
 	#____________________________________________________________

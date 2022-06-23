@@ -12,6 +12,7 @@ class Joueur(object):
 
 
 	def __init__(self, username=0, password=0):
+		InteractBDD.cleanUpDB()
 		if Joueur.debug:
 			self._username= username
 			self._equipage= self.getMyCrew()
