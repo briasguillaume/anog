@@ -22,11 +22,8 @@ class Menu(object):
 		Menu.userInput=[]
 		Menu.currentStep=0
 
-	#TODO add colors
-	#TODO clean imports
 	#TODO use fruit's allocation
 	#TODO hook values from bdd and not code
-	#TODO cookies/sessions for multiplayer
 
 
 	@property
@@ -48,7 +45,7 @@ class Menu(object):
 			Menu.nextStep(user_input)
 			txt=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
 			
-			return txt
+			return self._joueur.username+"<br>"+txt
 
 	@staticmethod
 	def showLogin(addedTxt):
