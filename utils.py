@@ -66,7 +66,6 @@ class Utils(Static):
 				turnsCount+=1
 			if entry1.availableToFight:
 				entry1.increaseCrewLevel()
-				# TODO interactBDD.increaseCrewLevel(joueur1.username)
 				txt=txt+Utils.phraseDeVictoire(entry1)
 			else:
 				entry2.increaseCrewLevel()

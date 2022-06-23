@@ -87,10 +87,10 @@ class Joueur(object):
 
 	def goingToNextIsland(self, value):
 		self._position=World.next(self._position.name, value)
-		InteractBDD.setMyLocation(self._username, self._position.name)
 		self._equipage.regenerateHealth()
 
 		isThereOtherPlayer=InteractBDD.checkPlayer(self._position.name) # returns the username or None
+		InteractBDD.setMyLocation(self._username, self._position.name)
 		if isThereOtherPlayer!=None:
 			ennemies=[]
 			txtPirates=InteractBDD.getMyCrew(isThereOtherPlayer)
@@ -101,7 +101,7 @@ class Joueur(object):
 			otherPlayer.username=isThereOtherPlayer
 			otherPlayer.equipage=Equipage(ennemies)
 			otherPlayer.position=self._position
-			txt="Aie c'est le bordel sur "+self._position.name+", "+isThereOtherPlayer+" et son équipage est présent sur l'ile, le combat est inévitable.<br>"
+			txt="Aie c'est le bordel sur "+self._position.name+", "+isThereOtherPlayer+" et son équipage sont présents sur l'ile, le combat est inévitable.<br>"
 			txt=txt+Utils.fight(self, otherPlayer)
 		else:
 			txt="Arrivé sur "+self._position.name+", tu fais face à de nombreux pirates hostiles.<br>"
