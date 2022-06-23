@@ -45,7 +45,7 @@ class Menu(object):
 			Menu.nextStep(user_input)
 			txt=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
 			
-			return "eeeeeeeeeeeeeeeeeeConnected as: "+self._joueur.username+"<br>"+txt
+			return "Connected as: "+self._joueur.username+"<br>"+txt
 
 	@staticmethod
 	def showLogin(addedTxt):
