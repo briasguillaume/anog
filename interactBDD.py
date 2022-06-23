@@ -57,9 +57,9 @@ class InteractBDD(Static):
 	@staticmethod
 	def getMyCrew(username):
 		piratesid=InteractBDD.getMyPiratesID(username)
-		if piratesid==[]:
+		if piratesid=='[]':
 			return ""
-			
+
 		pirates=[]
 		for pirateid in piratesid:
 			request = "SELECT * FROM pirate WHERE id='"+str(pirateid)+"';"
