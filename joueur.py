@@ -175,6 +175,19 @@ class Joueur(object):
 		self._availableToFight=self._equipage.availableToFight
 		return self._availableToFight
 
+
+	@username.setter
+	def username(self, username):
+		self._username=username
+
+	@position.setter
+	def position(self, position):
+		self._position=position
+
+	@equipage.setter
+	def equipage(self, equipage):
+		self._equipage=equipage
+
 	def existInDB(self, username):
 		if Joueur.debug:
 			return True
