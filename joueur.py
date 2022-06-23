@@ -79,7 +79,7 @@ class Joueur(object):
 
 	def resetCrew(self):
 		InteractBDD.deleteUserProgress(self._username)
-		InteractBDD.setMyCrew(self._username, World.carte()[0].islands[0].name, [Pirate(1, True)])
+		InteractBDD.setMyCrew(self._username, World.carte()[0].islands[0].name, [Pirate(1, True, self._username)])
 
 
 	def increaseCrewLevel(self):
@@ -105,7 +105,7 @@ class Joueur(object):
 			txt=txt+Utils.fight(self, otherPlayer)
 			otherPlayer.cleanUpDeadPirates()
 			if otherPlayer.availableToFight==False:
-				InteractBDD.deleteUserProgress(otherPlayer.username)
+				otherPlayer.resetCrew()
 				# TODO eventuellement rajouter un petit message quand le gars se reconnecte?
 
 		else:

@@ -218,8 +218,8 @@ class InteractBDD(Static):
 		request = "DELETE FROM equipage WHERE username='"+username+"';"
 		description = InteractBDD.connectAndExecuteRequest(request, True)
 
-		request = "DELETE FROM joueur WHERE username='"+username+"';"
-		description = InteractBDD.connectAndExecuteRequest(request, True)
+		#request = "DELETE FROM joueur WHERE username='"+username+"';"
+		#description = InteractBDD.connectAndExecuteRequest(request, True)
 
 		piratesid=InteractBDD.getMyPiratesID(username)
 		for pirateid in piratesid:
