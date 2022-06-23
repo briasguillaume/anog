@@ -86,7 +86,7 @@ class Joueur(object):
 		self._position=World.next(self._position.name, value)
 
 		isThereOtherPlayer=InteractBDD.checkPlayer(self._position.name) # returns the username or None
-		if isThereOtherPlayer!="":
+		if isThereOtherPlayer!=None:
 			ennemies=[]
 			txtPirates=InteractBDD.getMyCrew(isThereOtherPlayer)
 			for txt in txtPirates:
@@ -95,7 +95,7 @@ class Joueur(object):
 			self._position.pirates=Equipage(ennemies)
 			txt="Aie c'est le bordel sur "+self._position.name+", "+isThereOtherPlayer+" et son équipage est présent sur l'ile, le combat est inévitable.<br>"
 		else:
-			txt=isThereOtherPlayer+"Fuck; Arrivé sur "+self._position.name+", tu fais face à de nombreux pirates hostiles.<br>"
+			txt="Arrivé sur "+self._position.name+", tu fais face à de nombreux pirates hostiles.<br>"
 
 		# TODO gerer cette histoire d'equipage qui n'a pas de champ available to fight
 		# TODO ne pas oublier de delete l'equipage du mec déjà présent sur l'ile s'il perd
