@@ -22,5 +22,5 @@ class SessionManager(object):
         return self._menusID[self._playersID[username]]
     
     
-    def maxID():
+    def maxID(self):
         return max(self._playersID.values())
