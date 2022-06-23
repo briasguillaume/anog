@@ -199,12 +199,12 @@ class InteractBDD(Static):
 	def increasePirateLevel(pirate, increase):
 		pirateid=InteractBDD.getPirateID(pirate)
 
-		request = "SELECT level FROM pirate WHERE id='"+pirateid+"';"
+		request = "SELECT level FROM pirate WHERE id='"+str(pirateid)+"';"
 		description = InteractBDD.connectAndExecuteRequest(request, False)
 		for elem in description:
 			level=int(elem[0])+increase
 
-		request = "UPDATE pirate SET level='"+str(level)+"' WHERE id='"+pirateid+"';"
+		request = "UPDATE pirate SET level='"+str(level)+"' WHERE id='"+str(pirateid)+"';"
 		description = InteractBDD.connectAndExecuteRequest(request, True)
 		return level
 
