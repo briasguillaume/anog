@@ -263,7 +263,6 @@ class InteractBDD(Static):
 		for elem in description:
 			array=str(elem[0]).split(",")
 			piratesid.append(array) #we get all the pirates id that belong to a crew
-		piratesid=list(set(piratesid))
 
 		pid=[]
 		request = "SELECT id FROM pirate;"
