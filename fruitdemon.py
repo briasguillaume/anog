@@ -115,12 +115,13 @@ class FruitFactory(metaclass=FruitFactoryMeta):
 		for fruit in FruitFactory.fruitsNames:
 			if FruitFactory.allocatedFruits[fruit]==False:
 				if count==fruitsNumber:
-					FruitFactory.allocatedFruits[fruit]=True
+					#FruitFactory.allocatedFruits[fruit]=True
 					return FruitDemon(fruit,FruitFactory.fruitsPower[fruit])
 				count+=1
 
 			
-		return FruitDemon("None",[0,0,0,0])
+		#return FruitDemon("None",[0,0,0,0])
+		return FruitFactory.giveThatFruit("GumGum")
 
 
 
