@@ -106,9 +106,10 @@ class FruitFactory(metaclass=FruitFactoryMeta):
 	@staticmethod
 	def giveAFruit():
 		#availableFruits=FruitFactory.countAvailableFruits()
+		availableFruits=len(FruitFactory.fruitsNames)
 		#if availableFruits==0:
 		#	return FruitDemon("None",[0,0,0,0])
-
+		# TODO it is bugged
 		fruitsNumber=random.randint(0,availableFruits-1)
 		count=0
 		for fruit in FruitFactory.fruitsNames:
