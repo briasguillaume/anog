@@ -302,7 +302,10 @@ class InteractBDD(Static):
 	@staticmethod
 	def removeFromString(string, elem):
 		array=string.split(",")
-		array.remove(elem)
+		try:
+			array.remove(elem)
+		except:
+			"TODO: ValueError: list.remove(x): x not in list"
 		array=list(set(array))
 		newString=','.join(array)
 		return newString
