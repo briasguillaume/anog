@@ -217,8 +217,8 @@ class Joueur(object):
 			pirates=[]
 			txtPirates=InteractBDD.getMyCrew(self._username)
 			if txtPirates=="":
-				pirate=Pirate(1, True, username)
-				InteractBDD.setMyCrew(username, World.carte()[0].islands[0].name, [pirate])
+				pirate=Pirate(1, True, self._username)
+				InteractBDD.setMyCrew(self._username, World.carte()[0].islands[0].name, [pirate])
 				return [pirate]
 
 			for txt in txtPirates:
