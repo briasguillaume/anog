@@ -23,4 +23,6 @@ class SessionManager(object):
     
     
     def maxID(self):
+        if len(self._playersID)==0:
+            return 1
         return max(self._playersID.values())
