@@ -104,12 +104,14 @@ class Joueur(object):
 			txt="Aie c'est le bordel sur "+self._position.name+", "+isThereOtherPlayer+" et son équipage sont présents sur l'ile, le combat est inévitable.<br>"
 			txt=txt+Utils.fight(self, otherPlayer)
 			otherPlayer.cleanUpDeadPirates()
+			if otherPlayer.availableToFight==False:
+				InteractBDD.deleteUserProgress(otherPlayer.username)
+				# TODO eventuellement rajouter un petit message quand le gars se reconnecte?
+
 		else:
 			txt="Arrivé sur "+self._position.name+", tu fais face à de nombreux pirates hostiles.<br>"
 			txt=txt+Utils.fight(self, self._position.pirates)
 
-		# TODO ne pas oublier de delete l'equipage du mec déjà présent sur l'ile s'il perd
-		# TODO eventuellement rajouter un petit message quand le gars se reconnecte
 
 		txt=txt+self.cleanUpDeadPirates()
 		return txt
@@ -150,7 +152,7 @@ class Joueur(object):
 	def askForRecruitment(self):
 		pirates=[]
 		number=5
-		txt="Des pirates sont disponibles au recrutement. <br>"
+		txt="Des pirates sont disponibles au recrutement.<br>"
 		for i in range(0,number):
 			pirate=Pirate(self._position.level)
 			pirates.append(pirate)
