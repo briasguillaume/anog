@@ -57,7 +57,7 @@ class InteractBDD(Static):
 	@staticmethod
 	def getMyCrew(username):
 		piratesid=InteractBDD.getMyPiratesID(username)
-		if piratesid=='[]':
+		if len(piratesid)==0:
 			return ""
 
 		pirates=[]
@@ -69,7 +69,6 @@ class InteractBDD(Static):
 				qualite=elem[4]
 				fruit=FruitFactory.giveThatFruit(str(elem[3]))
 				txt='{"type": "Pirate", "name": \"'+str(elem[1])+'\", "level": '+str(level)+ ', "qualite": '+str(qualite)+', "fruit": '+ str(fruit)+', "stats": '+str(StatsPirate.generateStats(level, qualite, fruit.power))+', "availableToFight": "True", "mort": "False"}'
-				#pirate=Utils.load(txt)
 				pirates.append(txt) #pas besoin de separation avec une ',', il n'y en a qu'un avec cet id
 		return pirates
 
@@ -93,13 +92,7 @@ class InteractBDD(Static):
 		description = InteractBDD.connectAndExecuteRequest(request, False)
 		for elem in description:
 			return str(elem[0])
-		'''
-		for elem in description:
-			name=str(elem[0])
-			if World.has(name):
-				return Island(name, 0,0)
-		return World.carte()[0].islands[0]
-		'''
+
 
 	@staticmethod
 	def retrieveWholeDatabase():
