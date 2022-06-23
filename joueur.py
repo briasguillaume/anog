@@ -11,13 +11,16 @@ class Joueur(object):
 	debug=False
 
 
-	def __init__(self, username, password):
+	def __init__(self, username=0, password=0):
 		if Joueur.debug:
 			self._username= username
 			self._equipage= self.getMyCrew()
 			self._position= self.getMyLocation()
 			self._availableToFight=True
 			
+		elif username==0 and password==0:
+
+			self._availableToFight=True
 		else:
 			if self.existInDB(username):
 				if not InteractBDD.checkPassword(username, password):
@@ -84,6 +87,8 @@ class Joueur(object):
 
 	def goingToNextIsland(self, value):
 		self._position=World.next(self._position.name, value)
+		InteractBDD.setMyLocation(self._username, self._position.name)
+		self._equipage.regenerateHealth()
 
 		isThereOtherPlayer=InteractBDD.checkPlayer(self._position.name) # returns the username or None
 		if isThereOtherPlayer!=None:
@@ -92,19 +97,19 @@ class Joueur(object):
 			for txt in txtPirates:
 				ennemy=Utils.load(txt)
 				ennemies.append(ennemy)
-			self._position.pirates=Equipage(ennemies)
+			otherPlayer=Joueur()
+			otherPlayer.username=isThereOtherPlayer
+			otherPlayer.equipage=Equipage(ennemies)
+			otherPlayer.position=self._position
 			txt="Aie c'est le bordel sur "+self._position.name+", "+isThereOtherPlayer+" et son équipage est présent sur l'ile, le combat est inévitable.<br>"
+			txt=txt+Utils.fight(self, otherPlayer)
 		else:
 			txt="Arrivé sur "+self._position.name+", tu fais face à de nombreux pirates hostiles.<br>"
+			txt=txt+Utils.fight(self, self._position.pirates)
 
-		# TODO gerer cette histoire d'equipage qui n'a pas de champ available to fight
 		# TODO ne pas oublier de delete l'equipage du mec déjà présent sur l'ile s'il perd
 		# TODO eventuellement rajouter un petit message quand le gars se reconnecte
 
-		InteractBDD.setMyLocation(self._username, self._position.name)
-
-		self._equipage.regenerateHealth()
-		txt=txt+Utils.fight(self, self._position.pirates)
 		txt=txt+self.cleanUpDeadPirates()
 		return txt
 
