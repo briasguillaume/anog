@@ -214,17 +214,18 @@ class Joueur(object):
 		if Joueur.debug:
 			return Equipage([Pirate(1, True)])
 		else:
-			pirates=[]
 			txtPirates=InteractBDD.getMyCrew(self._username)
-			if txtPirates=="":
+			if len(txtPirates)==0:
 				pirate=Pirate(1, True, self._username)
 				InteractBDD.setMyCrew(self._username, World.carte()[0].islands[0].name, [pirate])
-				return [pirate]
+				return Equipage([pirate])
 
-			for txt in txtPirates:
-				pirate=Utils.load(txt)
-				pirates.append(pirate)
-			return Equipage(pirates)
+			else:
+				pirates=[]
+				for txt in txtPirates:
+					pirate=Utils.load(txt)
+					pirates.append(pirate)
+				return Equipage(pirates)
 
 
 	def getMyLocation(self):
