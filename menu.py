@@ -46,7 +46,7 @@ class Menu(object):
 			Joueur(username, password).showMenu()
 		else:
 			Menu.nextStep(user_input)
-			txt=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
+			txt=""#str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
 			
 			return txt
 
