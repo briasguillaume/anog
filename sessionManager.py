@@ -1,3 +1,5 @@
+from menu import Menu
+
 class SessionManager(object):
     
     
@@ -8,7 +10,7 @@ class SessionManager(object):
     def newSession(self, username):
         newid=self.maxID()+1
         self._playersID[username]=newid
-        self._menusID[newid]=m.Menu()
+        self._menusID[newid]=Menu()
         return self._menusID[newid]
         
         
