@@ -272,7 +272,7 @@ class InteractBDD(Static):
 			pid.append(array) #we get all the pirates id that exist in the db
 
 		for pirate in pid: #for each existing pirate(id) in db
-			if pirate not in pirates: # if it is in a crew it's fine, otherwise we delete it from db
+			if pirate not in piratesid: # if it is in a crew it's fine, otherwise we delete it from db
 				request = "DELETE FROM pirate WHERE id='"+str(pirate)+"';"
 				description = InteractBDD.connectAndExecuteRequest(request, True)
 		return None
