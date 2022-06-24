@@ -1,6 +1,7 @@
 
 from joueur import Joueur
 from interactBDD import InteractBDD
+import hashlib
 
 
 class Menu(object):
@@ -60,6 +61,7 @@ class Menu(object):
 			                Password: <input type="hidden" name="password" /> <br>
 			                <input type="submit" value="Valider" />
 			            </form>
+			            <br><i>- Max 15 characters <br> - No special character</i>
 			        </p>
 			    </body>
 			</html>
@@ -132,6 +134,9 @@ class Menu(object):
 
 	
 	def instanciateJoueur(self, username, password):
+
+		password=blake2b(password).hexdigest()
+		password=password[0:19]
 		self._joueur=Joueur(username, password)
 		if self._joueur.username==None: #wrong password
 			self._joueur=None
@@ -190,11 +195,13 @@ class Menu(object):
 
 
 	def sanitization(self, user_input):
-		if len(user_input)>=15: # max 15 characters
-			return False
-
 		forbiddenCharacters=["'", "\"", "\\", "&", "~", "{", "(", "[", "-", "|", "`", "_", "ç", "^", "à", "@", ")", "]", "=", "}", "+", "$", "£", "¤", "*", "µ", "ù", "%", "!", "§", ":", "/", ";", ".", ",", "?", "<", ">", "²"]
-		for char in forbiddenCharacters: # no special characters
-			if char in user_input:
+			
+		for elem in user_input:
+			if len(elem)>=15: # max 15 characters
 				return False
+
+			for char in forbiddenCharacters: # no special characters
+				if char in elem:
+					return False
 		return True
