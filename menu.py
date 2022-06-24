@@ -183,10 +183,10 @@ class Menu(object):
 		return InteractBDD.deleteAll()
 
 
-	def checkUserInput(self, input):
+	def checkUserInput(self, user_input):
 		try:
-			if self.sanitization(input):
-				Menu.nextStep(input)
+			if self.sanitization(user_input):
+				Menu.nextStep(user_input)
 				output=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
 				return output
 			else:
