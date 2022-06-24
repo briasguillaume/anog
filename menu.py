@@ -136,7 +136,10 @@ class Menu(object):
 	def instanciateJoueur(self, username, password):
 		# https://docs.python.org/fr/3/library/hashlib.html
 		password=hashlib.blake2b(password.encode('utf-8')).hexdigest()
-		password=password[0:19]
+		try:
+			password=password[0:240]
+		except:
+			pass
 		self._joueur=Joueur(username, password)
 		if self._joueur.username==None: #wrong password
 			self._joueur=None
