@@ -56,7 +56,7 @@ class Menu(object):
 		txt=txt+addedTxt+"<br>"
 		txt=txt+Menu.askForUsername()
 		txt=txt+"""
-			            <form action="/" method="post">
+			            <form action="/" method="post" autocomplete="off">
 			                Username: <input type="text" name="username" /> <br>
 			                Password: <input type="password" name="password" /> <br>
 			                <input type="submit" value="Valider" />
