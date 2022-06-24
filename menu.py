@@ -184,13 +184,19 @@ class Menu(object):
 
 
 	def checkUserInput(self, input):
-		if self.sanitization(input):
-			Menu.nextStep(input)
-			output=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
-			return output
-		else:
-			output=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
-			return output
+		try:
+			if self.sanitization(input):
+				Menu.nextStep(input)
+				output=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
+				return output
+			else:
+				output=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
+				return output
+		except (RuntimeError, TypeError, NameError) as err:
+			f = open("error.log", "w")
+			f.write(err)
+			f.close()
+			return "An error has occurred, the service is temporarily unavailable, please retry later."
 
 
 
