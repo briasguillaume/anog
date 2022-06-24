@@ -58,7 +58,7 @@ class Menu(object):
 		txt=txt+"""
 			            <form action="/" method="post">
 			                Username: <input type="text" name="username" /> <br>
-			                Password: <input type="hidden" name="password" /> <br>
+			                Password: <input type="password" name="password" /> <br>
 			                <input type="submit" value="Valider" />
 			            </form>
 			            <br><i>- Max 15 characters <br> - No special character</i>
