@@ -96,7 +96,7 @@ class Utils(Static):
 			if entryB.isinstance()=="Joueur":
 				txt=txt+"L'équipage de <b>"+entryA.username+"</b> attaque:"+entryA.equipage.attaque(entryB.equipage)+"<br>"
 			elif entryB.isinstance()=="Equipage":
-				txt=txt+"L'équipage de "+entryA.username+" attaque:"+entryA.equipage.attaque(entryB)+"<br>"
+				txt=txt+"L'équipage de <b>"+entryA.username+"</b> attaque:"+entryA.equipage.attaque(entryB)+"<br>"
 		elif entryA.isinstance()=="Equipage":
 			if entryB.isinstance()=="Joueur":
 				txt=txt+"Tour de l'équipage PNJ d'attaquer:"+entryA.attaque(entryB.equipage)+"<br>"
