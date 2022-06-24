@@ -61,7 +61,7 @@ class Menu(object):
 			                Password: <input type="password" name="password" /> <br>
 			                <input type="submit" value="Valider" />
 			            </form>
-			            <br><i>- Max 15 characters <br> - No special character</i>
+			            <br><i>- Max 15 characters <br> - No special characters</i>
 			        </p>
 			    </body>
 			</html>
