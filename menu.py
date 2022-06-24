@@ -42,10 +42,10 @@ class Menu(object):
 			password = input ("Et votre mot de passe?")
 			Joueur(username, password).showMenu()
 		else:
-			Menu.nextStep(user_input)
-			txt=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
+			output=self.checkUserInput(user_input)
+
 			
-			return "Connected as: "+self._joueur.username+"<br>"+txt
+			return "Connected as: "+self._joueur.username+"<br>"+output
 
 	@staticmethod
 	def showLogin(addedTxt):
@@ -57,7 +57,7 @@ class Menu(object):
 		txt=txt+"""
 			            <form action="/" method="post">
 			                Username: <input type="text" name="username" /> <br>
-			                Password: <input type="text" name="password" /> <br>
+			                Password: <input type="hidden" name="password" /> <br>
 			                <input type="submit" value="Valider" />
 			            </form>
 			        </p>
@@ -176,3 +176,25 @@ class Menu(object):
 	@staticmethod
 	def clean():
 		return InteractBDD.deleteAll()
+
+
+	def checkUserInput(self, input):
+		if self.sanitization(input):
+			Menu.nextStep(input)
+			output=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
+			return output
+		else:
+			output=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
+			return output
+
+
+
+	def sanitization(self, user_input):
+		if len(user_input)>=15: # max 15 characters
+			return False
+
+		forbiddenCharacters=["'", "\"", "\\", "&", "~", "{", "(", "[", "-", "|", "`", "_", "ç", "^", "à", "@", ")", "]", "=", "}", "+", "$", "£", "¤", "*", "µ", "ù", "%", "!", "§", ":", "/", ";", ".", ",", "?", "<", ">", "²"]
+		for char in forbiddenCharacters: # no special characters
+			if char in user_input:
+				return False
+		return True
