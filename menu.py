@@ -134,7 +134,7 @@ class Menu(object):
 
 	
 	def instanciateJoueur(self, username, password):
-
+		# https://docs.python.org/fr/3/library/hashlib.html
 		password=blake2b(password).hexdigest()
 		password=password[0:19]
 		self._joueur=Joueur(username, password)
