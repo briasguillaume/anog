@@ -2,6 +2,7 @@
 from joueur import Joueur
 from interactBDD import InteractBDD
 import hashlib
+from flask import url_for
 
 
 class Menu(object):
@@ -122,7 +123,7 @@ class Menu(object):
 							<title>
 								ANOG
 							</title>
-							<link rel="stylesheet" href="./style.css">
+							<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
 						</head>
 						<body>
 							<div id="bg"></div>
