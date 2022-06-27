@@ -123,7 +123,7 @@ class Menu(object):
 							<title>
 								ANOG
 							</title>
-							<link rel="stylesheet" type="text/css" href="{{ url_for('img', filename='style.css')}}">
+							<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
 						</head>
 						<body>
 							<div id="bg"></div>
