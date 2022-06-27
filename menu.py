@@ -49,7 +49,7 @@ class Menu(object):
 			return "Connected as: "+self._joueur.username+"<br>"+output
 
 	@staticmethod
-	def showLogin(addedTxt):
+	def showLoginOld(addedTxt):
 		Menu.userInput=[]
 		Menu.currentStep=0
 		txt=Menu.beginningHTML()
@@ -113,7 +113,7 @@ class Menu(object):
 
 
 	@staticmethod
-	def loginPage():
+	def showLogin(addedText):
 		return """
 					<!DOCTYPE html>
 					<html lang="fr" >
@@ -195,8 +195,7 @@ class Menu(object):
 			self._joueur=None
 			Menu.userInput=[]
 			Menu.currentStep=0
-			#return Menu.showLogin("Wrong password, try again.")
-			return Menu.loginPage()
+			return Menu.showLogin("Wrong password, try again.")
 		txt = self._joueur.showMenu()
 		return Menu.beginningHTML() + txt  + Menu.endHTML()
 

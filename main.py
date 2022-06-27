@@ -2,8 +2,7 @@
 
 from menu import Menu
 menu= Menu()
-#menu.showMenu("")
-Menu.loginPage()
+menu.showMenu("")
 
 
 '''
