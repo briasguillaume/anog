@@ -241,11 +241,8 @@ class Menu(object):
 		try:
 			if self.sanitization(user_input):
 				Menu.nextStep(user_input)
-				output=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
-				return output
-			else:
-				output=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
-				return output
+			output=str(eval(Menu.steps[Menu.currentStep] + "(" + str(Menu.getParameters()) + ")"))
+			return output
 		except (RuntimeError, TypeError, NameError) as err:
 			f = open("error.log", "w")
 			f.write(err)
