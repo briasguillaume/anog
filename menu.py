@@ -131,8 +131,8 @@ class Menu(object):
 							</h3>
 							<p>
 								<div>
-									"Bonjour et bienvenu dans ce petit jeu! ;) <br>"
-									"Pouvez-vous indiquer votre nom d'utilisateur/mot de passe? <br>"
+									Bonjour et bienvenu dans ce petit jeu! ;) <br>
+									Pouvez-vous indiquer votre nom d'utilisateur/mot de passe? <br>
 								</div>
 
 								<form action="/" method="post" autocomplete="off">
