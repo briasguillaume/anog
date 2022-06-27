@@ -50,31 +50,30 @@ class Menu(object):
 
 	@staticmethod
 	def showLogin(addedTxt):
-		#Menu.userInput=[]
-		#Menu.currentStep=0
-		#txt=Menu.beginningHTML()
-		#txt=txt+addedTxt+"<br>"
-		#txt=txt+Menu.askForUsername()
-		#txt=txt+"""
-		#	            <form action="/" method="post" autocomplete="off">
-		#					<div class="form-field">
-		#						Username: <input type="text" placeholder="Username" name="username" required/> <br>
-		#					</div>
-		#					<div class="form-field">
-		#						Password: <input type="password" placeholder="Password" name="password" required/> <br>
-		#					</div>
-		#					<div class="form-field">
-		#						<input type="submit" value="Valider" />
-		#					</div>
-		#					
-		#	            </form>
-		#	            <br><i>- Max 15 characters <br> - No special characters</i>
-		#	        </p>
-		#	    </body>
-		#	</html>
-		#	"""
-		#return txt
-		return Menu.loginPage()
+		Menu.userInput=[]
+		Menu.currentStep=0
+		txt=Menu.beginningHTML()
+		txt=txt+addedTxt+"<br>"
+		txt=txt+Menu.askForUsername()
+		txt=txt+"""
+			            <form action="/" method="post" autocomplete="off">
+							<div class="form-field">
+								Username: <input type="text" placeholder="Username" name="username" required/> <br>
+							</div>
+							<div class="form-field">
+								Password: <input type="password" placeholder="Password" name="password" required/> <br>
+							</div>
+							<div class="form-field">
+								<input type="submit" value="Valider" />
+							</div>
+							
+			            </form>
+			            <br><i>- Max 15 characters <br> - No special characters</i>
+			        </p>
+			    </body>
+			</html>
+			"""
+		return txt
 
 	@staticmethod
 	def nextStep(user_input):
@@ -127,7 +126,15 @@ class Menu(object):
 						</head>
 						<body>
 							<div id="bg"></div>
+							<h3>
+								ANOG: Another Neat Onepiece Game - by Corentin RENAULT & Adrien TURCHET
+							</h3>
 							<p>
+								<div>
+									"Bonjour et bienvenu dans ce petit jeu! ;) <br>"
+									"Pouvez-vous indiquer votre nom d'utilisateur/mot de passe? <br>"
+								</div>
+
 								<form action="/" method="post" autocomplete="off">
 									<div class="form-field">
 										<input type="text" placeholder="Username" name="username" required/> <br>
@@ -188,7 +195,8 @@ class Menu(object):
 			self._joueur=None
 			Menu.userInput=[]
 			Menu.currentStep=0
-			return Menu.showLogin("Wrong password, try again.")
+			#return Menu.showLogin("Wrong password, try again.")
+			return Menu.loginPage()
 		txt = self._joueur.showMenu()
 		return Menu.beginningHTML() + txt  + Menu.endHTML()
 
@@ -196,16 +204,13 @@ class Menu(object):
 	def beginningHTML():
 		return """
 			<!DOCTYPE html>
-			<html lang="fr" >
+			<html>
 			    <head>
-					<meta charset="UTF-8">
 			        <title>
 			            ANOG
 			        </title>
-					<link rel="stylesheet" href="./style.css">
 			    </head>
 			    <body>
-					<div id="bg"></div>
 			        <h3>
 			            ANOG: Another Neat Onepiece Game - by Corentin RENAULT & Adrien TURCHET
 			        </h3>
