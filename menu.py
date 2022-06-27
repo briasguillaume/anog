@@ -57,9 +57,16 @@ class Menu(object):
 		txt=txt+Menu.askForUsername()
 		txt=txt+"""
 			            <form action="/" method="post" autocomplete="off">
-			                Username: <input type="text" name="username" /> <br>
-			                Password: <input type="password" name="password" /> <br>
-			                <input type="submit" value="Valider" />
+							<div class="form-field">
+								Username: <input type="text" placeholder="Username" name="username" required/> <br>
+							</div>
+							<div class="form-field">
+								Password: <input type="password" placeholder="Password" name="password" required/> <br>
+							</div>
+							<div class="form-field">
+								<input type="submit" value="Valider" />
+							</div>
+							
 			            </form>
 			            <br><i>- Max 15 characters <br> - No special characters</i>
 			        </p>
@@ -153,13 +160,16 @@ class Menu(object):
 	def beginningHTML():
 		return """
 			<!DOCTYPE html>
-			<html>
+			<html lang="fr" >
 			    <head>
+					<meta charset="UTF-8">
 			        <title>
 			            ANOG
 			        </title>
+					<link rel="stylesheet" href="./style.css">
 			    </head>
 			    <body>
+					<div id="bg"></div>
 			        <h3>
 			            ANOG: Another Neat Onepiece Game - by Corentin RENAULT & Adrien TURCHET
 			        </h3>
