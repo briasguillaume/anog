@@ -50,30 +50,31 @@ class Menu(object):
 
 	@staticmethod
 	def showLogin(addedTxt):
-		Menu.userInput=[]
-		Menu.currentStep=0
-		txt=Menu.beginningHTML()
-		txt=txt+addedTxt+"<br>"
-		txt=txt+Menu.askForUsername()
-		txt=txt+"""
-			            <form action="/" method="post" autocomplete="off">
-							<div class="form-field">
-								Username: <input type="text" placeholder="Username" name="username" required/> <br>
-							</div>
-							<div class="form-field">
-								Password: <input type="password" placeholder="Password" name="password" required/> <br>
-							</div>
-							<div class="form-field">
-								<input type="submit" value="Valider" />
-							</div>
-							
-			            </form>
-			            <br><i>- Max 15 characters <br> - No special characters</i>
-			        </p>
-			    </body>
-			</html>
-			"""
-		return txt
+		#Menu.userInput=[]
+		#Menu.currentStep=0
+		#txt=Menu.beginningHTML()
+		#txt=txt+addedTxt+"<br>"
+		#txt=txt+Menu.askForUsername()
+		#txt=txt+"""
+		#	            <form action="/" method="post" autocomplete="off">
+		#					<div class="form-field">
+		#						Username: <input type="text" placeholder="Username" name="username" required/> <br>
+		#					</div>
+		#					<div class="form-field">
+		#						Password: <input type="password" placeholder="Password" name="password" required/> <br>
+		#					</div>
+		#					<div class="form-field">
+		#						<input type="submit" value="Valider" />
+		#					</div>
+		#					
+		#	            </form>
+		#	            <br><i>- Max 15 characters <br> - No special characters</i>
+		#	        </p>
+		#	    </body>
+		#	</html>
+		#	"""
+		#return txt
+		return Menu.loginPage()
 
 	@staticmethod
 	def nextStep(user_input):
@@ -110,6 +111,41 @@ class Menu(object):
 		txt="Bonjour et bienvenu dans ce petit jeu! ;) <br>" + "Pouvez-vous indiquer votre nom d'utilisateur? <br>"
 		txt=txt+"Et votre mot de passe? <br>"
 		return txt
+
+
+	@staticmethod
+	def loginPage():
+		return """
+					<!DOCTYPE html>
+					<html lang="fr" >
+						<head>
+							<meta charset="UTF-8">
+							<title>
+								ANOG
+							</title>
+							<link rel="stylesheet" href="./style.css">
+						</head>
+						<body>
+							<div id="bg"></div>
+							<p>
+								<form action="/" method="post" autocomplete="off">
+									<div class="form-field">
+										<input type="text" placeholder="Username" name="username" required/> <br>
+									</div>
+									<div class="form-field">
+										<input type="password" placeholder="Password" name="password" required/> <br>
+									</div>
+									<div class="form-field">
+										<button class="btn" type="submit">Valider</button>
+									</div>
+									
+								</form>
+								<br><i>- Max 15 characters <br> - No special characters</i>
+							</p>
+						</body>
+					</html>
+		
+		"""
 	
 	def choseThatIsland(self, value):
 		txt=self._joueur.goingToNextIsland(value)

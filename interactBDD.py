@@ -24,13 +24,13 @@ class InteractBDD(Static):
 
 	@staticmethod
 	def existInDB(username):
-	    request = "SELECT username FROM joueur WHERE username='"+username+"';"
-	    description = InteractBDD.connectAndExecuteRequest(request, False)
-	    
-	    for elem in description:
-	    	if str(elem[0])==username:
-	    		return True
-	    return False
+		request = "SELECT username FROM joueur WHERE username='"+username+"';"
+		description = InteractBDD.connectAndExecuteRequest(request, False)
+		
+		for elem in description:
+			if str(elem[0])==username:
+				return True
+		return False
 
 
 	@staticmethod
