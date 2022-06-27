@@ -1,3 +1,5 @@
+
+public ip of vm:exposed port<--->anog service ip: anog service exposed port
 20.39.236.214:8080  <---> 10.106.206.133:8080 
 kubectl port-forward --address 0.0.0.0 service/anog 8080:8080
 20.39.236.214:8080
