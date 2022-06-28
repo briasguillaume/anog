@@ -76,19 +76,6 @@ class Menu(object):
 			"""
 		return txt
 
-	@staticmethod
-	def nextStep(user_input):
-		if user_input!="":
-			if Menu.currentStep==0:
-				Menu.userInput.append(user_input[0])
-				Menu.userInput.append(user_input[1])
-			else:
-				Menu.userInput.append(user_input)
-
-			if Menu.currentStep<3:
-				Menu.currentStep+=1
-			elif Menu.currentStep==3:
-				Menu.currentStep=2
 
 
 	@staticmethod
@@ -238,22 +225,33 @@ class Menu(object):
 
 
 	def checkUserInput(self, user_input):
-		try:
-			if self.sanitization(user_input):
-				Menu.nextStep(user_input)
-			output=str(eval(str(Menu.steps[Menu.currentStep]) + "(" + str(Menu.getParameters()) + ")"))
-			return output
-		except (RuntimeError, TypeError, NameError) as err:
-			f = open("error.log", "w")
-			f.write(err)
-			f.close()
-			return "An error has occurred, the service is temporarily unavailable, please retry later."
+		if self.sanitization(user_input):
+			if len(user_input)==2:
+				Menu.currentStep=0
+				
+			if Menu.currentStep==0:
+				Menu.userInput.append(user_input[0])
+				Menu.userInput.append(user_input[1])
+			else:
+				Menu.userInput.append(user_input)
+
+			if Menu.currentStep<3:
+				Menu.currentStep+=1
+			elif Menu.currentStep==3:
+				Menu.currentStep=2
 
 
+			
+				output=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
+				return output
+		return "Looks like you tried to submit an empty value and succeeded, you can come back to login page now."
+		
 
 	def sanitization(self, user_input):
 		forbiddenCharacters=["'", "\"", "\\", "&", "~", "{", "(", "[", "-", "|", "`", "_", "ç", "^", "à", "@", ")", "]", "=", "}", "+", "$", "£", "¤", "*", "µ", "ù", "%", "!", "§", ":", "/", ";", ".", ",", "?", "<", ">", "²"]
-			
+		if len(user_input)==0 or user_input=="": # empty input
+			return False
+
 		for elem in user_input:
 			if len(elem)>=15: # max 15 characters
 				return False
