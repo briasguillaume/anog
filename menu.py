@@ -228,7 +228,7 @@ class Menu(object):
 		if self.sanitization(user_input):
 			if len(user_input)==2:
 				Menu.currentStep=0
-				
+
 			if Menu.currentStep==0:
 				Menu.userInput.append(user_input[0])
 				Menu.userInput.append(user_input[1])
@@ -239,11 +239,8 @@ class Menu(object):
 				Menu.currentStep+=1
 			elif Menu.currentStep==3:
 				Menu.currentStep=2
-
-
-			
-				output=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
-				return output
+			output=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
+			return output
 		return "Looks like you tried to submit an empty value and succeeded, you can come back to login page now."
 		
 
