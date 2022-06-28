@@ -322,7 +322,8 @@ class InteractBDD(Static):
 		try:
 			array.remove(elem)
 		except:
-			"TODO: ValueError: list.remove(x): x not in list"
+			pass
+			#TODO: ValueError: list.remove(x): x not in list
 		array=list(set(array))
 		newString=','.join(array)
 		return newString
