@@ -52,8 +52,8 @@ class Menu(object):
 
 		
 		self._outputAsArray['team']=self._output['team'].split('\n')
-		self._outputAsArray['content']=self._output['team'].split('\n')
-		self._outputAsArray['map']=self._output['team'].split('\n')
+		self._outputAsArray['content']=self._output['content'].split('\n')
+		self._outputAsArray['map']=self._output['map'].split('\n')
 		return self._outputAsArray
 			
 
