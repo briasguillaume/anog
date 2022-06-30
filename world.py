@@ -4,9 +4,6 @@ from island import Island
 from stage import Stage
 
 class World(object):
-
-	debug=False
-
 	#store it in db
 	world=[Stage([Island("Karugarner", 0,0)]),
 			Stage([Island("Cupcake", 1, 3), Island("Bonbons", 2, 1)]),
@@ -63,37 +60,18 @@ class World(object):
 
 	@staticmethod
 	def next(currentIslandName, choix=0):
-		if World.debug:
-			maxIndex=len(World.world)-1
-			index=World.avancee[currentIslandName]+1
-			if index<=maxIndex:
-				stage=World.world[index]
-				if len(stage.islands)==1:
-					island=stage.islands[0]
-					island.regenerate()
-					return island
-				print(stage)
-				choix=int(input("Dans quelle ile veux-tu aller?"))
-				while choix>=len(stage.islands):
-					choix=input("Dans quelle ile veux-tu aller?")
-				island=stage.islands[choix]
-				island.regenerate()
-			else:
-				return None
-			return island
-		else:
-			choix=int(choix)
-			availableIslands=World.availableIslands(currentIslandName)
-			World.getIsland(currentIslandName).regenerate()
-			if choix<=len(availableIslands)-1 and choix>=0: # TODO verify user input
+		choix=int(choix)
+		availableIslands=World.availableIslands(currentIslandName)
+		World.getIsland(currentIslandName).regenerate()
+		if choix<=len(availableIslands)-1 and choix>=0: # TODO verify user input
 
-				try:
-					island=availableIslands[int(choix)]
-				except:
-					island=availableIslands[0]
-			else:
-				return None
-			return island
+			try:
+				island=availableIslands[int(choix)]
+			except:
+				island=availableIslands[0]
+		else:
+			return None
+		return island
 
 
 	@staticmethod
@@ -123,15 +101,8 @@ class World(object):
 	@staticmethod
 	def getNextStage(currentIslandName):
 		availableIslands=World.availableIslands(currentIslandName)
-		return str(Stage(availableIslands))#,0))
-		'''
-		maxIndex=len(World.world)-1
-		index=World.avancee[currentIslandName]+1
-		if index<=maxIndex:
-			stage=World.world[index]
-		else:
-			return "GG t'es devenu le roi des pirates!"
-		return str(stage)''' #was initially made for single direction progress
+		return str(Stage(availableIslands))
+
 
 
 
@@ -146,41 +117,25 @@ class World(object):
 
 	@staticmethod
 	def showMap(currentIslandName):
-		if World.debug:
-			txt=""
-			for stage in World.world:
-				txt=txt+"------------------------------------------------------------\n" #60
-				#1 20 20
-				#2 5 55 55 5
-				spaceLength=60/(len(stage.islands)+1) -10
-				for island in stage.islands:
-					for i in range(int(spaceLength)):
-						txt=txt+" "
-					txt=txt+"|"+island.name+"|"
-					for i in range(int(spaceLength)):
-						txt=txt+" "
-				txt=txt+"\n"
-			print(txt)
-		else:
-			txt="<p>"
-			for stage in World.world:
-				txt=txt+'<span style="color:blue;">------------------------------------------------------------ </span><br>' #60
-				#1 20 20
-				#2 5 55 55 5
-				spaceLength=60/(len(stage.islands)+1) -10
-				for island in stage.islands:
-					for i in range(int(spaceLength)):
-						txt=txt+"&nbsp;"
-					txt=txt+'<span style="color:blue;">|</span>'
-					if island.name!=currentIslandName:
-						txt=txt+'<span style="color:red;">'+island.name+'</span>'
-					else:
-						txt=txt+'<span style="color:green;">'+island.name+'</span>'
-					txt=txt+'<span style="color:blue;">|</span>'
-					for i in range(int(spaceLength)):
-						txt=txt+"&nbsp;"  #&nbsp; est un espace
-				txt=txt+"<br></p>"
-			return txt
+		txt="<p>"
+		for stage in World.world:
+			txt=txt+'<span style="color:blue;">------------------------------------------------------------ </span><br>' #60
+			#1 20 20
+			#2 5 55 55 5
+			spaceLength=60/(len(stage.islands)+1) -10
+			for island in stage.islands:
+				for i in range(int(spaceLength)):
+					txt=txt+"&nbsp;"
+				txt=txt+'<span style="color:blue;">|</span>'
+				if island.name!=currentIslandName:
+					txt=txt+'<span style="color:red;">'+island.name+'</span>'
+				else:
+					txt=txt+'<span style="color:green;">'+island.name+'</span>'
+				txt=txt+'<span style="color:blue;">|</span>'
+				for i in range(int(spaceLength)):
+					txt=txt+"&nbsp;"  #&nbsp; est un espace
+			txt=txt+"<br></p>"
+		return txt
 
 
 
