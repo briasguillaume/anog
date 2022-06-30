@@ -20,16 +20,16 @@ class Utils(Static):
 
 	@staticmethod
 	def fight(entry1, entry2):		
-		txt="<p>"
+		txt=""
 		first=random.randint(1,2)
 		turnsCount=0
 		while entry1.availableToFight and entry2.availableToFight:
-			txt=txt+"<b>Tour "+str(turnsCount)+":</b><br>"
+			txt=txt+"Tour "+str(turnsCount)+":\n"
 			txt=txt+Utils.phraseDeCombat(entry2, entry1)
 			Utils.updateStatus(entry1)
 			txt=txt+Utils.phraseDeCombat(entry1, entry2)
 			Utils.updateStatus(entry2)
-			txt=txt+"<br>"
+			txt=txt+"\n"
 			turnsCount+=1
 		if entry1.availableToFight:
 			entry1.increaseCrewLevel()
@@ -37,7 +37,7 @@ class Utils(Static):
 		else:
 			entry2.increaseCrewLevel()
 			txt=txt+Utils.phraseDeVictoire(entry2)
-		return txt+"</p>"
+		return txt+"\n"
 
 
 	@staticmethod
@@ -58,29 +58,29 @@ class Utils(Static):
 
 	@staticmethod
 	def phraseDeCombat(entryA, entryB):
-		txt="<p>"
+		txt=""
 		if entryA.isinstance()=="Joueur":
 			if entryB.isinstance()=="Joueur":
-				txt=txt+"L'équipage de <b>"+entryA.username+"</b> attaque:"+entryA.equipage.attaque(entryB.equipage)+"<br>"
+				txt=txt+"L'équipage de "+entryA.username+" attaque:"+entryA.equipage.attaque(entryB.equipage)+"\n"
 			elif entryB.isinstance()=="Equipage":
-				txt=txt+"L'équipage de <b>"+entryA.username+"</b> attaque:"+entryA.equipage.attaque(entryB)+"<br>"
+				txt=txt+"L'équipage de "+entryA.username+" attaque:"+entryA.equipage.attaque(entryB)+"\n"
 		elif entryA.isinstance()=="Equipage":
 			if entryB.isinstance()=="Joueur":
-				txt=txt+"Tour de l'équipage PNJ d'attaquer:"+entryA.attaque(entryB.equipage)+"<br>"
+				txt=txt+"Tour de l'équipage PNJ d'attaquer:"+entryA.attaque(entryB.equipage)+"\n"
 			elif entryB.isinstance()=="Equipage":
-				txt=txt+"Tour de l'équipage PNJ d'attaquer:"+entryA.attaque(entryB)+"<br>"
+				txt=txt+"Tour de l'équipage PNJ d'attaquer:"+entryA.attaque(entryB)+"\n"
 			
-		return txt +"</p>"
+		return txt
 		
 
 	@staticmethod
 	def phraseDeVictoire(entry):
-		txt="<p>"
+		txt=""
 		if entry.isinstance()=="Joueur":
-			txt=txt+"L'équipage de <b>"+entry.username+"</b> remporte le combat, ils remportent tous un niveau:<br>"+str(entry.equipage)+"<br>"
+			txt=txt+"L'équipage de "+entry.username+" remporte le combat, ils remportent tous un niveau:\n"+str(entry.equipage)+"\n"
 		elif entry.isinstance()=="Equipage":
-			txt=txt+"L'équipage PNJ remporte le combat! <br>"#, ils remportent tous un niveau:<br>"+str(entry)+"<br>"
-		return txt+"</p>"
+			txt=txt+"L'équipage PNJ remporte le combat! \n"
+		return txt
 
 
 	@staticmethod
@@ -91,20 +91,6 @@ class Utils(Static):
 		for place in places:
 			shuffledList.append(pirates[place])
 		return shuffledList
-
-
-	@staticmethod
-	def askForCredentials():
-		username= input("Can you give your username?")
-		password= input("Now we need you to give your password.")
-		return [username, password]
-
-	@staticmethod
-	def askForPassword():
-		password= input("Now we need you to give your password.")
-		return password
-
-
 
 
 	@staticmethod

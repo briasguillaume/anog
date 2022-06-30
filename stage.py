@@ -1,9 +1,8 @@
 
 class Stage(object):
 
-	def __init__(self, islands):#, avancee):
+	def __init__(self, islands):
 		self._islands=islands
-		#self._avancee=avancee
 
 
 	@property
@@ -12,10 +11,10 @@ class Stage(object):
 
 
 	def __str__(self):
-		txt="<br>Les prochaines iles sont: <br>"
+		txt="Les prochaines iles sont:\n"
 		count=0
 		for island in self._islands:
-			txt=txt+"Choix "+str(count)+": "+str(island)+"<br>"
+			txt=txt+"Choix "+str(count)+": "+str(island)+"\n"
 			count+=1
-		txt=txt+"<br>"
+		txt=txt+"\n"
 		return txt

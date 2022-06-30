@@ -104,12 +104,12 @@ class Pirate(object):
 	def getAttackedBy(self, pirate):
 		degats=pirate.attaque()-self._stats[2]
 		if degats<=0: #aucun degat reçu
-			txt=self._name+" reçoit 0 pts de degats de la part de "+pirate.name+", il garde ses "+str(self._stats[0])+"pts de vie"
+			txt=self._name+" reçoit 0 pts de degats de la part de "+pirate.name+", il garde ses "+str(self._stats[0])+"pts de vie\n"
 			pirate.increaseFatigue()
 			return txt
 		self._stats[0]=self._stats[0]-degats
 
-		txt=self._name+" reçoit "+str(degats)+"pts de degats de la part de "+pirate.name+", il ne lui reste plus que "+str(self._stats[0])+"pts de vie"
+		txt=self._name+" reçoit "+str(degats)+"pts de degats de la part de "+pirate.name+", il ne lui reste plus que "+str(self._stats[0])+"pts de vie\n"
 		pirate.increaseFatigue()
 		if self._stats[0]<=0:
 			self._availableToFight=False
