@@ -21,6 +21,7 @@ class Menu(object):
 		self._joueur=None
 		Menu.userInput=[]
 		Menu.currentStep=0
+		self._output={}
 
 	#TODO use fruit's allocation
 	#TODO hook values from bdd and not code
@@ -38,19 +39,22 @@ class Menu(object):
 	def showMenu(self, user_input):
 		validation=self.checkUserInput(user_input)
 
-		output={}
+		self._output['team']=""
+		self._output['content']=""
+		self._output['map']=""
+
 		if validation:
-			output['team']=""
-			output['content']=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
-			output['map']=""
+			self._output['team']=""
+			self._output['content']=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
+			self._output['map']=""
 		else:
-			output['team']=""
-			output['content']="Looks like you tried to submit an empty value and succeeded, you can come back to login page now."
-			output['map']=""
+			self._output['team']=""
+			self._output['content']="Looks like you tried to submit an empty value and succeeded, you can come back to login page now."
+			self._output['map']=""
 
 	
 		
-		return output
+		return self._output
 			
 
 
@@ -74,14 +78,14 @@ class Menu(object):
 
 	
 	def choseThatIsland(self, value):
-		txt=self._joueur.goingToNextIsland(value)
-		txt=txt+self.checkAliveForRecruitment()
-		return txt
+		self._output=self._joueur.goingToNextIsland(value, self._output)
+		self._output=self.checkAliveForRecruitment()
+
 
 
 	def choseThatPirate(self, value):
-		txt=self._joueur.recrutement(len(Menu.tempData), Menu.tempData, value)
-		return txt
+		self._output=self._joueur.recrutement(len(Menu.tempData), self._output, Menu.tempData, value)
+
 
 
 	def checkAliveForRecruitment(self):
@@ -95,11 +99,11 @@ class Menu(object):
 		
 	@staticmethod
 	def showBDD():
-		return Menu.beginningHTML() + InteractBDD.retrieveWholeDatabase() + Menu.endHTML()
+		return InteractBDD.retrieveWholeDatabase()
 
 	def askForRecruitment(self):
-		[txt, Menu.tempData]=self._joueur.askForRecruitment()
-		return txt
+		[self._output, Menu.tempData]=self._joueur.askForRecruitment(self._output)
+
 
 	
 	def instanciateJoueur(self, username, password):
@@ -114,9 +118,8 @@ class Menu(object):
 			self._joueur=None
 			Menu.userInput=[]
 			Menu.currentStep=0
-			return Menu.showLogin("Wrong password, try again.")
-		txt = self._joueur.showMenu()
-		return Menu.beginningHTML() + txt  + Menu.endHTML()
+			self._output['content']="Wrong password, try again."
+		self._output = self._joueur.showMenu(self._output)
 
 
 	@staticmethod
