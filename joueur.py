@@ -32,7 +32,6 @@ class Joueur(object):
 		
 		output.content("Dans quelle ile veux-tu aller maintenant?\n")
 		output.content(World.getNextStage(self._position.name))
-		#return output
 
 	def isinstance(self):
 		return "Joueur"
@@ -74,7 +73,6 @@ class Joueur(object):
 
 
 		output.content(self.cleanUpDeadPirates())
-		#return output
 
 	def recrutement(self, number, output, pirates=[], value=0):
 		
@@ -108,7 +106,6 @@ class Joueur(object):
 			output.content("Choix "+str(i)+": "+str(pirate)+"\n")
 
 		output.content("Lequel voulez-vous recruter?\n")
-		#return [output, pirates]
 		return pirates
 
 	@property

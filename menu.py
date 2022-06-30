@@ -73,24 +73,22 @@ class Menu(object):
 
 	
 	def choseThatIsland(self, value):
-		#self._output=self._joueur.goingToNextIsland(value, self._output)
 		self._joueur.goingToNextIsland(value, self._output)
 		self.checkAliveForRecruitment()
 
 
-
-	def choseThatPirate(self, value):
-		#self._output=self._joueur.recrutement(len(Menu.tempData), self._output, Menu.tempData, value)
-		self._joueur.recrutement(len(Menu.tempData), self._output, Menu.tempData, value)
-
-
-
 	def checkAliveForRecruitment(self):
 		if self._joueur.availableToFight:
-			self.askForRecruitment()
+			Menu.tempData=self._joueur.askForRecruitment(self._output)
 		else:
 			self._joueur.resetCrew()
 			self._output.content("Ton équipage est mort, il va falloir recommencer du début pour devenir le roi des pirates. y/n \n")
+
+
+	def choseThatPirate(self, value):
+		self._joueur.recrutement(len(Menu.tempData), self._output, Menu.tempData, value)
+
+
 		
 
 		
@@ -98,9 +96,6 @@ class Menu(object):
 	def showBDD():
 		return InteractBDD.retrieveWholeDatabase()
 
-	def askForRecruitment(self):
-		#[self._output, Menu.tempData]=self._joueur.askForRecruitment(self._output)
-		Menu.tempData=self._joueur.askForRecruitment(self._output)
 
 
 	
@@ -117,7 +112,6 @@ class Menu(object):
 			Menu.userInput=[]
 			Menu.currentStep=0
 			self._output.content("Wrong password, try again.")
-		#self._output = self._joueur.showMenu(self._output)
 		self._joueur.showMenu(self._output)
 
 
