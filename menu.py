@@ -73,13 +73,15 @@ class Menu(object):
 
 	
 	def choseThatIsland(self, value):
-		self._output=self._joueur.goingToNextIsland(value, self._output)
+		#self._output=self._joueur.goingToNextIsland(value, self._output)
+		self._joueur.goingToNextIsland(value, self._output)
 		self.checkAliveForRecruitment()
 
 
 
 	def choseThatPirate(self, value):
-		output=self._joueur.recrutement(len(Menu.tempData), self._output, Menu.tempData, value)
+		#self._output=self._joueur.recrutement(len(Menu.tempData), self._output, Menu.tempData, value)
+		self._joueur.recrutement(len(Menu.tempData), self._output, Menu.tempData, value)
 
 
 
@@ -97,7 +99,8 @@ class Menu(object):
 		return InteractBDD.retrieveWholeDatabase()
 
 	def askForRecruitment(self):
-		[self._output, Menu.tempData]=self._joueur.askForRecruitment(self._output)
+		#[self._output, Menu.tempData]=self._joueur.askForRecruitment(self._output)
+		Menu.tempData=self._joueur.askForRecruitment(self._output)
 
 
 	
@@ -114,7 +117,8 @@ class Menu(object):
 			Menu.userInput=[]
 			Menu.currentStep=0
 			self._output.content("Wrong password, try again.")
-		self._output = self._joueur.showMenu(self._output)
+		#self._output = self._joueur.showMenu(self._output)
+		self._joueur.showMenu(self._output)
 
 
 	@staticmethod
