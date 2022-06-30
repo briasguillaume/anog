@@ -95,7 +95,7 @@ class Menu(object):
 
 
 	def choseThatPirate(self, value):
-		self._output=self._joueur.recrutement(len(Menu.tempData), self._output, Menu.tempData, value)
+		self._output['content']=self._joueur.recrutement(len(Menu.tempData), self._output, Menu.tempData, value)
 
 
 
