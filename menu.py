@@ -50,10 +50,21 @@ class Menu(object):
 			self._output['content']="Looks like you tried to submit an empty value and succeeded, you can come back to login page now."
 
 
-		
-		self._outputAsArray['team']=self._output['team'].split('\n')
-		self._outputAsArray['content']=self._output['content'].split('\n')
-		self._outputAsArray['map']=self._output['map'].split('\n')
+		if self._output['team']!="":
+			self._outputAsArray['team']=self._output['team'].split('\n')
+		else:
+			self._outputAsArray['team']=self._output['team']
+
+		if self._output['content']!="":
+			self._outputAsArray['content']=self._output['content'].split('\n')
+		else:
+			self._outputAsArray['content']=self._output['content']
+			
+		if self._output['map']!="":
+			self._outputAsArray['map']=self._output['map'].split('\n')
+		else:
+			self._outputAsArray['map']=self._output['map']
+
 		return self._outputAsArray
 			
 
