@@ -1,6 +1,7 @@
 
 from joueur import Joueur
 from interactBDD import InteractBDD
+from output import Output
 import hashlib
 
 
@@ -21,8 +22,7 @@ class Menu(object):
 		self._joueur=None
 		Menu.userInput=[]
 		Menu.currentStep=0
-		self._output={}
-		self._outputAsArray={}
+		self._output=Output()
 
 	#TODO use fruit's allocation
 	#TODO hook values from bdd and not code
@@ -40,32 +40,16 @@ class Menu(object):
 	def showMenu(self, user_input):
 		validation=self.checkUserInput(user_input)
 
-		self._output['team']=""
-		self._output['content']=""
-		self._output['map']=""
+		self._output.reset()
 
 		if validation:
 			str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
 		else:
-			self._output['content']="Looks like you tried to submit an empty value and succeeded, you can come back to login page now."
+			self._output.content("Looks like you tried to submit an empty value and succeeded, you can come back to login page now.")
 
 
-		if self._output['team']!="":
-			self._outputAsArray['team']=self._output['team'].split('\n')
-		else:
-			self._outputAsArray['team']=self._output['team']
 
-		if self._output['content']!="":
-			self._outputAsArray['content']=self._output['content'].split('\n')
-		else:
-			self._outputAsArray['content']=self._output['content']
-			
-		if self._output['map']!="":
-			self._outputAsArray['map']=self._output['map'].split('\n')
-		else:
-			self._outputAsArray['map']=self._output['map']
-
-		return self._outputAsArray
+		return self._output.toBeDisplayed
 			
 
 
@@ -90,12 +74,12 @@ class Menu(object):
 	
 	def choseThatIsland(self, value):
 		self._output=self._joueur.goingToNextIsland(value, self._output)
-		self._output['content']=self.checkAliveForRecruitment()
+		self._output.content(self.checkAliveForRecruitment())
 
 
 
 	def choseThatPirate(self, value):
-		self._output['content']=self._joueur.recrutement(len(Menu.tempData), self._output, Menu.tempData, value)
+		self._output.content(self._joueur.recrutement(len(Menu.tempData), self._output, Menu.tempData, value))
 
 
 
@@ -129,7 +113,7 @@ class Menu(object):
 			self._joueur=None
 			Menu.userInput=[]
 			Menu.currentStep=0
-			self._output['content']="Wrong password, try again."
+			self._output.content("Wrong password, try again.")
 		self._output = self._joueur.showMenu(self._output)
 
 
