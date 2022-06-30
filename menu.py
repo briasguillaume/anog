@@ -7,7 +7,6 @@ from flask import url_for
 
 class Menu(object):
 
-	debug=False
 	userInput=[]
 	steps={ 1: "self.instanciateJoueur",
 			2: "self.choseThatIsland", 
@@ -38,54 +37,24 @@ class Menu(object):
 
 
 	def showMenu(self, user_input):
-		if Menu.debug:
-			print("Bonjour et bienvenu dans ce petit jeu! ;)\n")
-			username = input ("Pouvez-vous indiquer votre nom d'utilisateur?")
-			password = input ("Et votre mot de passe?")
-			Joueur(username, password).showMenu()
+		validation=self.checkUserInput(user_input)
+
+		output={}
+		if validation:
+			output['team']=""
+			output['content']=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
+			output['map']=""
 		else:
-			validation=self.checkUserInput(user_input)
+			output['team']=""
+			output['content']="Looks like you tried to submit an empty value and succeeded, you can come back to login page now."
+			output['map']=""
 
-			output={}
-			if validation:
-				output['team']=""
-				output['content']=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
-				output['map']=""
-			else:
-				output['team']=""
-				output['content']="Looks like you tried to submit an empty value and succeeded, you can come back to login page now."
-				output['map']=""
-
+	
 		
+		return output
 			
-			return output
 
-	@staticmethod
-	def showLoginOld(addedTxt):
-		Menu.userInput=[]
-		Menu.currentStep=0
-		txt=Menu.beginningHTML()
-		txt=txt+addedTxt+"<br>"
-		txt=txt+Menu.askForUsername()
-		txt=txt+"""
-			            <form action="/" method="post" autocomplete="off">
-							<div class="form-field">
-								Username: <input type="text" placeholder="Username" name="username" required/> <br>
-							</div>
-							<div class="form-field">
-								Password: <input type="password" placeholder="Password" name="password" required/> <br>
-							</div>
-							<div class="form-field">
-								<input type="submit" value="Valider" />
-							</div>
-							
-			            </form>
-			            <br><i>- Max 15 characters <br> - No special characters</i>
-			        </p>
-			    </body>
-			</html>
-			"""
-		return txt
+
 
 
 
@@ -104,65 +73,15 @@ class Menu(object):
 		return txt
 
 
-	@staticmethod
-	def askForUsername():
-		txt="Bonjour et bienvenu dans ce petit jeu! ;) <br>" + "Pouvez-vous indiquer votre nom d'utilisateur? <br>"
-		txt=txt+"Et votre mot de passe? <br>"
-		return txt
-
-
-	@staticmethod
-	def showLogin(addedText):
-		return """
-					<!DOCTYPE html>
-					<html lang="fr" >
-						<head>
-							<meta charset="UTF-8">
-							<title>
-								ANOG
-							</title>
-							<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
-						</head>
-						<body>
-							<div id="bg"></div>
-							<h3>
-								ANOG: Another Neat Onepiece Game - by Corentin RENAULT & Adrien TURCHET
-							</h3>
-							<p>
-								<div>
-									Bonjour et bienvenu dans ce petit jeu! ;) <br>
-									Pouvez-vous indiquer votre nom d'utilisateur/mot de passe? <br>
-								</div>
-
-								<form action="/" method="post" autocomplete="off">
-									<div class="form-field">
-										<input type="text" placeholder="Username" name="username" required/> <br>
-									</div>
-									<div class="form-field">
-										<input type="password" placeholder="Password" name="password" required/> <br>
-									</div>
-									<div class="form-field">
-										<button class="btn" type="submit">Valider</button>
-									</div>
-									
-								</form>
-								<br><i>- Max 15 characters <br> - No special characters</i>
-							</p>
-						</body>
-					</html>
-		
-		"""
 	
 	def choseThatIsland(self, value):
 		txt=self._joueur.goingToNextIsland(value)
 		txt=txt+self.checkAliveForRecruitment()
-		#return Menu.beginningHTML() + txt  + Menu.endHTML()
 		return txt
 
 
 	def choseThatPirate(self, value):
 		txt=self._joueur.recrutement(len(Menu.tempData), Menu.tempData, value)
-		#return Menu.beginningHTML() + txt  + Menu.endHTML()
 		return txt
 
 
@@ -199,37 +118,6 @@ class Menu(object):
 			return Menu.showLogin("Wrong password, try again.")
 		txt = self._joueur.showMenu()
 		return Menu.beginningHTML() + txt  + Menu.endHTML()
-
-	@staticmethod
-	def beginningHTML():
-		return """
-			<!DOCTYPE html>
-			<html>
-			    <head>
-			        <title>
-			            ANOG
-			        </title>
-			    </head>
-			    <body>
-			        <h3>
-			            ANOG: Another Neat Onepiece Game - by Corentin RENAULT & Adrien TURCHET
-			        </h3>
-			        <p>
-			            """
-
-
-	@staticmethod
-	def endHTML():
-		return """
-			            <form action="/" method="post">
-			                User input: <input type="text" name="user_input" />
-			                <input type="submit" value="Valider" />
-			            </form>
-			        </p>
-			    </body>
-			</html>
-			"""
-
 
 
 	@staticmethod
