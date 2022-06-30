@@ -157,10 +157,10 @@ class Pirate(object):
 
 
 	def __str__(self):
-		txt='<p><span style="color:red;"><b>'+self._name+"</b><br>"
-		txt=txt+"niveau: "+str(self._level)+" | qualité: "+str(self._qualite)+" | fruit: "+self._fruit.name+"</span><br>"
-		txt=txt+'<span style="color:green;">vie: '+str(self._stats[0])+" | dps: "+str(self._stats[1])+" | def: "+str(self._stats[2])+" | fatigue: "+str(self._stats[3])+"</span><br>"
-		txt=txt+"___________________________________________________<br></p>"
+		txt=self._name
+		txt=txt+"niveau: "+str(self._level)+" | qualité: "+str(self._qualite)+" | fruit: "+self._fruit.name+"\n"
+		txt=txt+'vie: '+str(self._stats[0])+" | dps: "+str(self._stats[1])+" | def: "+str(self._stats[2])+" | fatigue: "+str(self._stats[3])+"\n"
+		txt=txt+"___________________________________________________\n"
 		return txt
 
 

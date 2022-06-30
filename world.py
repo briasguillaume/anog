@@ -117,24 +117,24 @@ class World(object):
 
 	@staticmethod
 	def showMap(currentIslandName):
-		txt="<p>"
+		txt=""
 		for stage in World.world:
-			txt=txt+'<span style="color:blue;">------------------------------------------------------------ </span><br>' #60
+			txt=txt+'------------------------------------------------------------ ' #60
 			#1 20 20
 			#2 5 55 55 5
 			spaceLength=60/(len(stage.islands)+1) -10
 			for island in stage.islands:
 				for i in range(int(spaceLength)):
-					txt=txt+"&nbsp;"
-				txt=txt+'<span style="color:blue;">|</span>'
+					txt=txt+" "
+				txt=txt+'|'
 				if island.name!=currentIslandName:
-					txt=txt+'<span style="color:red;">'+island.name+'</span>'
+					txt=txt+island.name
 				else:
-					txt=txt+'<span style="color:green;">'+island.name+'</span>'
-				txt=txt+'<span style="color:blue;">|</span>'
+					txt=txt+island.name
+				txt=txt+'|'
 				for i in range(int(spaceLength)):
-					txt=txt+"&nbsp;"  #&nbsp; est un espace
-			txt=txt+"<br></p>"
+					txt=txt+" "  #&nbsp; est un espace
+			txt=txt
 		return txt
 
 
