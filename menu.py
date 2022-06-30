@@ -22,6 +22,7 @@ class Menu(object):
 		Menu.userInput=[]
 		Menu.currentStep=0
 		self._output={}
+		self._outputAsArray={}
 
 	#TODO use fruit's allocation
 	#TODO hook values from bdd and not code
@@ -39,22 +40,21 @@ class Menu(object):
 	def showMenu(self, user_input):
 		validation=self.checkUserInput(user_input)
 
-		self._output['team']=""
-		self._output['content']=""
-		self._output['map']=""
+		self._output['team']=[]
+		self._output['content']=[]
+		self._output['map']=[]
 
 		if validation:
-			self._output['team']=""
-			self._output['content']=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
-			self._output['map']=""
+			str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
 		else:
-			self._output['team']=""
 			self._output['content']="Looks like you tried to submit an empty value and succeeded, you can come back to login page now."
-			self._output['map']=""
 
-	
+
 		
-		return self._output
+		self._outputAsArray['team']=self._output['team'].split('\n')
+		self._outputAsArray['content']=self._output['team'].split('\n')
+		self._outputAsArray['map']=self._output['team'].split('\n')
+		return self._outputAsArray
 			
 
 
