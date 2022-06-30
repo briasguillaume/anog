@@ -85,11 +85,11 @@ class Menu(object):
 
 	def checkAliveForRecruitment(self):
 		if self._joueur.availableToFight:
-			return self.askForRecruitment()
+			self.askForRecruitment()
 		else:
 			self._joueur.resetCrew()
-			txt="Ton équipage est mort, il va falloir recommencer du début pour devenir le roi des pirates. y/n <br>"
-			return txt
+			self._output.content("Ton équipage est mort, il va falloir recommencer du début pour devenir le roi des pirates. y/n \n")
+		
 
 		
 	@staticmethod
