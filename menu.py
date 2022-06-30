@@ -2,7 +2,6 @@
 from joueur import Joueur
 from interactBDD import InteractBDD
 import hashlib
-from flask import url_for
 
 
 class Menu(object):
