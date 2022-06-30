@@ -74,7 +74,7 @@ class Menu(object):
 	
 	def choseThatIsland(self, value):
 		self._output=self._joueur.goingToNextIsland(value, self._output)
-		self._output.content(self.checkAliveForRecruitment())
+		self.checkAliveForRecruitment()
 
 
 
