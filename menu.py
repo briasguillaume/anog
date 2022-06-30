@@ -79,7 +79,7 @@ class Menu(object):
 
 
 	def choseThatPirate(self, value):
-		output=self._joueur.recrutement(len(Menu.tempData), self._output, Menu.tempData, value))
+		output=self._joueur.recrutement(len(Menu.tempData), self._output, Menu.tempData, value)
 
 
 
