@@ -30,7 +30,7 @@ class Output(object):
     def transformOutput(self):
         outputAsArray={}
         for key in self._toBeDisplayed:
-            self._outputAsArray[key]=Output.splitText(self._toBeDisplayed[key])
+            outputAsArray[key]=Output.splitText(self._toBeDisplayed[key])
         return outputAsArray
 
     @staticmethod
