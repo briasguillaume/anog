@@ -40,9 +40,9 @@ class Menu(object):
 	def showMenu(self, user_input):
 		validation=self.checkUserInput(user_input)
 
-		self._output['team']=[]
-		self._output['content']=[]
-		self._output['map']=[]
+		self._output['team']=""
+		self._output['content']=""
+		self._output['map']=""
 
 		if validation:
 			str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
