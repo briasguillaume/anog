@@ -24,12 +24,12 @@ class Output(object):
         self._toBeDisplayed['map']=self._toBeDisplayed['map']+txt
 
     def reset(self):
-        for key in self._toBeDisplayed.keys:
+        for key in self._toBeDisplayed:
             self._toBeDisplayed[key]=""
 
     def transformOutput(self):
         outputAsArray={}
-        for key in self._toBeDisplayed.keys:
+        for key in self._toBeDisplayed:
             self._outputAsArray[key]=Output.splitText(self._toBeDisplayed[key])
         return outputAsArray
 
