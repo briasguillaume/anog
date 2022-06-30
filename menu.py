@@ -44,10 +44,21 @@ class Menu(object):
 			password = input ("Et votre mot de passe?")
 			Joueur(username, password).showMenu()
 		else:
-			output=self.checkUserInput(user_input)
+			validation=self.checkUserInput(user_input)
 
+			output={}
+			if validation:
+				output['team']=""
+				output['content']=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
+				output['map']=""
+			else:
+				output['team']=""
+				output['content']="Looks like you tried to submit an empty value and succeeded, you can come back to login page now."
+				output['map']=""
+
+		
 			
-			return "Connected as: "+self._joueur.username+"<br>"+output
+			return output
 
 	@staticmethod
 	def showLoginOld(addedTxt):
@@ -145,12 +156,14 @@ class Menu(object):
 	def choseThatIsland(self, value):
 		txt=self._joueur.goingToNextIsland(value)
 		txt=txt+self.checkAliveForRecruitment()
-		return Menu.beginningHTML() + txt  + Menu.endHTML()
+		#return Menu.beginningHTML() + txt  + Menu.endHTML()
+		return txt
 
 
 	def choseThatPirate(self, value):
 		txt=self._joueur.recrutement(len(Menu.tempData), Menu.tempData, value)
-		return Menu.beginningHTML() + txt  + Menu.endHTML()
+		#return Menu.beginningHTML() + txt  + Menu.endHTML()
+		return txt
 
 
 	def checkAliveForRecruitment(self):
@@ -239,9 +252,8 @@ class Menu(object):
 				Menu.currentStep+=1
 			elif Menu.currentStep==3:
 				Menu.currentStep=2
-			output=str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
-			return output
-		return "Looks like you tried to submit an empty value and succeeded, you can come back to login page now."
+			return True
+		return False
 		
 
 	def sanitization(self, user_input):
