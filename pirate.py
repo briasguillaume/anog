@@ -158,7 +158,7 @@ class Pirate(object):
 
 	def __str__(self):
 		txt=self._name+"\n"
-		txt=txt+"niveau: "+str(self._level)+" | qualité: "+str(self._qualite)+" | fruit: "+self._fruit.name+"\n"
+		txt=txt+"rouge niveau: "+str(self._level)+" | qualité: "+str(self._qualite)+" | fruit: "+self._fruit.name+"\n"
 		txt=txt+'vie: '+str(self._stats[0])+" | dps: "+str(self._stats[1])+" | def: "+str(self._stats[2])+" | fatigue: "+str(self._stats[3])+"\n"
 		txt=txt+"___________________________________________________\n"
 		return txt
