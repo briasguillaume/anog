@@ -18,59 +18,26 @@ class Static:
 
 class Utils(Static):
 
-	debug=False
-
 	@staticmethod
-	def fight(entry1, entry2):
-
-		if Utils.debug:
-			if entry1.isinstance()=="Joueur":
-				equipage1=entry1.equipage
-			elif entry1.isinstance()=="Equipage":
-				equipage1=entry1 
-
-			if entry2.isinstance()=="Joueur":
-				equipage2=entry2.equipage
-			elif entry2.isinstance()=="Equipage":
-				equipage2=entry2 
-			first=random.randint(1,2)
-			# TODO HANDLE FIRST
-			turnsCount=0
-			while equipage1.availableToFight and equipage2.availableToFight:
-				print("Tour "+str(turnsCount)+":")
-				print("Equipage 2:"+equipage2.attaque(equipage1))
-				joueur1.cleanUpDeadPirates()
-				equipage1.updateStatus()
-				print("Equipage 1:"+equipage1.attaque(equipage2))
-				joueur2.cleanUpDeadPirates()
-				equipage2.updateStatus()
-				print("\n")
-				turnsCount+=1
-			if equipage1.availableToFight:
-				equipage1.increaseCrewLevel()
-				print(joueur1.username+" remporte le combat, ils remportent tous un niveau:\n"+str(equipage1)+"\n")
-			else:
-				equipage2.increaseCrewLevel()
-				print(joueur2.username+" remporte le combat:\n"+str(equipage2)+"\nIls remportent tous un niveau!\n")
+	def fight(entry1, entry2):		
+		txt="<p>"
+		first=random.randint(1,2)
+		turnsCount=0
+		while entry1.availableToFight and entry2.availableToFight:
+			txt=txt+"<b>Tour "+str(turnsCount)+":</b><br>"
+			txt=txt+Utils.phraseDeCombat(entry2, entry1)
+			Utils.updateStatus(entry1)
+			txt=txt+Utils.phraseDeCombat(entry1, entry2)
+			Utils.updateStatus(entry2)
+			txt=txt+"<br>"
+			turnsCount+=1
+		if entry1.availableToFight:
+			entry1.increaseCrewLevel()
+			txt=txt+Utils.phraseDeVictoire(entry1)
 		else:
-			txt="<p>"
-			first=random.randint(1,2)
-			turnsCount=0
-			while entry1.availableToFight and entry2.availableToFight:
-				txt=txt+"<b>Tour "+str(turnsCount)+":</b><br>"
-				txt=txt+Utils.phraseDeCombat(entry2, entry1)
-				Utils.updateStatus(entry1)
-				txt=txt+Utils.phraseDeCombat(entry1, entry2)
-				Utils.updateStatus(entry2)
-				txt=txt+"<br>"
-				turnsCount+=1
-			if entry1.availableToFight:
-				entry1.increaseCrewLevel()
-				txt=txt+Utils.phraseDeVictoire(entry1)
-			else:
-				entry2.increaseCrewLevel()
-				txt=txt+Utils.phraseDeVictoire(entry2)
-			return txt+"</p>"
+			entry2.increaseCrewLevel()
+			txt=txt+Utils.phraseDeVictoire(entry2)
+		return txt+"</p>"
 
 
 	@staticmethod
