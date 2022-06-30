@@ -26,7 +26,7 @@ class Joueur(object):
 		
 
 	def showMenu(self, output):
-		output['team']=output['team']+"Voici ton équipage:\n"+str(self._equipage)
+		output['team']=output['team']+"Voici ton équipage:\n___________________________________________________\n"+str(self._equipage)
 		output['content']=output['content']+"Vous êtes actuellement ici: \n"+str(self._position)
 		output['map']=output['map']+World.showMap(self._position.name)
 		
