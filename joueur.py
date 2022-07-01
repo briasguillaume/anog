@@ -29,7 +29,7 @@ class Joueur(object):
 	def showMenu(self, output):
 		output.team([Message("Voici ton équipage:"), Message("___________________________________________________")])
 		output.team(self._equipage.asMessageArray())
-		output.content([Message("Vous êtes actuellement ici: "), self._position.asMessage()])
+		output.content([Message("Vous êtes actuellement ici: "), Message(str(self._position))])
 		output.map(World.showMap(self._position.name))
 		
 		output.content(Message("Dans quelle ile veux-tu aller maintenant?"))
