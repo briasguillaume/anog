@@ -159,8 +159,8 @@ class Pirate(object):
 
 	def asMessageArray(self):
 		array=[]
-		array.append(Message(self._name))
-		array.append(Message("rouge niveau: "+str(self._level)+" | qualité: "+str(self._qualite)+" | fruit: "+self._fruit.name))
+		array.append(Message(self._name, True))
+		array.append(Message("rouge niveau: "+str(self._level)+" | qualité: "+str(self._qualite)+" | fruit: "+self._fruit.name, True))
 		array.append(Message('vie: '+str(self._stats[0])+" | dps: "+str(self._stats[1])+" | def: "+str(self._stats[2])+" | fatigue: "+str(self._stats[3])))
 		array.append(Message("___________________________________________________"))
 		return array
