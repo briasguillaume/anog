@@ -132,14 +132,14 @@ class World(object):
 				txt=txt+'|'
 				if island.name!=currentIslandName:
 					txt=txt+island.name
-					tempBool=True
 				else:
 					txt=txt+island.name
+					tempBool=True
 				txt=txt+'|'
 				for i in range(int(spaceLength)):
 					txt=txt+" "  #&nbsp; est un espace
 			if tempBool:
-				array.append(Message(txt, False, "vert"))
+				array.append(Message(txt, True, "rouge"))
 				tempBool=False
 			else:
 				array.append(Message(txt))
