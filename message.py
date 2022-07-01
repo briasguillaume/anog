@@ -46,7 +46,11 @@ class Message(object):
         self._texte=texte
 
     def __add__(self, message):
-        self._texte=self._texte+message.texte
+        if isinstance(message, Message):
+            self._texte=self._texte+message.texte
+        elif isinstance(message, str):
+            self._texte=self._texte+message
+
         
 
 
