@@ -80,9 +80,9 @@ class Utils(Static):
 	@staticmethod
 	def phraseDeVictoire(entry):
 		if entry.isinstance()=="Joueur":
-			return [Message("L'équipage de "+entry.username+" remporte le combat, ils remportent tous un niveau:", True, "rouge"), Message(str(entry.equipage))]
+			return [Message("L'équipage de "+entry.username+" remporte le combat, ils remportent tous un niveau:", True, "rouge")].extend(entry.equipage.asMessageArray())
 		elif entry.isinstance()=="Equipage":
-			return Message("L'équipage PNJ remporte le combat!", True, "rouge")
+			return [Message("L'équipage PNJ remporte le combat!", True, "rouge")]
 
 
 	@staticmethod
