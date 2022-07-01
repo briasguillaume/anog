@@ -4,6 +4,7 @@ from fruitdemon import FruitFactory
 import random
 from interactBDD import InteractBDD
 from statsPirate import StatsPirate
+from message import Message
 
 class Pirate(object):
 
@@ -104,17 +105,17 @@ class Pirate(object):
 	def getAttackedBy(self, pirate):
 		degats=pirate.attaque()-self._stats[2]
 		if degats<=0: #aucun degat reçu
-			txt=self._name+" reçoit 0 pts de degats de la part de "+pirate.name+", il garde ses "+str(self._stats[0])+"pts de vie\n"
+			txt=self._name+" reçoit 0 pts de degats de la part de "+pirate.name+", il garde ses "+str(self._stats[0])+"pts de vie"
 			pirate.increaseFatigue()
-			return txt
+			return Message(txt)
 		self._stats[0]=self._stats[0]-degats
 
-		txt=self._name+" reçoit "+str(degats)+"pts de degats de la part de "+pirate.name+", il ne lui reste plus que "+str(self._stats[0])+"pts de vie\n"
+		txt=self._name+" reçoit "+str(degats)+"pts de degats de la part de "+pirate.name+", il ne lui reste plus que "+str(self._stats[0])+"pts de vie"
 		pirate.increaseFatigue()
 		if self._stats[0]<=0:
 			self._availableToFight=False
 			self._mort=True
-		return txt
+		return Message(txt)
 
 	def generateNewName(self, name):
 		if name==None:
@@ -157,11 +158,12 @@ class Pirate(object):
 
 
 	def __str__(self):
-		txt=self._name+"\n"
-		txt=txt+"rouge niveau: "+str(self._level)+" | qualité: "+str(self._qualite)+" | fruit: "+self._fruit.name+"\n"
-		txt=txt+'vie: '+str(self._stats[0])+" | dps: "+str(self._stats[1])+" | def: "+str(self._stats[2])+" | fatigue: "+str(self._stats[3])+"\n"
-		txt=txt+"___________________________________________________\n"
-		return txt
+		array=[]
+		array.append(Message(self._name))
+		array.append("rouge niveau: "+str(self._level)+" | qualité: "+str(self._qualite)+" | fruit: "+self._fruit.name)
+		array.append('vie: '+str(self._stats[0])+" | dps: "+str(self._stats[1])+" | def: "+str(self._stats[2])+" | fatigue: "+str(self._stats[3]))
+		array.append("___________________________________________________")
+		return array
 
 
 
