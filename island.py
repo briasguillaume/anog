@@ -17,8 +17,8 @@ class Island(object):
 
 
 
-	def asMessage(self):
-		return Message(self._name+", il y a "+str(self._pirates.numberOfPirates)+" pirates de niveau "+str(self._level))
+	def __str__(self):
+		return self._name+", il y a "+str(self._pirates.numberOfPirates)+" pirates de niveau "+str(self._level)
 
 
 
