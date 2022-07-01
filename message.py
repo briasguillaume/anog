@@ -45,7 +45,8 @@ class Message(object):
     def texte(self, texte):
         self._texte=texte
 
-    
+    def __add__(self, message):
+        self._texte=self._texte+message.texte
         
 
 
