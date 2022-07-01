@@ -70,7 +70,6 @@ class Equipage(object):
 		for pirate in self._team:
 			if pirate.updateStatus():
 				self._dead.append(pirate)
-				print(pirate.name+" meurt au combat. RIP")
 				self._turn.removePirate()
 			else:
 				temp.append(pirate)
@@ -96,10 +95,10 @@ class Equipage(object):
 		self._turn.add(pirate)
 
 	def __str__(self):
-		txt=""
+		array=[]
 		for pirate in self._team:
-			txt=txt+ str(pirate)
-		return txt
+			array.append(str(pirate))
+		return array
 
 
 	@staticmethod
