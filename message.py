@@ -58,30 +58,6 @@ class Message(object):
 
 
 
-'''
-
-class Message(object):
-
-    def __init__(self, texte, gras=False, couleur=[0, 0, 0, 0.16]):
-        message={}
-        message['gras']=gras
-        message['couleur']=couleur
-        message['texte']=texte
-        self._manyMessages=[message]
-
-    @property
-    def manyMessages(self):
-        return self._manyMessages
-        
-    def __add__(self, message):
-        self._manyMessages=self._manyMessages.append(message)
-
-'''
-
-
-
-
-
 
 
 

@@ -27,13 +27,13 @@ class Joueur(object):
 		
 
 	def showMenu(self, output):
-		output.team([Message("Voici ton équipage:"), Message("___________________________________________________")])
-		output.team(self._equipage.asMessageArray())
-		output.content([Message("Vous êtes actuellement ici: "), Message(str(self._position), True, "vert")])
-		output.map(World.showMap(self._position.name))
+		output.team+"Voici ton équipage:" + "___________________________________________________"
+		output.team+self._equipage.asMessageArray()
+		output.content+"Vous êtes actuellement ici: " * Message(str(self._position), True, "vert")
+		output.map+World.showMap(self._position.name)
 		
-		output.content(Message("Dans quelle ile veux-tu aller maintenant?", True, "rouge"))
-		output.content(World.getNextStage(self._position.name))
+		output.content+Message("Dans quelle ile veux-tu aller maintenant?", True, "rouge")
+		output.content+World.getNextStage(self._position.name)
 
 	def isinstance(self):
 		return "Joueur"
@@ -62,19 +62,19 @@ class Joueur(object):
 			otherPlayer.username=isThereOtherPlayer
 			otherPlayer.equipage=Equipage(ennemies)
 			otherPlayer.position=self._position
-			output.content([Message("Aie c'est le bordel sur "+self._position.name+","), Message(isThereOtherPlayer+" et son équipage sont présents sur l'ile,"), Message("le combat est inévitable.")])
-			output.content(Utils.fight(self, otherPlayer))
+			output.content+ "Aie c'est le bordel sur "*self._position.name+"," + isThereOtherPlayer*" et son équipage sont présents sur l'ile," + "le combat est inévitable."
+			output.content+Utils.fight(self, otherPlayer)
 			otherPlayer.cleanUpDeadPirates()
 			if otherPlayer.availableToFight==False:
 				otherPlayer.resetCrew()
 				# TODO eventuellement rajouter un petit message quand le gars se reconnecte?
 
 		else:
-			output.content(Message("Arrivé sur "+self._position.name+", tu fais face à de nombreux pirates hostiles."))
-			output.content(Utils.fight(self, self._position.pirates))
+			output.content+ "Arrivé sur "*self._position.name*", tu fais face à de nombreux pirates hostiles."
+			output.content+ Utils.fight(self, self._position.pirates)
 
 
-		output.content(self.cleanUpDeadPirates())
+		output.content+self.cleanUpDeadPirates()
 
 	def recrutement(self, number, output, pirates=[], value=0):
 		
@@ -82,7 +82,7 @@ class Joueur(object):
 			newPirate=pirates[int(value)]
 			self._equipage.newFighter(newPirate)
 			InteractBDD.addNewFighter(self._username, newPirate)
-		return self.showMenu(output)
+		self.showMenu(output)
 
 
 	def cleanUpDeadPirates(self):
@@ -100,14 +100,14 @@ class Joueur(object):
 	def askForRecruitment(self, output):
 		pirates=[]
 		number=5
-		output.content(Message("Des pirates sont disponibles au recrutement.", True, "rouge"))
+		output.content+ Message("Des pirates sont disponibles au recrutement.", True, "rouge")
 		for i in range(0,number):
 			pirate=Pirate(self._position.level)
 			pirates.append(pirate)
-			output.content(Message("Choix "+str(i)+": "))
-			output.content(pirate.asMessageArray())
+			output.content+ "Choix "*str(i)*": "
+			output.content+ pirate.asMessageArray()
 
-		output.content(Message("Lequel voulez-vous recruter?", True, "rouge"))
+		output.content+ Message("Lequel voulez-vous recruter?", True, "rouge")
 		return pirates
 
 	@property
