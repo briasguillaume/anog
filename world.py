@@ -119,6 +119,7 @@ class World(object):
 	@staticmethod
 	def showMap(currentIslandName):
 		array=[]
+		tempBool=False
 		for stage in World.world:
 			array.append(Message('------------------------------------------------------------')) #60
 			#1 20 20
@@ -131,12 +132,17 @@ class World(object):
 				txt=txt+'|'
 				if island.name!=currentIslandName:
 					txt=txt+island.name
+					tempBool=True
 				else:
 					txt=txt+island.name
 				txt=txt+'|'
 				for i in range(int(spaceLength)):
 					txt=txt+" "  #&nbsp; est un espace
-			array.append(Message(txt))
+			if tempBool:
+				array.append(Message(txt), False, "vert")
+				tempBool=False
+			else:
+				array.append(Message(txt))
 		return array
 
 
