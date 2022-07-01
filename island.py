@@ -1,4 +1,6 @@
 
+from message import Message
+
 from equipage import Equipage
 
 
@@ -16,7 +18,7 @@ class Island(object):
 
 
 	def __str__(self):
-		return self._name+", il y a "+str(self._pirates.numberOfPirates)+" pirates de niveau "+str(self._level)+".\n"
+		return Message(self._name+", il y a "+str(self._pirates.numberOfPirates)+" pirates de niveau "+str(self._level))
 
 
 
