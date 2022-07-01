@@ -19,7 +19,7 @@ class Output(object):
             self._toBeDisplayed['team'].append(txt)
         elif isinstance(txt, list):
             for elem in txt:
-                self._toBeDisplayed['team'].append(elem)
+                self._toBeDisplayed['team'].extend(elem)
 
         
 
@@ -28,7 +28,7 @@ class Output(object):
             self._toBeDisplayed['content'].append(txt)
         elif isinstance(txt, list):
             for elem in txt:
-                self._toBeDisplayed['content'].append(elem)
+                self._toBeDisplayed['content'].extend(elem)
         
 
     def map(self, txt):
@@ -36,7 +36,7 @@ class Output(object):
             self._toBeDisplayed['map'].append(txt)
         elif isinstance(txt, list):
             for elem in txt:
-                self._toBeDisplayed['map'].append(elem)
+                self._toBeDisplayed['map'].extend(elem)
         
 
     def reset(self):
