@@ -24,7 +24,7 @@ class Utils(Static):
 		first=random.randint(1,2)
 		turnsCount=0
 		while entry1.availableToFight and entry2.availableToFight:
-			array.append("Tour "+str(turnsCount))
+			array.append(Message("Tour "+str(turnsCount), True))
 			array.append(Utils.phraseDeCombat(entry2, entry1))
 			Utils.updateStatus(entry1)
 			array.append(Utils.phraseDeCombat(entry1, entry2))
