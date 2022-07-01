@@ -12,10 +12,10 @@ class Stage(object):
 
 
 	def asMessageArray(self):
-		array=[Message("Les prochaines iles sont:")]
+		array=[[Message("Les prochaines iles sont:")]]
 		count=0
 		for island in self._islands:
-			array.append(Message("Choix "+str(count)+": "+str(island)))
+			array.append([Message("Choix "+str(count)+": "+str(island))])
 			count+=1
 		
 		return array
