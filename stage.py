@@ -11,7 +11,7 @@ class Stage(object):
 		return self._islands
 
 
-	def __str__(self):
+	def asMessageArray(self):
 		array=[Message("Les prochaines iles sont:")]
 		count=0
 		for island in self._islands:

@@ -102,7 +102,7 @@ class World(object):
 	@staticmethod
 	def getNextStage(currentIslandName):
 		availableIslands=World.availableIslands(currentIslandName)
-		return str(Stage(availableIslands))
+		return Stage(availableIslands).asMessageArray()
 
 
 
