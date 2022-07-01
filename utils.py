@@ -5,7 +5,7 @@ import os
 from fruitdemon import FruitDemon
 from fruitdemon import FruitFactory
 from pirate import Pirate
-
+from message import Message
 
 import json
 from collections import namedtuple
@@ -20,24 +20,24 @@ class Utils(Static):
 
 	@staticmethod
 	def fight(entry1, entry2):		
-		txt=""
+		array=[]
 		first=random.randint(1,2)
 		turnsCount=0
 		while entry1.availableToFight and entry2.availableToFight:
-			txt=txt+"Tour "+str(turnsCount)+":\n"
-			txt=txt+Utils.phraseDeCombat(entry2, entry1)
+			array.append("Tour "+str(turnsCount))
+			array.append(Utils.phraseDeCombat(entry2, entry1))
 			Utils.updateStatus(entry1)
-			txt=txt+Utils.phraseDeCombat(entry1, entry2)
+			array.append(Utils.phraseDeCombat(entry1, entry2))
 			Utils.updateStatus(entry2)
-			txt=txt+"\n"
+			
 			turnsCount+=1
 		if entry1.availableToFight:
 			entry1.increaseCrewLevel()
-			txt=txt+Utils.phraseDeVictoire(entry1)
+			array.append(Utils.phraseDeVictoire(entry1))
 		else:
 			entry2.increaseCrewLevel()
-			txt=txt+Utils.phraseDeVictoire(entry2)
-		return txt+"\n"
+			array.append(Utils.phraseDeVictoire(entry2))
+		return array
 
 
 	@staticmethod
@@ -58,29 +58,29 @@ class Utils(Static):
 
 	@staticmethod
 	def phraseDeCombat(entryA, entryB):
-		txt=""
+		array=[]
 		if entryA.isinstance()=="Joueur":
 			if entryB.isinstance()=="Joueur":
-				txt=txt+"L'équipage de "+entryA.username+" attaque:"+entryA.equipage.attaque(entryB.equipage)+"\n"
+				array.append("L'équipage de "+entryA.username+" attaque:"+entryA.equipage.attaque(entryB.equipage))
 			elif entryB.isinstance()=="Equipage":
-				txt=txt+"L'équipage de "+entryA.username+" attaque:"+entryA.equipage.attaque(entryB)+"\n"
+				array.append("L'équipage de "+entryA.username+" attaque:"+entryA.equipage.attaque(entryB))
 		elif entryA.isinstance()=="Equipage":
 			if entryB.isinstance()=="Joueur":
-				txt=txt+"Tour de l'équipage PNJ d'attaquer:"+entryA.attaque(entryB.equipage)+"\n"
+				array.append("Tour de l'équipage PNJ d'attaquer:"+entryA.attaque(entryB.equipage))
 			elif entryB.isinstance()=="Equipage":
-				txt=txt+"Tour de l'équipage PNJ d'attaquer:"+entryA.attaque(entryB)+"\n"
+				array.append("Tour de l'équipage PNJ d'attaquer:"+entryA.attaque(entryB))
 			
-		return txt
+		return array
 		
 
 	@staticmethod
 	def phraseDeVictoire(entry):
-		txt=""
+		array=[]
 		if entry.isinstance()=="Joueur":
-			txt=txt+"L'équipage de "+entry.username+" remporte le combat, ils remportent tous un niveau:\n"+str(entry.equipage)+"\n"
+			array.append("L'équipage de "+entry.username+" remporte le combat, ils remportent tous un niveau:\n"+str(entry.equipage))
 		elif entry.isinstance()=="Equipage":
-			txt=txt+"L'équipage PNJ remporte le combat! \n"
-		return txt
+			array.append("L'équipage PNJ remporte le combat!")
+		return array
 
 
 	@staticmethod
