@@ -25,18 +25,18 @@ class Utils(Static):
 		turnsCount=0
 		while entry1.availableToFight and entry2.availableToFight:
 			array.append(Message("Tour "+str(turnsCount), True))
-			array.append(Utils.phraseDeCombat(entry2, entry1))
+			array.extend(Utils.phraseDeCombat(entry2, entry1))
 			Utils.updateStatus(entry1)
-			array.append(Utils.phraseDeCombat(entry1, entry2))
+			array.extend(Utils.phraseDeCombat(entry1, entry2))
 			Utils.updateStatus(entry2)
 			
 			turnsCount+=1
 		if entry1.availableToFight:
 			entry1.increaseCrewLevel()
-			array.append(Utils.phraseDeVictoire(entry1))
+			array.extend(Utils.phraseDeVictoire(entry1))
 		else:
 			entry2.increaseCrewLevel()
-			array.append(Utils.phraseDeVictoire(entry2))
+			array.extend(Utils.phraseDeVictoire(entry2))
 		return array
 
 
@@ -61,14 +61,14 @@ class Utils(Static):
 		array=[]
 		if entryA.isinstance()=="Joueur":
 			if entryB.isinstance()=="Joueur":
-				array.append("L'équipage de "+entryA.username+" attaque:"+entryA.equipage.attaque(entryB.equipage))
+				array.append(Message("L'équipage de "+entryA.username+" attaque:"+entryA.equipage.attaque(entryB.equipage), True))
 			elif entryB.isinstance()=="Equipage":
-				array.append("L'équipage de "+entryA.username+" attaque:"+entryA.equipage.attaque(entryB))
+				array.append(Message("L'équipage de "+entryA.username+" attaque:"+entryA.equipage.attaque(entryB), True))
 		elif entryA.isinstance()=="Equipage":
 			if entryB.isinstance()=="Joueur":
-				array.append("Tour de l'équipage PNJ d'attaquer:"+entryA.attaque(entryB.equipage))
+				array.append(Message("Tour de l'équipage PNJ d'attaquer:"+entryA.attaque(entryB.equipage)))
 			elif entryB.isinstance()=="Equipage":
-				array.append("Tour de l'équipage PNJ d'attaquer:"+entryA.attaque(entryB))
+				array.append(Message("Tour de l'équipage PNJ d'attaquer:"+entryA.attaque(entryB)))
 			
 		return array
 		
@@ -77,9 +77,9 @@ class Utils(Static):
 	def phraseDeVictoire(entry):
 		array=[]
 		if entry.isinstance()=="Joueur":
-			array.append("L'équipage de "+entry.username+" remporte le combat, ils remportent tous un niveau:\n"+str(entry.equipage))
+			array.append([Message("L'équipage de "+entry.username+" remporte le combat, ils remportent tous un niveau:", True, "rouge"),Message(str(entry.equipage))])
 		elif entry.isinstance()=="Equipage":
-			array.append("L'équipage PNJ remporte le combat!")
+			array.append(Message("L'équipage PNJ remporte le combat!", True, "rouge"))
 		return array
 
 
