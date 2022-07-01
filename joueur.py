@@ -1,5 +1,4 @@
 
-from onepiece.OnePiece.multiLineMessage import MultiLineMessage
 from utils import Utils
 from equipage import Equipage
 from pirate import Pirate
@@ -7,6 +6,7 @@ from world import World
 from interactBDD import InteractBDD
 from island import Island
 from message import Message
+from output import Output
 
 class Joueur(object):
 
@@ -27,7 +27,7 @@ class Joueur(object):
 		self._availableToFight=True
 		
 
-	def showMenu(self, output=MultiLineMessage()):
+	def showMenu(self, output=Output()):
 		output.team+"Voici ton équipage:" + "___________________________________________________"
 		output.team+self._equipage.asMessageArray()
 		output.content+"Vous êtes actuellement ici: " * Message(str(self._position), True, "vert")
