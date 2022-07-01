@@ -43,8 +43,8 @@ class Equipage(object):
 		pirate=self._turn.next()
 		if pirate==None:
 			return "Cet équipage n'a plus personne de vivant. Fin du combat."
-		txt=equipage.whoIsGonnaTankThatHit().getAttackedBy(pirate)
-		return txt
+		return equipage.whoIsGonnaTankThatHit().getAttackedBy(pirate)
+
 
 	def whoIsGonnaTankThatHit(self):
 		alive=self.availableToTank()

@@ -66,14 +66,14 @@ class Utils(Static):
 	def phraseDeCombat(entryA, entryB):
 		if entryA.isinstance()=="Joueur":
 			if entryB.isinstance()=="Joueur":
-				return Message("L'équipage de "+entryA.username+" attaque:", True)+Message(entryA.equipage.attaque(entryB.equipage))
+				return Message("L'équipage de "+entryA.username+" attaque:", True)+entryA.equipage.attaque(entryB.equipage)
 			elif entryB.isinstance()=="Equipage":
-				return Message("L'équipage de "+entryA.username+" attaque:", True)+Message(entryA.equipage.attaque(entryB))
+				return Message("L'équipage de "+entryA.username+" attaque:", True)+entryA.equipage.attaque(entryB)
 		elif entryA.isinstance()=="Equipage":
 			if entryB.isinstance()=="Joueur":
-				return Message("Tour de l'équipage PNJ d'attaquer:")+ Message(entryA.attaque(entryB.equipage))
+				return Message("Tour de l'équipage PNJ d'attaquer:")+ entryA.attaque(entryB.equipage)
 			elif entryB.isinstance()=="Equipage":
-				return Message("Tour de l'équipage PNJ d'attaquer:")+Message(entryA.attaque(entryB))
+				return Message("Tour de l'équipage PNJ d'attaquer:")+entryA.attaque(entryB)
 		
 		
 
