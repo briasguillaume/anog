@@ -1,4 +1,4 @@
-
+from message import Message
 
 class Output(object):
 
@@ -15,13 +15,29 @@ class Output(object):
         return self.transformOutput()
 
     def team(self, txt):
-        self._toBeDisplayed['team'].append(txt)
+        if isinstance(txt,Message):
+            self._toBeDisplayed['team'].append(txt)
+        elif isinstance(txt, list):
+            for elem in txt:
+                self._toBeDisplayed['team'].append(elem)
+
+        
 
     def content(self, txt):
-        self._toBeDisplayed['content'].append(txt)
+        if isinstance(txt,Message):
+            self._toBeDisplayed['content'].append(txt)
+        elif isinstance(txt, list):
+            for elem in txt:
+                self._toBeDisplayed['content'].append(elem)
+        
 
     def map(self, txt):
-        self._toBeDisplayed['map'].append(txt)
+        if isinstance(txt,Message):
+            self._toBeDisplayed['map'].append(txt)
+        elif isinstance(txt, list):
+            for elem in txt:
+                self._toBeDisplayed['map'].append(elem)
+        
 
     def reset(self):
         for key in self._toBeDisplayed:
