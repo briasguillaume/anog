@@ -100,14 +100,14 @@ class Joueur(object):
 	def askForRecruitment(self, output):
 		pirates=[]
 		number=5
-		output.content(Message("Des pirates sont disponibles au recrutement."))
+		output.content(Message("Des pirates sont disponibles au recrutement.", True, "rouge"))
 		for i in range(0,number):
 			pirate=Pirate(self._position.level)
 			pirates.append(pirate)
 			output.content(Message("Choix "+str(i)+": "))
 			output.content(pirate.asMessageArray())
 
-		output.content(Message("Lequel voulez-vous recruter?"))
+		output.content(Message("Lequel voulez-vous recruter?", True, "rouge"))
 		return pirates
 
 	@property
