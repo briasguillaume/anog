@@ -42,8 +42,8 @@ class FruitFactoryMeta(type):
 		the returned instance.
 		"""
 		if cls not in cls._instances:
-		    instance = super().__call__(*args, **kwargs)
-		    cls._instances[cls] = instance
+			instance = super().__call__(*args, **kwargs)
+			cls._instances[cls] = instance
 		return cls._instances[cls]
 
 
@@ -60,11 +60,6 @@ class FruitFactory(metaclass=FruitFactoryMeta):
 				"Ice":False, 
 				"Electric":False}
 	#todo: create a database to avoid class variables
-
-
-	def __init__(self):
-		print("hello")
-
 
 
 	def countAvailableFruits():
