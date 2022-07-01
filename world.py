@@ -121,7 +121,7 @@ class World(object):
 		array=[]
 		tempBool=False
 		for stage in World.world:
-			array.append(Message('------------------------------------------------------------')) #60
+			array.append([Message('------------------------------------------------------------')]) #60
 			#1 20 20
 			#2 5 55 55 5
 			spaceLength=60/(len(stage.islands)+1) -10
@@ -139,10 +139,10 @@ class World(object):
 				for i in range(int(spaceLength)):
 					txt=txt+" "  #&nbsp; est un espace
 			if tempBool:
-				array.append(Message(txt, True, "rouge"))
+				array.append([Message(txt, True, "rouge")])
 				tempBool=False
 			else:
-				array.append(Message(txt))
+				array.append([Message(txt)])
 		return array
 
 
