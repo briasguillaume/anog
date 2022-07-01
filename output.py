@@ -1,4 +1,4 @@
-from message import Message
+
 from multiLineMessage import MultiLineMessage
 
 class Output(object):
@@ -21,7 +21,19 @@ class Output(object):
     def map(self):
         return self._map
 
-    @property
+    @team.setter
+    def team(self, elem):
+        self._team+elem
+
+    @content.setter
+    def content(self, elem):
+        self._content+elem
+
+    @map.setter
+    def map(self, elem):
+        self._map+elem
+
+
     def toBeDisplayed(self):
         temp={}
         temp['team']=self._team

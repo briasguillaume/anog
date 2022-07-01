@@ -5,12 +5,9 @@ from message import Message
 class MultiLineMessage(object):
 
 
-    def __init__(self, message=Message("")):
+    def __init__(self):
         self._myMessages=[]
-        if message.texte!="":
-            self._myMessages.append([message])
-
-
+        
     @property
     def myMessages(self):
         return self._myMessages
@@ -21,8 +18,8 @@ class MultiLineMessage(object):
         elif isinstance(messages, MultiLineMessage):
             self._myMessages.extend(messages.myMessages)
         elif isinstance(messages, str):
-            self._myMessages.append(Message(messages))
+            self._myMessages.append([Message(messages)])
 
 
     def __mul__(self, message):
-        self._myMessages[-1]=self._myMessages[-1].append(message)
+        self._myMessages[-1].append(message)

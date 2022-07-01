@@ -49,7 +49,7 @@ class Menu(object):
 
 
 
-		return self._output.toBeDisplayed
+		return self._output.toBeDisplayed()
 			
 
 
