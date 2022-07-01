@@ -27,8 +27,9 @@ class Joueur(object):
 		self._availableToFight=True
 		
 
-	def showMenu(self, output=Output()):
-		output.team+"Voici ton équipage:" + "___________________________________________________"
+	def showMenu(self, output):
+		output.team+ "Voici ton équipage:"
+		output.team+ "___________________________________________________"
 		output.team+self._equipage.asMessageArray()
 		output.content+"Vous êtes actuellement ici: " * Message(str(self._position), True, "vert")
 		output.map+World.showMap(self._position.name)
