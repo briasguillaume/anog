@@ -5,24 +5,21 @@ class Output(object):
 
 
     def __init__(self):
-        self._toBeDisplayed={}
-
-        
         self._team=MultiLineMessage()
         self._content=MultiLineMessage()
         self._map=MultiLineMessage()
 
     @property
     def team(self):
-        return self._toBeDisplayed['team']
+        return self._team
 
     @property
     def content(self):
-        return self._toBeDisplayed['content']
+        return self._content
 
     @property
     def map(self):
-        return self._toBeDisplayed['map']
+        return self._map
 
     @property
     def toBeDisplayed(self):
@@ -33,7 +30,8 @@ class Output(object):
         return temp
 
     def reset(self):
-        for key in self._toBeDisplayed:
-            self._toBeDisplayed[key]=MultiLineMessage()
+        self._team=MultiLineMessage()
+        self._content=MultiLineMessage()
+        self._map=MultiLineMessage()
 
   
