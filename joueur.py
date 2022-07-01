@@ -29,10 +29,10 @@ class Joueur(object):
 	def showMenu(self, output):
 		output.team([Message("Voici ton équipage:"), Message("___________________________________________________")])
 		output.team(self._equipage.asMessageArray())
-		output.content([Message("Vous êtes actuellement ici: "), Message(str(self._position))])
+		output.content([Message("Vous êtes actuellement ici: "), Message(str(self._position), True, "vert")])
 		output.map(World.showMap(self._position.name))
 		
-		output.content(Message("Dans quelle ile veux-tu aller maintenant?"))
+		output.content(Message("Dans quelle ile veux-tu aller maintenant?", True, "rouge"))
 		output.content(World.getNextStage(self._position.name))
 
 	def isinstance(self):

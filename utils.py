@@ -28,12 +28,12 @@ class Utils(Static):
 			if first==1:
 				array.append(Utils.phraseDeCombat(entry2, entry1))
 				Utils.updateStatus(entry1)
-				array.extend(Utils.phraseDeCombat(entry1, entry2))
+				array.append(Utils.phraseDeCombat(entry1, entry2))
 				Utils.updateStatus(entry2)
 			else:
 				array.append(Utils.phraseDeCombat(entry1, entry2))
 				Utils.updateStatus(entry2)
-				array.extend(Utils.phraseDeCombat(entry2, entry1))
+				array.append(Utils.phraseDeCombat(entry2, entry1))
 				Utils.updateStatus(entry1)
 			
 			turnsCount+=1
@@ -64,29 +64,25 @@ class Utils(Static):
 
 	@staticmethod
 	def phraseDeCombat(entryA, entryB):
-		array=[]
 		if entryA.isinstance()=="Joueur":
 			if entryB.isinstance()=="Joueur":
-				array.append(Message("L'équipage de "+entryA.username+" attaque:", True)+entryA.equipage.attaque(entryB.equipage))
+				return Message("L'équipage de "+entryA.username+" attaque:", True)+Message(entryA.equipage.attaque(entryB.equipage))
 			elif entryB.isinstance()=="Equipage":
-				array.append(Message("L'équipage de "+entryA.username+" attaque:", True)+entryA.equipage.attaque(entryB))
+				return Message("L'équipage de "+entryA.username+" attaque:", True)+Message(entryA.equipage.attaque(entryB))
 		elif entryA.isinstance()=="Equipage":
 			if entryB.isinstance()=="Joueur":
-				array.append(Message("Tour de l'équipage PNJ d'attaquer:")+ entryA.attaque(entryB.equipage))
+				return Message("Tour de l'équipage PNJ d'attaquer:")+ Message(entryA.attaque(entryB.equipage))
 			elif entryB.isinstance()=="Equipage":
-				array.append(Message("Tour de l'équipage PNJ d'attaquer:")+entryA.attaque(entryB))
-			
-		return array
+				return Message("Tour de l'équipage PNJ d'attaquer:")+Message(entryA.attaque(entryB))
+		
 		
 
 	@staticmethod
 	def phraseDeVictoire(entry):
-		array=[]
 		if entry.isinstance()=="Joueur":
-			array.append([Message("L'équipage de "+entry.username+" remporte le combat, ils remportent tous un niveau:", True, "rouge"),Message(str(entry.equipage))])
+			return [Message("L'équipage de "+entry.username+" remporte le combat, ils remportent tous un niveau:", True, "rouge"), Message(str(entry.equipage))]
 		elif entry.isinstance()=="Equipage":
-			array.append(Message("L'équipage PNJ remporte le combat!", True, "rouge"))
-		return array
+			return Message("L'équipage PNJ remporte le combat!", True, "rouge")
 
 
 	@staticmethod
