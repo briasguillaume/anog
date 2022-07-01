@@ -1,3 +1,4 @@
+from message import Message
 
 class Stage(object):
 
@@ -11,10 +12,10 @@ class Stage(object):
 
 
 	def __str__(self):
-		txt="Les prochaines iles sont:\n"
+		array=[Message("Les prochaines iles sont:")]
 		count=0
 		for island in self._islands:
-			txt=txt+"Choix "+str(count)+": "+str(island)+"\n"
+			array.append(Message("Choix "+str(count)+": "+str(island)))
 			count+=1
-		txt=txt+"\n"
-		return txt
+		
+		return array
