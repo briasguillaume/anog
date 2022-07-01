@@ -96,7 +96,7 @@ class World(object):
 		for stage in availableStages:
 			for island in stage.islands:
 				if island.name!=currentIslandName:
-					availableIslands.append(island)
+					availableIslands.append(island.asMessage())
 		return availableIslands
 
 	@staticmethod
