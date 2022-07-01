@@ -26,14 +26,14 @@ class Utils(Static):
 		while entry1.availableToFight and entry2.availableToFight:
 			array.append(Message("Tour "+str(turnsCount), True))
 			if first==1:
-				array.append(Utils.phraseDeCombat(entry2, entry1))
+				array.append([Utils.phraseDeCombat(entry2, entry1)])
 				Utils.updateStatus(entry1)
-				array.append(Utils.phraseDeCombat(entry1, entry2))
+				array.append([Utils.phraseDeCombat(entry1, entry2)])
 				Utils.updateStatus(entry2)
 			else:
-				array.append(Utils.phraseDeCombat(entry1, entry2))
+				array.append([Utils.phraseDeCombat(entry1, entry2)])
 				Utils.updateStatus(entry2)
-				array.append(Utils.phraseDeCombat(entry2, entry1))
+				array.append([Utils.phraseDeCombat(entry2, entry1)])
 				Utils.updateStatus(entry1)
 			
 			turnsCount+=1

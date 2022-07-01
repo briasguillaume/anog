@@ -105,17 +105,15 @@ class Pirate(object):
 	def getAttackedBy(self, pirate):
 		degats=pirate.attaque()-self._stats[2]
 		if degats<=0: #aucun degat reçu
-			txt=self._name+" reçoit 0 pts de degats de la part de "+pirate.name+", il garde ses "+str(self._stats[0])+"pts de vie"
 			pirate.increaseFatigue()
-			return Message(txt)
+			return Message(self._name+" reçoit 0 pts de degats de la part de "+pirate.name+", il garde ses "+str(self._stats[0])+"pts de vie")
 		self._stats[0]=self._stats[0]-degats
 
-		txt=self._name+" reçoit "+str(degats)+"pts de degats de la part de "+pirate.name+", il ne lui reste plus que "+str(self._stats[0])+"pts de vie"
 		pirate.increaseFatigue()
 		if self._stats[0]<=0:
 			self._availableToFight=False
 			self._mort=True
-		return Message(txt)
+		return Message(self._name+" reçoit "+str(degats)+"pts de degats de la part de "+pirate.name+", il ne lui reste plus que "+str(self._stats[0])+"pts de vie")
 
 	def generateNewName(self, name):
 		if name==None:
@@ -159,10 +157,10 @@ class Pirate(object):
 
 	def asMessageArray(self):
 		array=[]
-		array.append(Message(self._name, True))
-		array.append(Message("niveau: "+str(self._level)+" | qualité: "+str(self._qualite)+" | fruit: "+self._fruit.name, True))
-		array.append(Message('vie: '+str(self._stats[0])+" | dps: "+str(self._stats[1])+" | def: "+str(self._stats[2])+" | fatigue: "+str(self._stats[3])))
-		array.append(Message("___________________________________________________"))
+		array.append([Message(self._name, True)])
+		array.append([Message("niveau: "+str(self._level)+" | qualité: "+str(self._qualite)+" | fruit: "+self._fruit.name, True)])
+		array.append([Message('vie: '+str(self._stats[0])+" | dps: "+str(self._stats[1])+" | def: "+str(self._stats[2])+" | fatigue: "+str(self._stats[3]))])
+		array.append([Message("___________________________________________________")])
 		return array
 
 
