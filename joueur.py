@@ -79,7 +79,7 @@ class Joueur(object):
 
 
 		output.content+self.cleanUpDeadPirates()
-		
+
 		output.team+ "Voici ton équipage:"
 		output.team+ "___________________________________________________"
 		output.team+ self._equipage.asMessageArray()
@@ -98,10 +98,10 @@ class Joueur(object):
 	def cleanUpDeadPirates(self):
 		if len(self._equipage.dead)==0:
 			return Message("")
-		array=[Message("Ces pirates sont tombés au combat:")]
+		array=[[Message("Ces pirates sont tombés au combat:")]]
 		for pirate in self._equipage.dead:
 			InteractBDD.removeFighter(self._username, pirate)
-			array.append(pirate.asMessageArray())
+			array.extend(pirate.asMessageArray())
 		self._equipage.cleanUpDeadArray()
 		return array
 
