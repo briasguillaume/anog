@@ -1,4 +1,5 @@
 from message import Message
+from multiLineMessage import MultiLineMessage
 
 class Output(object):
 
@@ -6,39 +7,40 @@ class Output(object):
     def __init__(self):
         self._toBeDisplayed={}
 
-        self._toBeDisplayed['team']=[]
-        self._toBeDisplayed['content']=[]
-        self._toBeDisplayed['map']=[]
+        self._toBeDisplayed['team']=MultiLineMessage()
+        self._toBeDisplayed['content']=MultiLineMessage()
+        self._toBeDisplayed['map']=MultiLineMessage()
 
     @property
     def toBeDisplayed(self):
         return self._toBeDisplayed
 
     def team(self, txt):
+        '''
         if isinstance(txt,Message):
             self._toBeDisplayed['team'].append(txt)
         elif isinstance(txt, list):
-            self._toBeDisplayed['team'].extend(txt)
-
+            self._toBeDisplayed['team'].extend(txt)'''
+        self._toBeDisplayed['team']+txt
         
 
     def content(self, txt):
-        if isinstance(txt,Message):
+        '''if isinstance(txt,Message):
             self._toBeDisplayed['content'].append(txt)
         elif isinstance(txt, list):
-            self._toBeDisplayed['content'].extend(txt)
-        
+            self._toBeDisplayed['content'].extend(txt)'''
+        self._toBeDisplayed['content']+txt
 
     def map(self, txt):
-        if isinstance(txt,Message):
+        '''if isinstance(txt,Message):
             self._toBeDisplayed['map'].append(txt)
         elif isinstance(txt, list):
-            self._toBeDisplayed['map'].extend(txt)
-        
+            self._toBeDisplayed['map'].extend(txt)'''
+        self._toBeDisplayed['map']+txt
 
     def reset(self):
         for key in self._toBeDisplayed:
-            self._toBeDisplayed[key]=[]
+            self._toBeDisplayed[key]=MultiLineMessage()
 ''' 
     def transformOutput(self):
         outputAsArray={}
