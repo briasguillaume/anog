@@ -79,6 +79,12 @@ class Joueur(object):
 
 
 		output.content+self.cleanUpDeadPirates()
+		
+		output.team+ "Voici ton équipage:"
+		output.team+ "___________________________________________________"
+		output.team+ self._equipage.asMessageArray()
+
+		output.map+ World.showMap(self._position.name)
 
 	def recrutement(self, number, output, pirates=[], value=0):
 		
