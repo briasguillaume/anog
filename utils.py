@@ -61,14 +61,14 @@ class Utils(Static):
 		array=[]
 		if entryA.isinstance()=="Joueur":
 			if entryB.isinstance()=="Joueur":
-				array.append(Message("L'équipage de "+entryA.username+" attaque:"+entryA.equipage.attaque(entryB.equipage), True))
+				array.append(Message("L'équipage de "+entryA.username+" attaque:", True)+entryA.equipage.attaque(entryB.equipage))
 			elif entryB.isinstance()=="Equipage":
-				array.append(Message("L'équipage de "+entryA.username+" attaque:"+entryA.equipage.attaque(entryB), True))
+				array.append(Message("L'équipage de "+entryA.username+" attaque:", True)+entryA.equipage.attaque(entryB))
 		elif entryA.isinstance()=="Equipage":
 			if entryB.isinstance()=="Joueur":
-				array.append(Message("Tour de l'équipage PNJ d'attaquer:"+entryA.attaque(entryB.equipage)))
+				array.append(Message("Tour de l'équipage PNJ d'attaquer:")+ entryA.attaque(entryB.equipage))
 			elif entryB.isinstance()=="Equipage":
-				array.append(Message("Tour de l'équipage PNJ d'attaquer:"+entryA.attaque(entryB)))
+				array.append(Message("Tour de l'équipage PNJ d'attaquer:")+entryA.attaque(entryB))
 			
 		return array
 		
