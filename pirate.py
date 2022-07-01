@@ -157,7 +157,7 @@ class Pirate(object):
 		return demonBool
 
 
-	def __str__(self):
+	def asMessageArray(self):
 		array=[]
 		array.append(Message(self._name))
 		array.append("rouge niveau: "+str(self._level)+" | qualité: "+str(self._qualite)+" | fruit: "+self._fruit.name)

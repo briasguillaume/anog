@@ -97,7 +97,7 @@ class Equipage(object):
 	def asMessageArray(self):
 		array=[]
 		for pirate in self._team:
-			array.append(str(pirate))
+			array.append(pirate.asMessageArray())
 		return array
 
 
