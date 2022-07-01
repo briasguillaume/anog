@@ -94,7 +94,7 @@ class Equipage(object):
 		self._team.append(pirate)
 		self._turn.add(pirate)
 
-	def __str__(self):
+	def asMessageArray(self):
 		array=[]
 		for pirate in self._team:
 			array.append(str(pirate))
