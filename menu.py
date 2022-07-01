@@ -3,6 +3,7 @@ from joueur import Joueur
 from interactBDD import InteractBDD
 from output import Output
 import hashlib
+from message import Message
 
 
 class Menu(object):
@@ -45,7 +46,7 @@ class Menu(object):
 		if validation:
 			str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
 		else:
-			self._output.content("Looks like you tried to submit an empty value and succeeded, you can come back to login page now.")
+			self._output.content(Message("Looks like you tried to submit an empty value and succeeded, you can come back to login page now."))
 
 
 
@@ -82,7 +83,7 @@ class Menu(object):
 			Menu.tempData=self._joueur.askForRecruitment(self._output)
 		else:
 			self._joueur.resetCrew()
-			self._output.content("Ton équipage est mort, il va falloir recommencer du début pour devenir le roi des pirates. y/n \n")
+			self._output.content(Message("Ton équipage est mort, il va falloir recommencer du début pour devenir le roi des pirates. y/n \n"))
 
 
 	def choseThatPirate(self, value):
@@ -111,7 +112,7 @@ class Menu(object):
 			self._joueur=None
 			Menu.userInput=[]
 			Menu.currentStep=0
-			self._output.content("Wrong password, try again.")
+			self._output.content(Message("Wrong password, try again."))
 		self._joueur.showMenu(self._output)
 
 
