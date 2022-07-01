@@ -120,7 +120,7 @@ class World(object):
 	def showMap(currentIslandName):
 		array=[]
 		for stage in World.world:
-			array.append('------------------------------------------------------------') #60
+			array.append(Message('------------------------------------------------------------')) #60
 			#1 20 20
 			#2 5 55 55 5
 			spaceLength=60/(len(stage.islands)+1) -10
@@ -136,7 +136,7 @@ class World(object):
 				txt=txt+'|'
 				for i in range(int(spaceLength)):
 					txt=txt+" "  #&nbsp; est un espace
-			array.append(txt)
+			array.append(Message(txt))
 		return array
 
 
