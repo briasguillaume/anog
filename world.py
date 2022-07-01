@@ -2,6 +2,7 @@
 
 from island import Island
 from stage import Stage
+from message import Message
 
 class World(object):
 	#store it in db
@@ -117,12 +118,13 @@ class World(object):
 
 	@staticmethod
 	def showMap(currentIslandName):
-		txt=""
+		array=[]
 		for stage in World.world:
-			txt=txt+'------------------------------------------------------------\n' #60
+			array.append('------------------------------------------------------------') #60
 			#1 20 20
 			#2 5 55 55 5
 			spaceLength=60/(len(stage.islands)+1) -10
+			txt=""
 			for island in stage.islands:
 				for i in range(int(spaceLength)):
 					txt=txt+" "
@@ -134,8 +136,8 @@ class World(object):
 				txt=txt+'|'
 				for i in range(int(spaceLength)):
 					txt=txt+" "  #&nbsp; est un espace
-			txt=txt+"\n"
-		return txt
+			array.append(txt)
+		return array
 
 
 
