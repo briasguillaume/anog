@@ -66,7 +66,12 @@ class Joueur(object):
 			otherPlayer.username=isThereOtherPlayer
 			otherPlayer.equipage=Equipage(ennemies)
 			otherPlayer.position=self._position
-			output.content+ "Aie c'est le bordel sur "*self._position.name+"," + isThereOtherPlayer*" et son équipage sont présents sur l'ile," + "le combat est inévitable."
+			output.content+ "Aie c'est le bordel sur "
+			output.content* self._position.name
+			output.content+ "," 
+			output.content+ isThereOtherPlayer
+			output.content* " et son équipage sont présents sur l'ile," 
+			output.content+ "le combat est inévitable."
 			output.content+Utils.fight(self, otherPlayer)
 			otherPlayer.cleanUpDeadPirates()
 			if otherPlayer.availableToFight==False:
@@ -74,7 +79,9 @@ class Joueur(object):
 				# TODO eventuellement rajouter un petit message quand le gars se reconnecte?
 
 		else:
-			output.content+ "Arrivé sur "*self._position.name*", tu fais face à de nombreux pirates hostiles."
+			output.content+ "Arrivé sur "
+			output.content* self._position.name
+			output.content* ", tu fais face à de nombreux pirates hostiles."
 			output.content+ Utils.fight(self, self._position.pirates)
 
 
@@ -114,7 +121,9 @@ class Joueur(object):
 		for i in range(0,number):
 			pirate=Pirate(self._position.level)
 			pirates.append(pirate)
-			output.content+ "Choix "*str(i)*": "
+			output.content+ "Choix "
+			output.content* str(i)
+			output.content* ": "
 			output.content+ pirate.asMessageArray()
 
 		output.content+ Message("Lequel voulez-vous recruter?", True, "rouge")
