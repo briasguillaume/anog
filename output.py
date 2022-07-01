@@ -12,7 +12,7 @@ class Output(object):
 
     @property
     def toBeDisplayed(self):
-        return self.transformOutput()
+        return self._toBeDisplayed
 
     def team(self, txt):
         if isinstance(txt,Message):
