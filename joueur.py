@@ -91,7 +91,7 @@ class Joueur(object):
 		array=[Message("Ces pirates sont tombés au combat:")]
 		for pirate in self._equipage.dead:
 			InteractBDD.removeFighter(self._username, pirate)
-			array.append(str(pirate))
+			array.append(pirate.asMessageArray())
 		self._equipage.cleanUpDeadArray()
 		return array
 
@@ -104,7 +104,8 @@ class Joueur(object):
 		for i in range(0,number):
 			pirate=Pirate(self._position.level)
 			pirates.append(pirate)
-			output.content(Message("Choix "+str(i)+": "+str(pirate)))
+			output.content(Message("Choix "+str(i)+": "))
+			output.content(pirate.asMessageArray())
 
 		output.content(Message("Lequel voulez-vous recruter?"))
 		return pirates
