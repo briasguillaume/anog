@@ -83,7 +83,7 @@ class Menu(object):
 			Menu.tempData=self._joueur.askForRecruitment(self._output)
 		else:
 			self._joueur.resetCrew()
-			self._output.content(Message("Ton équipage est mort, il va falloir recommencer du début pour devenir le roi des pirates. y/n \n"))
+			self._output.content(Message("Ton équipage est mort, il va falloir recommencer du début pour devenir le roi des pirates. y/n"))
 
 
 	def choseThatPirate(self, value):
