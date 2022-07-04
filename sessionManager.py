@@ -46,7 +46,7 @@ class SessionManager(metaclass=SessionManagerMeta):
 
                     else:
                         output= MultiLineMessage()
-                        output.content+ "Mauvais mot de passe, réessaie."
+                        output+ "Mauvais mot de passe, réessaie."
                         return [output, False]
             else: # utilisateur inconnu car profil pas chargé ou nouveau joueur
                 [known, auth] = self.checkPassword(username, user_input[1])
@@ -54,7 +54,7 @@ class SessionManager(metaclass=SessionManagerMeta):
                     return [self.chargeProfile(username).showMenu(), True]
                 elif known: # connu mais mauvais mdp
                     output= MultiLineMessage()
-                    output.content+ "Mauvais mot de passe, réessaie."
+                    output+ "Mauvais mot de passe, réessaie."
                     return [output, False]
                 else: # inconnu et nouveau mdp
                     return [self.newSession(username, user_input[1]).showMenu(), True]
