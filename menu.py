@@ -46,6 +46,7 @@ class Menu(object):
 			str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
 			self.nextStep()
 		else:
+			self._died=False
 			Menu.userInput=[]
 			Menu.currentStep=1
 			self.choseThatIsland()

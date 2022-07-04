@@ -65,10 +65,10 @@ class Joueur(object):
 			otherPlayer.equipage=Equipage(ennemies)
 			otherPlayer.position=self._position
 			output.content+ "Aie c'est le bordel sur "
-			output.content* Message(self._position.name)
-			output.content* Message(",")
-			output.content+ isThereOtherPlayer
-			output.content* Message(" et son équipage sont présents sur l'ile," )
+			output.content* self._position.name
+			output.content* ","
+			output.content+ Message(isThereOtherPlayer, True, False, "rouge")
+			output.content* " et son équipage sont présents sur l'ile,"
 			output.content+ "le combat est inévitable."
 			output.content+Utils.fight(self, otherPlayer)
 			otherPlayer.cleanUpDeadPirates()
