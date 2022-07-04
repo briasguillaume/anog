@@ -36,7 +36,7 @@ class SessionManager(metaclass=SessionManagerMeta):
         if self.sanitization(user_input):
             if username in self._players:
                 if auth:
-                    return self.getMenu(username).showMenu(user_input) # utilisateur connu et déjà connecté
+                    return [self.getMenu(username).showMenu(user_input), auth] # utilisateur connu et déjà connecté
                 else: # utilisateur a priori connu mais authentification necessaire
                     return self.instanciateJoueur(username, user_input[1])
                     
@@ -44,7 +44,7 @@ class SessionManager(metaclass=SessionManagerMeta):
                 joueur = Joueur(username, user_input[1])
                 menu = self.newSession(username)
                 menu.joueur = joueur
-                return menu.showMenu()
+                return [menu.showMenu(), True]
         else:
             output = MultiLineMessage()
             output+ "Caractères non-autorisés entrés"
