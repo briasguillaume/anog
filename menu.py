@@ -42,13 +42,12 @@ class Menu(object):
 		if user_input!=None:
 			Menu.userInput=user_input
 			str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
-			
+			self.nextStep()
 		else:
 			Menu.userInput=[]
 			Menu.currentStep=1
 			self.choseThatIsland()
 		
-		self.nextStep()
 			
 		return self._output.toBeDisplayed()
 
