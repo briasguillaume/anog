@@ -27,8 +27,10 @@ class SessionManager(metaclass=SessionManagerMeta):
     def __init__(self):
         self._players={}
         
-    def newSession(self, username):
+    def newSession(self, username, password):
+        joueur = Joueur(username, password)
         self._players[username]=Menu()
+        self._players[username].joueur = joueur
         return self._players[username]
         
         
@@ -38,13 +40,25 @@ class SessionManager(metaclass=SessionManagerMeta):
                 if auth:
                     return [self.getMenu(username).showMenu(user_input), auth] # utilisateur connu et déjà connecté
                 else: # utilisateur a priori connu mais authentification necessaire
-                    return self.instanciateJoueur(username, user_input[1])
-                    
-            else: # utilisateur inconnu
-                joueur = Joueur(username, user_input[1])
-                menu = self.newSession(username)
-                menu.joueur = joueur
-                return [menu.showMenu(), True]
+                    [known, auth] = self.checkPassword(username, user_input[1])
+                    if auth:
+                        return [self.getMenu(username).showMenu(), True]
+
+                    else:
+                        output= MultiLineMessage()
+                        output.content+ "Mauvais mot de passe, réessaie."
+                        return [output, False]
+            else: # utilisateur inconnu car profil pas chargé ou nouveau joueur
+                [known, auth] = self.checkPassword(username, user_input[1])
+                if known and auth: # connu et bon mdp
+                    return [self.chargeProfile(username).showMenu(), True]
+                elif known: # connu mais mauvais mdp
+                    output= MultiLineMessage()
+                    output.content+ "Mauvais mot de passe, réessaie."
+                    return [output, False]
+                else: # inconnu et nouveau mdp
+                    return [self.newSession(username, user_input[1]).showMenu(), True]
+               
         else:
             output = MultiLineMessage()
             output+ "Caractères non-autorisés entrés"
@@ -53,7 +67,7 @@ class SessionManager(metaclass=SessionManagerMeta):
     def getMenu(self, username):
         return self._players[username]
         
-    def instanciateJoueur(self, username, password):
+    def checkPassword(self, username, password):
         InteractBDD.cleanUpDB()
 
         # https://docs.python.org/fr/3/library/hashlib.html
@@ -65,11 +79,10 @@ class SessionManager(metaclass=SessionManagerMeta):
 
         if InteractBDD.existInDB(username):
             if not InteractBDD.checkPassword(username, password):
-                output= MultiLineMessage()
-                output.content+ "Mauvais mot de passe, réessaie."
-                return [output, False] # password was wrong
+                return [True, False] # password was wrong
+            return [True, True] # password was correct
 				
-        return [self.getMenu(username).showMenu(), True]
+        return [False , False]# username not known
 
         
     def sanitization(self, user_input):
@@ -85,6 +98,12 @@ class SessionManager(metaclass=SessionManagerMeta):
                 if char in elem:
                     return False
         return True
+
+    def chargeProfile(self, username):
+        joueur = Joueur(username)
+        self._players[username]=Menu()
+        self._players[username].joueur = joueur
+        return self._players[username]
 
         
         

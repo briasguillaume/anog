@@ -10,15 +10,16 @@ from message import Message
 class Joueur(object):
 
 
-	def __init__(self, username, password):
-		
-		self.createNewUser(username, password)
-		InteractBDD.setMyCrew(username, World.carte()[0].islands[0].name, [Pirate(1, True, username)]) 
+	def __init__(self, username, password=None):
+		if password!=None:
+			self.createNewUser(username, password)
+			InteractBDD.setMyCrew(username, World.carte()[0].islands[0].name, [Pirate(1, True, username)]) 
 		
 		self._username= username
 		self._equipage= self.getMyCrew()
 		self._position= self.getMyLocation()
 		self._availableToFight=True
+
 		
 
 	def showMenu(self, output):
