@@ -160,7 +160,7 @@ class Pirate(object):
 		array.append([Message(self._name, True)])
 		array.append([Message("niveau: "+str(self._level)+" | qualité: "+str(self._qualite)+" | fruit: "+self._fruit.name, True)])
 		array.append([Message('vie: '+str(self._stats[0])+" | dps: "+str(self._stats[1])+" | def: "+str(self._stats[2])+" | fatigue: "+str(self._stats[3]))])
-		array.append([Message("___________________________________________________")])
+		array.append([Message("___________________________________________________", False, True)])
 		return array
 
 

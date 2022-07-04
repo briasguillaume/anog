@@ -3,6 +3,7 @@ import random
 import numpy as np
 from utils import Utils
 from pirate import Pirate
+from message import Message
 
 
 class Equipage(object):
@@ -42,7 +43,7 @@ class Equipage(object):
 	def attaque(self, equipage):
 		pirate=self._turn.next()
 		if pirate==None:
-			return "Cet équipage n'a plus personne de vivant. Fin du combat."
+			return Message("Cet équipage n'a plus personne de vivant. Fin du combat.")
 		return equipage.whoIsGonnaTankThatHit().getAttackedBy(pirate)
 
 

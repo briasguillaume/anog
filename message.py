@@ -4,10 +4,11 @@
 
 class Message(object):
 
-    def __init__(self, texte, gras=False, couleur=[0, 0, 0, 0.16]):
+    def __init__(self, texte, gras=False, retourLigne=False, couleur=[0, 0, 0, 0.16]):
         self._gras=gras
         self._couleur=couleur
         self._texte=texte
+        self._needRetourLigne=retourLigne
 
 
 
@@ -26,6 +27,11 @@ class Message(object):
     @property
     def texte(self):
         return self._texte
+
+
+    @property
+    def needRetourLigne(self):
+        return self._needRetourLigne
 
         
 

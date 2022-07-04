@@ -139,7 +139,7 @@ class World(object):
 				for i in range(int(spaceLength)):
 					txt=txt+" "  #&nbsp; est un espace
 			if tempBool:
-				array.append([Message(txt, True, "rouge")])
+				array.append([Message(txt, True, False, "rouge")])
 				tempBool=False
 			else:
 				array.append([Message(txt)])

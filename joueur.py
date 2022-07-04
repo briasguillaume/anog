@@ -35,8 +35,8 @@ class Joueur(object):
 		output.map+ World.showMap(self._position.name)
 		
 		output.content+ "Vous êtes actuellement ici: " 
-		output.content* Message(str(self._position), True, "vert")
-		output.content+ Message("Dans quelle ile veux-tu aller maintenant?", True, "rouge")
+		output.content* Message(str(self._position), True, False, "vert")
+		output.content+ Message("Dans quelle ile veux-tu aller maintenant?", True, False, "rouge")
 		output.content+ World.getNextStage(self._position.name)
 
 	def isinstance(self):
@@ -117,7 +117,7 @@ class Joueur(object):
 	def askForRecruitment(self, output):
 		pirates=[]
 		number=5
-		output.content+ Message("Des pirates sont disponibles au recrutement.", True, "rouge")
+		output.content+ Message("Des pirates sont disponibles au recrutement.", True, False, "rouge")
 		for i in range(0,number):
 			pirate=Pirate(self._position.level)
 			pirates.append(pirate)
@@ -126,7 +126,7 @@ class Joueur(object):
 			output.content* ": "
 			output.content+ pirate.asMessageArray()
 
-		output.content+ Message("Lequel voulez-vous recruter?", True, "rouge")
+		output.content+ Message("Lequel voulez-vous recruter?", True, False, "rouge")
 		return pirates
 
 	@property
