@@ -1,6 +1,5 @@
 
 import random
-import numpy as np
 from utils import Utils
 from pirate import Pirate
 from message import Message
@@ -23,6 +22,7 @@ class Equipage(object):
 
 	@property
 	def availableToFight(self):
+		self.updateTurn()
 		for pirate in self._team:
 			if pirate.mort==False and pirate.availableToFight:
 				return True
@@ -37,6 +37,10 @@ class Equipage(object):
 	@property
 	def dead(self):
 		return self._dead
+
+
+	def updateTurn(self):
+		self._turn=Turn(self._team)
 
 	def cleanUpDeadArray(self):
 		self._dead=[]
@@ -145,7 +149,6 @@ class Turn(object):
 	def removeCurrent(self):
 		self._numberOfPirates-=1
 		self._pirates=Utils.removeElement(self._pirates, self._turnCount)
-		print(self._pirates)
 
 
 	def removePirate(self):
@@ -154,6 +157,7 @@ class Turn(object):
 			if pirate.mort==False:
 				temp.append(pirate)
 		self._pirates=temp
+		self._numberOfPirates=len(self._pirates)
 
 
 	def next(self):
