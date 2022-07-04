@@ -62,8 +62,7 @@ class Joueur(object):
 			for txt in txtPirates:
 				ennemy=Utils.load(txt)
 				ennemies.append(ennemy)
-			otherPlayer=Joueur()
-			otherPlayer.username=isThereOtherPlayer
+			otherPlayer=Joueur(isThereOtherPlayer)
 			otherPlayer.equipage=Equipage(ennemies)
 			otherPlayer.position=self._position
 			output.content+ "Aie c'est le bordel sur "
