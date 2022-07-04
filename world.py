@@ -1,6 +1,7 @@
 
 
 from island import Island
+from multiLineMessage import MultiLineMessage
 from stage import Stage
 from message import Message
 
@@ -118,31 +119,28 @@ class World(object):
 
 	@staticmethod
 	def showMap(currentIslandName):
-		array=[]
-		tempBool=False
+		array= MultiLineMessage()
 		for stage in World.world:
-			array.append([Message('------------------------------------------------------------')]) #60
+			array+ Message('------------------------------------------------------------', False, True) #60
 			#1 20 20
 			#2 5 55 55 5
 			spaceLength=60/(len(stage.islands)+1) -10
-			txt=""
 			for island in stage.islands:
+
 				for i in range(int(spaceLength)):
-					txt=txt+" "
-				txt=txt+'|'
+					array+ Message(" ", False, False)
+
+				array+ Message('|', False, False)
 				if island.name!=currentIslandName:
-					txt=txt+island.name
+					array+ Message(island.name, False, False)
 				else:
-					txt=txt+island.name
-					tempBool=True
-				txt=txt+'|'
+					array+ Message(island.name, True, False, "rouge")
+				array+ Message('|', False, False)
+
 				for i in range(int(spaceLength)):
-					txt=txt+" "  #&nbsp; est un espace
-			if tempBool:
-				array.append([Message(txt, True, False, "rouge")])
-				tempBool=False
-			else:
-				array.append([Message(txt)])
+					array+ Message(" ", False, False)  #&nbsp; est un espace
+				array+ Message("", False, True)
+
 		return array
 
 
