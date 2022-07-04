@@ -40,6 +40,7 @@ class Menu(object):
 		self._output.reset()
 
 		if user_input!=None:
+			Menu.userInput=user_input
 			str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
 			
 		else:
