@@ -6,21 +6,15 @@ from world import World
 from interactBDD import InteractBDD
 from island import Island
 from message import Message
-from output import Output
 
 class Joueur(object):
 
 
-	def __init__(self, username=0, password=0):
-		InteractBDD.cleanUpDB()
-		if self.existInDB(username):
-			if not InteractBDD.checkPassword(username, password):
-				
-				self._username= None
-				
-		else:
-			self.createNewUser(username, password)
-			InteractBDD.setMyCrew(username, World.carte()[0].islands[0].name, [Pirate(1, True, username)]) 
+	def __init__(self, username, password):
+		
+		self.createNewUser(username, password)
+		InteractBDD.setMyCrew(username, World.carte()[0].islands[0].name, [Pirate(1, True, username)]) 
+		
 		self._username= username
 		self._equipage= self.getMyCrew()
 		self._position= self.getMyLocation()
@@ -159,8 +153,7 @@ class Joueur(object):
 	def equipage(self, equipage):
 		self._equipage=equipage
 
-	def existInDB(self, username):
-		return InteractBDD.existInDB(username)
+
 
 
 	def createNewUser(self, username, password):
