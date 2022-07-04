@@ -68,7 +68,7 @@ class Joueur(object):
 			output.content* Message(self._position.name)
 			output.content* Message(",")
 			output.content+ isThereOtherPlayer
-			output.content* " et son équipage sont présents sur l'ile," 
+			output.content* Message(" et son équipage sont présents sur l'ile," )
 			output.content+ "le combat est inévitable."
 			output.content+Utils.fight(self, otherPlayer)
 			otherPlayer.cleanUpDeadPirates()

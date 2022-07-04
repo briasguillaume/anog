@@ -24,4 +24,7 @@ class MultiLineMessage(object):
 
 
     def __mul__(self, message):
-        self._myMessages[-1].append(message)
+        if isinstance(message, Message):
+            self._myMessages[-1].append(message)
+        elif isinstance(message, str):
+            self._myMessages[-1].append(Message(message))
