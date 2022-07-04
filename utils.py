@@ -12,6 +12,8 @@ import json
 from collections import namedtuple
 from json import JSONEncoder
 
+import hashlib
+
 class Static:
 	def __new__(cls):
 		raise TypeError('Static classes cannot be instantiated')
@@ -125,6 +127,17 @@ class Utils(Static):
 				temp.append(elem)
 			count+=1
 		return temp
+
+
+	@staticmethod
+	def hashPassword(password):
+		# https://docs.python.org/fr/3/library/hashlib.html
+		password=hashlib.blake2b(password.encode('utf-8')).hexdigest()
+		try:
+			password=password[0:240]
+		except:
+			pass
+		return password
 		
 
 

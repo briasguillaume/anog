@@ -2,8 +2,7 @@ from menu import Menu
 from interactBDD import InteractBDD
 from multiLineMessage import MultiLineMessage
 from joueur import Joueur
-
-import hashlib
+from utils import Utils
 
 
 class SessionManagerMeta(type):
@@ -70,12 +69,7 @@ class SessionManager(metaclass=SessionManagerMeta):
     def checkPassword(self, username, password):
         InteractBDD.cleanUpDB()
 
-        # https://docs.python.org/fr/3/library/hashlib.html
-        password=hashlib.blake2b(password.encode('utf-8')).hexdigest()
-        try:
-            password=password[0:240]
-        except:
-            pass
+        password=Utils.hashPassword(password)
 
         if InteractBDD.existInDB(username):
             if not InteractBDD.checkPassword(username, password):

@@ -7,11 +7,13 @@ from interactBDD import InteractBDD
 from island import Island
 from message import Message
 
+
 class Joueur(object):
 
 
 	def __init__(self, username, password=None):
 		if password!=None:
+			password=Utils.hashPassword(password)
 			self.createNewUser(username, password)
 			InteractBDD.setMyCrew(username, World.carte()[0].islands[0].name, [Pirate(1, True, username)]) 
 		
