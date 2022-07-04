@@ -139,7 +139,7 @@ class World(object):
 
 				for i in range(int(spaceLength)):
 					array+ Message(" ", False, False)  #&nbsp; est un espace
-				array+ Message("", False, True)
+				array+ Message(" ", False, True)
 
 		return array
 
