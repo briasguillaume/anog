@@ -19,6 +19,9 @@ class Joueur(object):
 		
 		self._username= username
 		self._equipage= self.getMyCrew()
+		if self._equipage.numberOfPirates==0:
+			InteractBDD.setMyCrew(username, World.carte()[0].islands[0].name, [Pirate(1, True, username)]) 
+			self._equipage= self.getMyCrew() #in case we died
 		self._position= self.getMyLocation()
 		self._availableToFight=True
 
