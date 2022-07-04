@@ -124,7 +124,7 @@ class World(object):
 			array+ Message('------------------------------------------------------------', False, True) #60
 			#1 20 20
 			#2 5 55 55 5
-			spaceLength=60/(len(stage.islands)+1) -15
+			spaceLength=60/(len(stage.islands)+1) -10
 			for island in stage.islands:
 
 				for i in range(int(spaceLength)):

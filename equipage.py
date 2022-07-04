@@ -99,6 +99,8 @@ class Equipage(object):
 		array=[]
 		for pirate in self._team:
 			array.extend(pirate.asMessageArray())
+
+		array.append(Message(" ", False, True))
 		return array
 
 

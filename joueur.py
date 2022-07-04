@@ -122,7 +122,7 @@ class Joueur(object):
 			pirate=Pirate(self._position.level)
 			pirates.append(pirate)
 			output.content+ "Choix "
-			output.content* str(i)
+			output.content* Message(str(i))
 			output.content* ": "
 			output.content+ pirate.asMessageArray()
 
