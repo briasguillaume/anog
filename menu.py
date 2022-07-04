@@ -13,14 +13,14 @@ class Menu(object):
 	parameters={#1: "[Menu.userInput[0],Menu.userInput[1]]",  
 				1: "[Menu.userInput[-1]]",  
 				2: "[Menu.userInput[-1]]"}
-	currentStep=0
+	currentStep=1
 	tempData=None
 
 
 	def __init__(self):
 		self._joueur=None
 		Menu.userInput=[]
-		Menu.currentStep=0
+		Menu.currentStep=1
 		self._output=Output()
 
 	#TODO use fruit's allocation
@@ -44,7 +44,7 @@ class Menu(object):
 			
 		else:
 			Menu.userInput=[]
-			Menu.currentStep=0
+			Menu.currentStep=1
 			self.choseThatIsland()
 		
 		self.nextStep()
