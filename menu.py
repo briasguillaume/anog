@@ -22,6 +22,7 @@ class Menu(object):
 		Menu.userInput=[]
 		Menu.currentStep=1
 		self._output=Output()
+		self._died=False
 
 	#TODO use fruit's allocation
 	#TODO hook values from bdd and not code
@@ -39,7 +40,8 @@ class Menu(object):
 	def showMenu(self, user_input=None):
 		self._output.reset()
 
-		if user_input!=None:
+
+		if user_input!=None and self._died==False:
 			Menu.userInput=user_input
 			str(eval(Menu.steps[Menu.currentStep] + "(" + Menu.getParameters() + ")"))
 			self.nextStep()
@@ -91,6 +93,7 @@ class Menu(object):
 		else:
 			self._joueur.resetCrew()
 			self._output.content+ "Ton équipage est mort, il va falloir recommencer du début pour devenir le roi des pirates. y/n"
+			self._died=True
 
 
 	def choseThatPirate(self, value):
