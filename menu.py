@@ -54,10 +54,10 @@ class Menu(object):
 			
 
 	def nextStep(self):
-		if Menu.currentStep==0:
+		if Menu.currentStep==1:
+			Menu.currentStep=2
+		elif Menu.currentStep==2:
 			Menu.currentStep=1
-		elif Menu.currentStep==1:
-			Menu.currentStep=0
 
 
 
