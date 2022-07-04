@@ -37,11 +37,11 @@ class SessionManager(metaclass=SessionManagerMeta):
         if self.sanitization(user_input):
             if username in self._players:
                 if auth:
-                    return [self.getMenu(username).showMenu(user_input), auth] # utilisateur connu et déjà connecté
+                    return [self._players[username].showMenu(user_input), auth] # utilisateur connu et déjà connecté
                 else: # utilisateur a priori connu mais authentification necessaire
                     [known, auth] = self.checkPassword(username, user_input[1])
                     if auth:
-                        return [self.getMenu(username).showMenu(), True]
+                        return [self._players[username].showMenu(), True]
 
                     else:
                         output= MultiLineMessage()
@@ -63,8 +63,6 @@ class SessionManager(metaclass=SessionManagerMeta):
             output+ "Caractères non-autorisés entrés"
             return [output, False]
         
-    def getMenu(self, username):
-        return self._players[username]
         
     def checkPassword(self, username, password):
         InteractBDD.cleanUpDB()
