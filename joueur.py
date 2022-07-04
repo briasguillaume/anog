@@ -41,6 +41,9 @@ class Joueur(object):
 	def resetCrew(self):
 		InteractBDD.deleteUserProgress(self._username)
 		InteractBDD.setMyCrew(self._username, World.carte()[0].islands[0].name, [Pirate(1, True, self._username)])
+		self._equipage= self.getMyCrew()
+		self._position= self.getMyLocation()
+		self._availableToFight=True
 
 
 	def increaseCrewLevel(self):
