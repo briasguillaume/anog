@@ -14,14 +14,10 @@ class Joueur(object):
 	def __init__(self, username, password=None):
 		if password!=None:
 			password=Utils.hashPassword(password)
-			self.createNewUser(username, password)
-			InteractBDD.setMyCrew(username, World.carte()[0].islands[0].name, [Pirate(1, True, username)]) 
+			self.createNewUser(username, password) 
 		
 		self._username= username
 		self._equipage= self.getMyCrew()
-		if self._equipage.numberOfPirates==0:
-			InteractBDD.setMyCrew(username, World.carte()[0].islands[0].name, [Pirate(1, True, username)]) 
-			self._equipage= self.getMyCrew() #in case we died
 		self._position= self.getMyLocation()
 		self._availableToFight=True
 

@@ -30,6 +30,7 @@ class Equipage(object):
 
 	@property
 	def numberOfPirates(self):
+		self._numberOfPirates=len(self._team)
 		return self._numberOfPirates
 
 
