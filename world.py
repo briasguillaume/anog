@@ -124,7 +124,7 @@ class World(object):
 			array+ Message('------------------------------------------------------------', False, True) #60
 			#1 20 20
 			#2 5 55 55 5
-			spaceLength=60/(len(stage.islands)+1) -10
+			spaceLength=60/(len(stage.islands)+1) -15
 			for island in stage.islands:
 
 				for i in range(int(spaceLength)):
@@ -138,7 +138,9 @@ class World(object):
 				array+ Message('|', False, False)
 
 				for i in range(int(spaceLength)):
-					array+ Message(" ", False, False)  #&nbsp; est un espace
+					array+ Message(" ", False, False)
+
+
 				array+ Message(" ", False, True)
 
 		return array
