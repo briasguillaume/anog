@@ -184,7 +184,7 @@ class InteractBDD(Static):
 		indexes=""
 		for pirate in pirates:
 			index=InteractBDD.getAvailableID(conn, cur)
-			if not indexes:
+			if indexes=="":
 				indexes=str(index)
 			else:
 				indexes=indexes+","+str(index)
