@@ -217,9 +217,6 @@ class InteractBDD(Static):
 		request = "DELETE FROM equipage WHERE username='"+username+"';"
 		description = InteractBDD.connectAndExecuteRequest(request, True)
 
-		#request = "DELETE FROM joueur WHERE username='"+username+"';"
-		#description = InteractBDD.connectAndExecuteRequest(request, True)
-
 		piratesid=InteractBDD.getMyPiratesID(username)
 		for pirateid in piratesid:
 			request = "DELETE FROM pirate WHERE id='"+str(pirateid)+"';"
@@ -242,7 +239,7 @@ class InteractBDD(Static):
 	def removeFighter(username, pirate):
 		pirateid=InteractBDD.getPirateID(pirate)
 
-		request = "DELETE FROM pirate WHERE id='"+pirateid+"';"
+		request = "DELETE FROM pirate WHERE id='"+str(pirateid)+"';"
 		description = InteractBDD.connectAndExecuteRequest(request, True)
 
 		request = "SELECT piratesid FROM equipage WHERE username='"+username+"';"
@@ -295,6 +292,7 @@ class InteractBDD(Static):
 			cur.execute(request)
 
 		description=cur
+		cur.close()
 		conn.close
 		return description
 
