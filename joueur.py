@@ -103,7 +103,7 @@ class Joueur(object):
 	def cleanUpDeadPirates(self):
 		if len(self._equipage.dead)==0:
 			return Message("")
-		array=[[Message("Ces pirates sont tombés au combat:")]]
+		array=[[Message("Ces pirates sont tombés au combat:", True, False, "rouge")]]
 		for pirate in self._equipage.dead:
 			InteractBDD.removeFighter(self._username, pirate)
 			array.extend(pirate.asMessageArray())

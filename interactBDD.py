@@ -189,15 +189,15 @@ class InteractBDD(Static):
 			else:
 				indexes=indexes+","+str(index)
 			request = "INSERT INTO pirate VALUES('"+str(index)+"','"+pirate.name+"','"+str(pirate.level)+"','"+pirate.fruit.name+"','"+str(pirate.qualite)+"');"
-			description = InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
+			InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
 
 
 		request = "DELETE FROM equipage WHERE username='"+username+"';"
-		description = InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
+		InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
 
 
 		request = "INSERT INTO equipage VALUES('"+username+"','"+positionsName+"','"+indexes+"');"
-		description = InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
+		InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
 		InteractBDD.endQuery(conn, cur)
 		return None
 	
@@ -205,7 +205,7 @@ class InteractBDD(Static):
 	def setMyLocation(username, positionsName):
 		[conn, cur]=InteractBDD.beginQuery()
 		request = "UPDATE equipage SET position='"+positionsName+"' WHERE username='"+username+"';"
-		description = InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
+		InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
 		InteractBDD.endQuery(conn, cur)
 		return None
 
@@ -266,11 +266,11 @@ class InteractBDD(Static):
 	def deleteAll():
 		[conn, cur]=InteractBDD.beginQuery()
 		request = "DELETE FROM equipage;"
-		description = InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
+		InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
 		request = "DELETE FROM joueur;"
-		description = InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
+		InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
 		request = "DELETE FROM pirate;"
-		description = InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
+		InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
 		InteractBDD.endQuery(conn, cur)
 		return None
 
