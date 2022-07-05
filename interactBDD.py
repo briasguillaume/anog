@@ -299,7 +299,7 @@ class InteractBDD(Static):
 		[conn, cur]=InteractBDD.beginQuery()
 		piratesid=[]
 		request = "SELECT piratesid FROM equipage;"
-		description = InteractBDD.connectAndExecuteRequest(request, False)
+		description = InteractBDD.connectAndExecuteRequest(request, False, conn, cur)
 		for elem in description:
 			array=str(elem[0]).split(",")
 			piratesid.append(array) #we get all the pirates id that belong to a crew
