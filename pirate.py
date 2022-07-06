@@ -75,15 +75,7 @@ class Pirate(object):
 		return 100*level*(5-qualite)
 
 	
-	def increaseLevel(self):
-		if self._fruit.name=="None":
-			increase=1
-		else:
-			increase=3
-		self._level=InteractBDD.increasePirateLevel(self, increase)
-		self._stats=StatsPirate.generateStats(self._level, self._qualite, self._fruit.power)
-
-
+	
 	def attaque(self):
 		return self._stats[1]
 

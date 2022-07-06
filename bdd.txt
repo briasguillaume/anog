@@ -11,10 +11,9 @@ Joueur
 - username 			string
 - password 			string
 
-Equipage
+Position
 - username 			string
 - position 			string
-- piratesid 		string
 
 Fruit
 - names 			string
@@ -22,7 +21,7 @@ Fruit
 - allocated 		int
 
 Pirate
-- id 				int
+- username          string
 - name 				string
 - level 			int
 - fruit		 		string
@@ -39,9 +38,9 @@ CREATE DATABASE data;
 use data;
 
 CREATE TABLE joueur(username varchar(20) PRIMARY KEY NOT NULL, password varchar(250));
-CREATE TABLE equipage(username varchar(20) PRIMARY KEY NOT NULL, position varchar(20), piratesid varchar(250));
+CREATE TABLE position(username varchar(20) PRIMARY KEY NOT NULL, position varchar(20));
 CREATE TABLE fruit(name varchar(20)  PRIMARY KEY NOT NULL, power varchar(20), allocated INT);
-CREATE TABLE pirate(id INT PRIMARY KEY NOT NULL, name varchar(60), level INT, fruit varchar(20), qualite INT);
+CREATE TABLE pirate(username varchar(20) PRIMARY KEY NOT NULL, name varchar(60), level INT, fruit varchar(20), qualite INT);
 CREATE TABLE world(name varchar(20) PRIMARY KEY NOT NULL, stage INT);
 
 INSERT INTO fruit VALUES('GumGum','[25,25,25,25]', 0);

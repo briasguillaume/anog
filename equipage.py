@@ -88,10 +88,6 @@ class Equipage(object):
 		for pirate in self._team:
 			pirate.regenerateHealth(pirate.level, pirate.qualite)
 
-	def increaseCrewLevel(self):
-		for pirate in self._team:
-			pirate.increaseLevel()
-
 
 	def removeFighter(self):
 		self._turn.removeCurrent()
