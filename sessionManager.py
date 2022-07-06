@@ -65,8 +65,6 @@ class SessionManager(metaclass=SessionManagerMeta):
         
         
     def checkPassword(self, username, password):
-        InteractBDD.cleanUpDB()
-
         password=Utils.hashPassword(password)
 
         if InteractBDD.existInDB(username):
