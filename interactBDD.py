@@ -86,6 +86,7 @@ class InteractBDD(Static):
 			value = str(elem[0])
 			InteractBDD.endQuery(conn, cur)
 			return value
+		return ""
 		
 	@staticmethod
 	def retrieveWholeDatabase():

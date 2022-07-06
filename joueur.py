@@ -184,7 +184,11 @@ class Joueur(object):
 
 
 	def getMyLocation(self):
-		return Island(InteractBDD.getMyLocation(self._username),0,0)
+		island = Island(InteractBDD.getMyLocation(self._username),0,0)
+		if island!="":
+			return island
+		else:
+			return Island("Karugarner",0,0)
 	
 
 
