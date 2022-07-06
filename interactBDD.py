@@ -80,7 +80,7 @@ class InteractBDD(Static):
 	@staticmethod
 	def getMyLocation(username):
 		[conn, cur]=InteractBDD.beginQuery()
-		request = "SELECT position FROM position WHERE username='"+username+"';"
+		request = "SELECT position FROM island WHERE username='"+username+"';"
 		description = InteractBDD.connectAndExecuteRequest(request, False, conn, cur)
 		for elem in description:
 			value = str(elem[0])
