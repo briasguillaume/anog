@@ -188,8 +188,8 @@ class Joueur(object):
 		if island!="":
 			return Island(island,0,0)
 		else:
-			InteractBDD.setMyLocation(self._username, "Karugarner")
-			return Island("Karugarner",0,0)
+			InteractBDD.setMyLocation(self._username, World.carte()[0].islands[0].name)
+			return Island(World.carte()[0].islands[0].name,0,0)
 	
 
 
