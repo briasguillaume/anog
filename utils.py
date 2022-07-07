@@ -53,8 +53,7 @@ class Utils(Static):
 	def increaseCrewLevel(entry):
 		if entry.isinstance()=="Joueur":
 			entry.equipage.increaseCrewLevel()
-		elif entry.isinstance()=="Equipage":
-			entry.increaseCrewLevel()
+		
 
 
 	@staticmethod
