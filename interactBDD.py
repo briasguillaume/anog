@@ -126,6 +126,7 @@ class InteractBDD(Static):
 		InteractBDD.endQuery(conn, cur)
 		return txt
 		# TODO maybe add an input to execute requests?
+		# TODO add a security before that route and... the other one...
 
 
 	@staticmethod
