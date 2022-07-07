@@ -23,14 +23,9 @@ class SessionManagerMeta(type):
 class SessionManager(metaclass=SessionManagerMeta):
     
     
-    #def __init__(self):
-        #self._players={}
     
     def newSession(self, username, password):
         joueur = Joueur(username, password)
-        #self._players[username]=Menu()
-        #self._players[username].joueur = joueur
-        #return self._players[username]
         menu = Menu()
         menu.joueur = joueur
         return menu
@@ -38,9 +33,6 @@ class SessionManager(metaclass=SessionManagerMeta):
         
     def chargeProfile(self, username):
         joueur = Joueur(username)
-        #self._players[username]=Menu()
-        #self._players[username].joueur = joueur
-        #return self._players[username]
         menu = Menu()
         menu.joueur = joueur
         return menu
@@ -48,29 +40,19 @@ class SessionManager(metaclass=SessionManagerMeta):
         
     def session(self, username, auth, user_input):
         if self.sanitization(user_input):
-            #if username in self._players:
-            #    if auth:
-            #        return [self._players[username].showMenu(user_input), auth] # utilisateur connu et déjà connecté
-            #    else: # utilisateur a priori connu mais authentification necessaire
-            #        [known, auth] = self.checkPassword(username, user_input[1])
-            #        if auth:
-            #            return [self._players[username].showMenu(), True]
-
-            #        else:
-            #            output= MultiLineMessage()
-            #            output+ "Mauvais mot de passe, réessaie."
-            #            return [output, False]
-            #else: # utilisateur inconnu car profil pas chargé ou nouveau joueur
-            [known, auth] = self.checkPassword(username, user_input[1])
-            if known and auth: # connu et bon mdp
+            if auth:
                 return [self.chargeProfile(username).showMenu(), True]
-            elif known: # connu mais mauvais mdp
-                output= MultiLineMessage()
-                output+ "Mauvais mot de passe, réessaie."
-                return [output, False]
-            else: # inconnu et nouveau mdp
-                return [self.newSession(username, user_input[1]).showMenu(), True]
-               
+            else:
+                [known, auth] = self.checkPassword(username, user_input[1])
+                if known and auth: # connu et bon mdp
+                    return [self.chargeProfile(username).showMenu(), True]
+                elif known: # connu mais mauvais mdp
+                    output= MultiLineMessage()
+                    output+ "Mauvais mot de passe, réessaie."
+                    return [output, False]
+                else: # inconnu et nouveau mdp
+                    return [self.newSession(username, user_input[1]).showMenu(), True]
+                
         else:
             output = MultiLineMessage()
             output+ "Caractères non-autorisés entrés"
