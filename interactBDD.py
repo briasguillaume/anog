@@ -65,13 +65,13 @@ class InteractBDD(Static):
 	def getMyCrew(username):
 		[conn, cur]=InteractBDD.beginQuery()
 		pirates=[]
-		request = "SELECT * FROM pirate WHERE username='"+username+"';"
+		request = "SELECT name, level, fruit, qualite FROM pirate WHERE username='"+username+"';"
 		description = InteractBDD.connectAndExecuteRequest(request, False, conn, cur)
 		for elem in description:
-			level=elem[2]
-			qualite=elem[4]
-			fruit=FruitFactory.giveThatFruit(str(elem[3]))
-			txt='{"type": "Pirate", "name": \"'+str(elem[1])+'\", "level": '+str(level)+ ', "qualite": '+str(qualite)+', "fruit": '+ str(fruit)+', "stats": '+str(StatsPirate.generateStats(level, qualite, fruit.power))+', "availableToFight": "True", "mort": "False"}'
+			level=elem[1]
+			qualite=elem[3]
+			fruit=FruitFactory.giveThatFruit(str(elem[2]))
+			txt='{"type": "Pirate", "name": \"'+str(elem[0])+'\", "level": '+str(level)+ ', "qualite": '+str(qualite)+', "fruit": '+ str(fruit)+', "stats": '+str(StatsPirate.generateStats(level, qualite, fruit.power))+', "availableToFight": "True", "mort": "False"}'
 			pirates.append(txt) #pas besoin de separation avec une ',', il n'y en a qu'un avec cet id
 		InteractBDD.endQuery(conn, cur)
 		return pirates
@@ -114,7 +114,7 @@ class InteractBDD(Static):
 		txt=txt+"<br>"
 
 		txt=txt+"Pirate: <br>"
-		txt=txt+"owner | name | level | fruit's name | qualite <br>"
+		txt=txt+"id | owner | name | level | fruit's name | qualite <br>"
 		request = "select * from pirate;"
 		description = InteractBDD.connectAndExecuteRequest(request, False, conn, cur)
 		for elem in description:
@@ -149,7 +149,7 @@ class InteractBDD(Static):
 		[conn, cur]=InteractBDD.beginQuery()
 
 		for pirate in pirates:
-			request = "INSERT INTO pirate VALUES('"+username+"','"+pirate.name+"','"+str(pirate.level)+"','"+pirate.fruit.name+"','"+str(pirate.qualite)+"');"
+			request = "INSERT INTO `pirate` (`username`, `name`, `level`, `fruit`, `qualite`) VALUES ('"+username+"','"+pirate.name+"','"+str(pirate.level)+"','"+pirate.fruit.name+"','"+str(pirate.qualite)+"');"
 			InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
 
 		request = "UPDATE island SET position='"+positionsName+"' WHERE username='"+username+"';"
@@ -169,8 +169,8 @@ class InteractBDD(Static):
 	@staticmethod
 	def addNewFighter(username, pirate):
 		[conn, cur]=InteractBDD.beginQuery()
-		request = "INSERT INTO pirate VALUES('"+username+"','"+pirate.name+"','"+str(pirate.level)+"','"+pirate.fruit.name+"','"+str(pirate.qualite)+"');"
-		description = InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
+		request = "INSERT INTO `pirate` (`username`, `name`, `level`, `fruit`, `qualite`) VALUES ('"+username+"','"+pirate.name+"','"+str(pirate.level)+"','"+pirate.fruit.name+"','"+str(pirate.qualite)+"');"
+		InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
 		InteractBDD.endQuery(conn, cur)
 		return None
 
@@ -179,11 +179,11 @@ class InteractBDD(Static):
 	def increasePirateLevel(username):
 		[conn, cur]=InteractBDD.beginQuery()
 
-		request = "UPDATE pirate SET level=level+1 WHERE username='"+username+"' and fruit=\"None\";"
-		description = InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
+		request = "UPDATE pirate SET level=level+1 WHERE username='"+username+"' and fruit='None';"
+		InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
 
-		request = "UPDATE pirate SET level=level+3 WHERE username='"+username+"' and fruit!=\"None\";"
-		description = InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
+		request = "UPDATE pirate SET level=level+3 WHERE username='"+username+"' and fruit!='None';"
+		InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
 		InteractBDD.endQuery(conn, cur)
 		return None
 
@@ -224,7 +224,7 @@ class InteractBDD(Static):
 		[conn, cur]=InteractBDD.beginQuery()
 
 		request = "DELETE FROM pirate WHERE username='"+username+"' and name='"+pirate.name+"' and fruit='"+pirate.fruit.name+"' and level='"+str(pirate.level)+"' and qualite='"+str(pirate.qualite)+"';"
-		description = InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
+		InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
 
 		InteractBDD.endQuery(conn, cur)
 		return None
