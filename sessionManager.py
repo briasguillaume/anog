@@ -34,8 +34,8 @@ class SessionManager(metaclass=SessionManagerMeta):
         
         
     def session(self, username, auth, user_input):
-        if auth==False:
-            del self._players[username]
+        if auth==False and username in self._players:
+            self._players.pop(username)
 
         if self.sanitization(user_input):
             if username in self._players:
