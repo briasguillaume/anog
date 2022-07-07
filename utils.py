@@ -43,7 +43,7 @@ class Utils(Static):
 		if entry1.availableToFight:
 			entry1.increaseCrewLevel()
 			array+ Utils.phraseDeVictoire(entry1)
-		else if entry.isinstance()=="Joueur":
+		elif entry.isinstance()=="Joueur":
 			entry2.increaseCrewLevel()
 			array+ Utils.phraseDeVictoire(entry2)
 		return array
