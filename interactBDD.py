@@ -172,7 +172,7 @@ class InteractBDD(Static):
 	@staticmethod
 	def addNewFighter(username, pirate):
 		[conn, cur]=InteractBDD.beginQuery()
-		request = "INSERT INTO `pirate` (`username`, `name`, `level`, `fruit`, `qualite`) VALUES ('"+username+"','"+pirate.name+"','"+str(pirate.level)+"','"+pirate.fruit.name+"','"+str(pirate.qualite)+"');"
+		request = "INSERT INTO `pirate` (`username`, `name`, `level`, `fruit`, `qualite`) VALUES ('"+username+"','"+pirate.name+"','"+pirate.level+"','"+pirate.fruit.name+"','"+pirate.qualite+"');"
 		InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
 		InteractBDD.endQuery(conn, cur)
 		return None
@@ -226,7 +226,7 @@ class InteractBDD(Static):
 	def removeFighter(username, pirate):
 		[conn, cur]=InteractBDD.beginQuery()
 
-		request = "DELETE FROM pirate WHERE username='"+username+"' and name='"+pirate.name+"' and fruit='"+pirate.fruit.name+"' and level='"+str(pirate.level)+"' and qualite='"+str(pirate.qualite)+"';"
+		request = "DELETE FROM pirate WHERE username like '"+username+"' and name like '"+pirate.name+"' and fruit like '"+pirate.fruit.name+"' and level='"+pirate.level+"' and qualite='"+pirate.qualite+"';"
 		InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
 
 		InteractBDD.endQuery(conn, cur)
