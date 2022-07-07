@@ -24,6 +24,9 @@ class Joueur(object):
 		
 
 	def showMenu(self, output):
+		self._equipage= self.getMyCrew()
+		self._position= self.getMyLocation()
+		
 		output.team+ "Voici ton équipage:"
 		output.team+ Message("___________________________________________________", False, True)
 		output.team+ self._equipage.asMessageArray()
