@@ -161,7 +161,10 @@ class InteractBDD(Static):
 	@staticmethod
 	def setMyLocation(username, positionsName):
 		[conn, cur]=InteractBDD.beginQuery()
-		request = "UPDATE island SET position='"+positionsName+"' WHERE username='"+username+"';"
+		request = "DELETE FROM island WHERE username='"+username+"';" # an update doesnt do the work since u r maybe not already in the table
+		InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
+
+		request = "INSERT INTO island VALUES ('"+username+"', '"+positionsName+"');"
 		InteractBDD.connectAndExecuteRequest(request, True, conn, cur)
 		InteractBDD.endQuery(conn, cur)
 		return None
